@@ -1,0 +1,261 @@
+/* Brand Hero */
+.brand-hero {
+  background: linear-gradient(135deg, #DA3F3F 0%, #c23636 100%);
+  color: white;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.brand-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.brand-subtitle {
+  font-size: 1.3rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+/* Brand Story */
+.brand-story {
+  background-color: white;
+}
+
+.story-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.story-text h2 {
+  font-size: 2.5rem;
+  color: #000;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.story-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.story-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Values Section */
+.brand-values {
+  background-color: #f8f8f8;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.value-card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+}
+
+.value-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.value-card h3 {
+  font-size: 1.5rem;
+  color: #000;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.value-card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Craftsmanship Process */
+.craftsmanship {
+  background-color: white;
+}
+
+.process-steps {
+  display: grid;
+  gap: 40px;
+}
+
+.process-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 30px;
+  align-items: center;
+  padding: 30px;
+  background: #f8f8f8;
+  border-radius: 10px;
+}
+
+.step-number {
+  width: 60px;
+  height: 60px;
+  background: #DA3F3F;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.step-content h3 {
+  font-size: 1.3rem;
+  color: #000;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.step-content p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Mission Statement */
+.mission {
+  background: linear-gradient(135deg, #000 0%, #333 100%);
+  color: white;
+  text-align: center;
+}
+
+.mission-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.mission-content p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+  .story-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .story-image {
+    order: -1;
+  }
+
+  .process-step {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-hero {
+    padding: 60px 0;
+  }
+
+  .brand-title {
+    font-size: 2.5rem;
+  }
+
+  .brand-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .story-text h2 {
+    font-size: 2rem;
+  }
+
+  .story-text p {
+    font-size: 1rem;
+  }
+
+  .story-image img {
+    height: 300px;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .value-card {
+    padding: 30px 20px;
+  }
+
+  .mission-content h2 {
+    font-size: 2rem;
+  }
+
+  .mission-content p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-hero {
+    padding: 40px 0;
+  }
+
+  .brand-title {
+    font-size: 2rem;
+  }
+
+  .brand-subtitle {
+    font-size: 1rem;
+  }
+
+  .story-text h2 {
+    font-size: 1.8rem;
+  }
+
+  .value-icon {
+    font-size: 2.5rem;
+  }
+
+  .value-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .step-number {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+
+  .mission-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .mission-content p {
+    font-size: 1rem;
+  }
+}
