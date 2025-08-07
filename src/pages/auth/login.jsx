@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, Info, X, Check, AlertTriangle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import API from '../../utils/api';
 
 const LoginPages = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -27,12 +28,19 @@ const LoginPages = () => {
     setTimeout(() => setShowAlert(false), 4000);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
     if (!formData.email || !formData.password) {
       showProfessionalAlert('error', 'Please fill in all required fields');
       return;
     }
     console.log(`login attempt:`, formData);
+    try {
+     const res =   await API.post('/auth/login', formData)
+     console.log(res.data)
+     localStorage.setItem('user', JSON.stringify(res.data.user));
+     } catch (error) {
+       console.log(error.response.data);
+    }
   };
 
   const togglePasswordVisibility = () => {

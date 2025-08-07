@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, Info, X, Check, AlertTriangle, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import API from '../../utils/api';
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -28,12 +29,18 @@ const Register = () => {
     setTimeout(() => setShowAlert(false), 4000);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
     if (!formData.email || !formData.password) {
       showProfessionalAlert('error', 'Please fill in all required fields');
       return;
     }
     console.log(`login attempt:`, formData);
+    try {
+     const res =   await API.post('/auth/signup', formData)
+     console.log(res.data)
+     } catch (error) {
+       console.log(error.response.data);
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -68,7 +75,7 @@ const Register = () => {
     const style = alertStyles[alertType];
 
     return (
-      <div className="fixed top-4 right-4 z-50 animate-slide-in">
+      <div className="fixed top-2 right-4 z-50 animate-slide-in">
         <div className={`${style.bg} ${style.border} border rounded-lg p-4 shadow-lg max-w-sm`}>
           <div className="flex items-start">
             <div className="flex-shrink-0">
@@ -94,7 +101,7 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className=" bg-white">
       <style jsx>{`
         @keyframes slide-in {
           from {
@@ -116,11 +123,9 @@ const Register = () => {
       {/* User Login Form */}
       <div className="min-h-screen bg-white flex items-center justify-center px-4 py-8">
         <div className="max-w-md w-full">
-          {/* Login Form */}
-          <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
+           <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
             <div className="space-y-1">
-              {/* Email Field */}
-               <div>
+                <div>
                 <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
                   Full Name
                 </label>
