@@ -8,7 +8,7 @@ const Wishlist = () => {
     {
       id: 1,
       name: "Handmade Black Norozi Chappal With Leather Sole - 092306",
-      image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=150&h=150&fit=crop",
+      image:  "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/48-300x300.jpg",
       originalPrice: 9500.00,
       currentPrice: 6999.00,
       dateAdded: "July 10, 2025",
@@ -17,7 +17,7 @@ const Wishlist = () => {
     {
       id: 2,
       name: "Black Peshawari Chappal With Triple Gear — 092115",
-      image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=150&h=150&fit=crop",
+      image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/4-300x300.jpg",
       originalPrice: 5500.00,
       currentPrice: 4500.00,
       dateAdded: "July 9, 2025",
@@ -26,7 +26,7 @@ const Wishlist = () => {
     {
       id: 3,
       name: "Handmade Black Kaptaan Chappal - 092171",
-      image: "https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=150&h=150&fit=crop",
+      image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/37-300x300.jpg",
       originalPrice: 6500.00,
       currentPrice: 5500.00,
       dateAdded: "July 9, 2025",
@@ -35,7 +35,7 @@ const Wishlist = () => {
     {
       id: 4,
       name: "Mustard Smart Zalmi Chappal — 09274",
-      image: "https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?w=150&h=150&fit=crop",
+      image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/38-300x300.jpg",
       originalPrice: 10500.00,
       currentPrice: 6500.00,
       dateAdded: "July 8, 2025",
@@ -44,7 +44,7 @@ const Wishlist = () => {
     {
       id: 5,
       name: "Black Charsadda Gol T Chappal - 092242",
-      image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=150&h=150&fit=crop",
+      image:  "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/231-300x300.jpg",
       originalPrice: 6000.00,
       currentPrice: 4999.00,
       dateAdded: "July 6, 2025",
