@@ -1,86 +1,135 @@
-import React from 'react';
-import { Facebook, Instagram, Youtube, MapPin, Phone, Mail } from 'lucide-react';
+import React, { useState } from 'react';
+import { Facebook, Instagram, Youtube, MapPin, Phone, Mail, Send, TicketCheckIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import "./Footer.css"
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleNewsletterSubmit = (e) => {
+    e.preventDefault();
+    if (email) {
+      setIsSubmitting(true);
+      // Simulate API call
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setEmail('');
+        alert('Thank you for subscribing!');
+      }, 1000);
+    }
+  };
+
   return (
-    <footer  className="w-full  mt-auto overflow-hidden">
-      <div className="py-12 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+    <footer className="footer">
+      <div className="footer-main">
+        <div className="footer-container">
+          <div className="footer-content">
             
-            {/* Company Info */}
-            <div className="flex flex-col">
-              <h3 className="text-lg font-semibold mb-4 sm:mb-6 text-gray-900">
-                Don't miss a thing
-              </h3>
-              <p className="text-gray-600 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
-                Crafting premium custom chappals with traditional techniques and modern designs.
+            {/* Company Info & Newsletter */}
+            <div className="footer-section">
+              <div className="footer-brand">
+                <h3 className="footer-brand-title">Kaltoor Chappal</h3>
+                <p className="footer-brand-subtitle">Premium Traditional Footwear</p>
+              </div>
+              
+              <p className="footer-description">
+                Crafting premium custom chappals with traditional techniques and modern designs. 
+                Experience the perfect blend of comfort, style, and authenticity.
               </p>
               
               {/* Newsletter Signup */}
-              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                />
-                <button className="px-4 sm:px-6 py-2 sm:py-3 bg-red-600 hover:bg-red-700 text-white rounded-md font-medium text-sm transition-colors duration-200 whitespace-nowrap">
-                  Subscribe
-                </button>
+              <div className="newsletter-section">
+                <h4 className="newsletter-title">Don't miss a thing</h4>
+                <p className="newsletter-text">Get exclusive offers and updates</p>
+                <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
+                  <div className="newsletter-input-group">
+                    <input
+                      type="email"
+                      placeholder="Enter your email address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="newsletter-input"
+                      required
+                    />
+                    <button 
+                      type="submit" 
+                      className={`newsletter-btn ${isSubmitting ? 'loading' : ''}`}
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <div className="spinner"></div>
+                      ) : (
+                        <Send size={18} />
+                      )}
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
 
-            {/* Company Links */}
-            <div className="flex flex-col">
-              <h3 className="text-lg font-semibold mb-4 sm:mb-6 text-gray-900">
-                Company
-              </h3>
-              <div  className="flex  flex-col gap-2 sm:gap-3">
-                <a  style={{color:"black"}}  href="#" className="text-gray-600 hover:text-red-600 transition-colors duration-200 text-sm sm:text-base">
-                  Find our Location
-                </a>
-                <a  style={{color:"black"}}  href="tel:+923335742086" className="text-gray-600 hover:text-red-600 transition-colors duration-200 text-sm sm:text-base flex items-center gap-2">
-                  <Phone size={16} />
-                  +92 333 123 123
-                </a>
-                <a  style={{color:"black"}}  href="tel:+923055102308" className="text-gray-600 hover:text-red-600 transition-colors duration-200 text-sm sm:text-base flex items-center gap-2">
-                  <Phone size={16} />
-                  +92 333 123 123
-                </a>
-                <a  style={{color:"black"}}  href="mailto:info@chappals.pk" className="text-gray-600 hover:text-red-600 transition-colors duration-200 text-sm sm:text-base flex items-center gap-2">
-                  <Mail size={16} />
-                  info@chappals.pk
-                </a>
+            {/* Quick Links */}
+            <div className="footer-section">
+              <h3 className="footer-title">Quick Links</h3>
+              <div className="footer-links">
+                <Link to="/about" className="footer-link">About Us</Link>
+                <Link to="/shop" className="footer-link">Shop All Products</Link>
+                <Link to="/signature-collection" className="footer-link">Signature Collection</Link>
+                <Link to="/sale" className="footer-link">Sale Items</Link>
+                <Link to="/contact" className="footer-link">Contact Us</Link>
+                <Link to="/size-guide" className="footer-link">Size Guide</Link>
               </div>
             </div>
 
-            {/* Services */}
-            <div className="flex flex-col">
-              <h3   style={{color:"black"}}  className="text-lg font-semibold mb-4 sm:mb-6 text-gray-900">
-                Services
-              </h3>
-              <div className="flex flex-col gap-2 sm:gap-3 mb-4 sm:mb-6">
-   
-                 <Link  style={{color:"black"}}  className="text-gray-600 hover:text-red-600 transition-colors duration-200 text-sm sm:text-base" to="TermsofService"> Terms of Service</Link>
+            {/* Customer Service */}
+            <div className="footer-section">
+              <h3 className="footer-title">Customer Service</h3>
+              <div className="footer-links">
+                <Link to="/shipping-info" className="footer-link">Shipping Information</Link>
+                <Link to="/returns" className="footer-link">Returns & Exchanges</Link>
+                <Link to="/privacy-policy" className="footer-link">Privacy Policy</Link>
+                <Link to="/terms-of-service" className="footer-link">Terms of Service</Link>
+                <Link to="/faq" className="footer-link">FAQ</Link>
+                <Link to="/track-order" className="footer-link">Track Your Order</Link>
+              </div>
+            </div>
+
+            {/* Contact & Social */}
+            <div className="footer-section">
+              <h3 className="footer-title">Get in Touch</h3>
+              
+              {/* Contact Info */}
+              <div className="contact-info">
+                <div className="contact-item">
+                  <MapPin className="contact-icon" size={18} />
+                  <div>
+                    <p className="contact-label">Visit Our Store</p>
+                    <p className="contact-text">Qissa Khwani Bazaar, Peshawar</p>
+                  </div>
+                </div>
                 
+                <div className="contact-item">
+                  <Phone className="contact-icon" size={18} />
+                  <div>
+                    <p className="contact-label">Call Us</p>
+                    <a href="tel:+923335742086" className="contact-link">+92 333 574 2086</a>
+                    <a href="tel:+923055102308" className="contact-link">+92 305 510 2308</a>
+                  </div>
+                </div>
                 
-                 <Link  style={{color:"black"}}  className="text-gray-600 hover:text-red-600 transition-colors duration-200 text-sm sm:text-base" to="contact"> Contact US</Link>
-                 <Link  style={{color:"black"}}  className="text-gray-600 hover:text-red-600 transition-colors duration-200 text-sm sm:text-base" to="services"> Services</Link>
-              
+                <div className="contact-item">
+                  <Mail className="contact-icon" size={18} />
+                  <div>
+                    <p className="contact-label">Email Us</p>
+                    <a href="mailto:info@kaltoorch appal.com" className="contact-link">info@kaltoorch appal.com</a>
+                  </div>
+                </div>
               </div>
-              
 
-            </div>
-
-            {/* Social Media & Reviews */}
-            <div className="flex flex-col">
-              <h3 className="text-lg font-semibold mb-4 sm:mb-6 text-gray-900">
-                Social Media
-              </h3>
-              
               {/* Social Links */}
-              <div style={{color:"white"}} className="flex gap-3 sm:gap-4 mb-6 sm:mb-8">
+              <div className="social-section">
+                <h4 className="social-title">Follow Us</h4>
+               <div style={{color:"white"}} className="flex gap-3 sm:gap-4 mb-6 sm:mb-8">
                 <a 
                   href="https://www.facebook.com/PeshawariChappalsPK" 
                   target="_blank" 
@@ -107,23 +156,24 @@ const Footer = () => {
                 </a>
               </div>
 
+              </div>
+
               {/* Google Reviews */}
-              <div  className="bg-white p-4 sm:p-5 rounded-lg border border-gray-200 shadow-sm">
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start sm:items-center">
+              <div className="google-reviews">
+                <div className="review-header">
                   <img 
                     src="https://lh3.googleusercontent.com/places/AKR5kUjuAEahjx3TpSwMXYO3NCeYC1Y5z50RkYESzlj02zoOMTpO7wDPzQzae-eciZ4KkQV5Op7B5MnZX-mrdkSYqykCelkjCGOhozo=s1600-w300-h300" 
-                    alt="Peshawari Chappal Pakistan" 
-                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg object-cover mx-auto sm:mx-0"
+                    alt="Kaltoor Chappal Store" 
+                    className="review-logo"
+                    loading="lazy"
                   />
-                  <div className="text-center sm:text-left">
-                    <h4 className="font-semibold text-gray-900 text-sm sm:text-base mb-1 sm:mb-2">
-                      Peshawari Chappal Pakistan
-                    </h4>
-                    <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
-                      <span className="text-yellow-400 text-sm sm:text-base">★★★★★</span>
-                      <span className="font-semibold text-gray-900 text-sm">4.6</span>
+                  <div className="review-info">
+                    <h4>Kaltoor Chappal</h4>
+                    <div className="rating">
+                      <div className="stars">★★★★★</div>
+                      <span className="rating-text">4.6</span>
                     </div>
-                    <p className="text-xs sm:text-sm text-gray-600">Based on 309 reviews</p>
+                    <p className="review-count">Based on 309+ reviews</p>
                   </div>
                 </div>
               </div>
@@ -133,12 +183,11 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom */}
-      <div className=" py-4 sm:py-6 border-t border-gray-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <p className="text-gray-600 text-xs sm:text-sm">
-              &copy; Peshawari Chappals 2014-2025 | Designed & Developed by The Blue's
-            </p>
+      <div className="footer-bottom">
+        <div className="footer-container">
+          <div className="footer-bottom-content">
+            <p>&copy; 2024 Kaltoor Chappal. All rights reserved.</p>
+            <p className="footer-credit">Designed & Developed by <span className="credit-highlight">The Blue's</span></p>
           </div>
         </div>
       </div>

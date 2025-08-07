@@ -1,7 +1,6 @@
 import React from 'react';
 import ProductCard from '../components/ProductCard';
-// import './Home.css';
-
+import "./Home.css"
 const Home = () => {
   const featuredProducts = [
     {
@@ -10,7 +9,8 @@ const Home = () => {
       price: "59.99",
       image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/48-300x300.jpg",
       hoverImage: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/482-300x300.jpg",
-      rating: 5
+      rating: 5,
+      badge: "SALE",
     },
     {
       id: 2,
@@ -82,9 +82,9 @@ const Home = () => {
       badge: "SALE",
       rating: 5
     },
-     {
+    {
       id: 9,
-      name: "Suede Traditional Camel Chappal – 09290",
+      name: "Premium Leather Chappal – 09291",
       price: "79.99",
       originalPrice: "174.30",
       image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
@@ -92,9 +92,9 @@ const Home = () => {
       badge: "SALE",
       rating: 4
     },
-     {
+    {
       id: 10,
-      name: "Suede Traditional Camel Chappal – 09290",
+      name: "Classic Brown Chappal – 09292",
       price: "59.99",
       originalPrice: "174.30",
       image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
@@ -102,9 +102,9 @@ const Home = () => {
       badge: "SALE",
       rating: 5
     },
-     {
+    {
       id: 11,
-      name: "Suede Traditional Camel Chappal – 09290",
+      name: "Heritage Collection Chappal – 09293",
       price: "69.99",
       originalPrice: "174.30",
       image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
@@ -112,29 +112,9 @@ const Home = () => {
       badge: "SALE",
       rating: 5
     },
-     {
-      id:12,
-      name: "Suede Traditional Camel Chappal – 09290",
-      price: "69.99",
-      originalPrice: "174.30",
-      image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-      hoverImage: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal5-min-jpg-300x300.webp",
-      badge: "SALE",
-      rating: 5
-    },
-     {
-      id: 13,
-      name: "Suede Traditional Camel Chappal – 09290",
-      price: "69.99",
-      originalPrice: "174.30",
-      image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-      hoverImage: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal5-min-jpg-300x300.webp",
-      badge: "SALE",
-      rating: 5
-    },
-     {
-      id: 14,
-      name: "Suede Traditional Camel Chappal – 09290",
+    {
+      id: 12,
+      name: "Royal Black Chappal – 09294",
       price: "69.99",
       originalPrice: "174.30",
       image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
@@ -145,98 +125,84 @@ const Home = () => {
   ];
 
   return (
-    <div className="home" >
-      {/* Hero Section */}
-      <section className="hero" style={{ padding: "2rem", backgroundColor: "#fff" }}>
-        <div
-          className="hero-content"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            maxWidth: "1200px",
-            margin: "0 auto",
-          }}
-        >
-          {/* LEFT: Product Image */}
-          <div className="hero-image" style={{ width: "70%" }}>
-            <img
-              src="https://pakhtunwardrobe.com/cdn/shop/products/PW-Premium-Black-1.jpg?v=1668556447"
-              alt="SHIKARI Norozi Chappal"
-              style={{ width: "100%", objectFit: "contain" }}
-            />
-          </div>
+    <>
+      
 
-          {/* RIGHT: Text and Logo */}
-          <div
-            className="hero-text"
-            style={{
-              width: "30%",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "flex-start",
-              paddingLeft: "1rem",
-            }}
-          >
-            {/* Logo */}
-            <div className="logo mx-8 ">
-              <a href="/" className='text-black flex gap-1 items-center '>
-                <span className='text-black'>Kaltoor</span> <span className='text-white bg-black rounded-md px-2'>Chappal</span>
-              </a>
+      <div className="home">
+        {/* Hero Section */}
+        <section className="hero">
+          <div className="hero-content">
+            {/* Product Image */}
+            <div className="hero-image">
+              <img
+                src="https://pakhtunwardrobe.com/cdn/shop/products/PW-Premium-Black-1.jpg?v=1668556447"
+                alt="SHIKARI Norozi Chappal"
+                className="hero-product-image"
+              />
             </div>
 
+            {/* Text Content */}
+            <div className="hero-text">
+              {/* Logo */}
+              <div className="hero-brand">
+                <a href="/" className="hero-logo">
+                  <span className="hero-logo-text">Kaltoor</span>
+                  <span className="hero-logo-badge">Chappal</span>
+                </a>
+              </div>
 
-            {/* Title */}
-            <h1 className="hero-title" style={{ fontSize: "2.5rem", fontWeight: "bold", margin: 0 }}>
-              SHIKARI
-            </h1>
+              {/* Title */}
+              <h1 className="hero-title">SHIKARI</h1>
 
-            {/* Subtitle */}
-            <p className="hero-subtitle" style={{ fontSize: "1.5rem", marginTop: "0.5rem" }}>
-             Kaltoor Chappal
-            </p>
+              {/* Subtitle */}
+              <p className="hero-subtitle">Kaltoor Chappal</p>
+            </div>
           </div>
+        </section>
+
+        {/* About Section */}
+        <section className="about-section py-5">
+          <div className="container">
+            <div className="about-content text-center">
+              <h2 className="section-title">
+                Discover Pakistan's Widest Range of Handmade Peshawari Chappals
+              </h2>
+              <p className="section-description">
+                <strong>Kaltoor Chappal.pk</strong> is Pakistan's trusted source for original handmade Peshawari chappals,
+                proudly preserving this timeless craft since 2010. Each pair is crafted with premium leather and traditional
+                stitching, reflecting generations of artisan expertise. Our brand stands for quality, heritage, and
+                affordability—offering unmatched comfort and durability. Explore our signature Norozi, Kaptaan, and classic
+                styles, along with new seasonal arrivals that blend tradition with modern flair. From everyday wear to special
+                occasions. <strong>Kaltoor Chappal</strong> delivers authentic designs and nationwide service you can count on.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Featured Products */}
+        <section className="featured-products py-5">
+          <div className="container">
+            <div className="products-grid">
+              {featuredProducts.map(product => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+              {/* todo */}
+            {/* <div className="text-center mt-4">
+              <a href="/products" className="btn btn-secondary">
+                View All Products
+              </a>
+            </div> */}
+          </div>
+        </section>
+
+        {/* WhatsApp Chat Button */}
+        <div className="whatsapp-chat">
+          <span className="whatsapp-icon">💬</span>
+          <span>Hi, Chat with us</span>
         </div>
-      </section>
-
-
-      {/* About Section */}
-      <section className="about-section py-5">
-        <div className="container">
-          <div className="about-content text-center">
-            <h2 className="section-title">Discover Pakistan's Widest Range of Handmade Peshawari Chappals</h2>
-            <p className="section-description">
-              <strong>Kaltoor Chappal.pk</strong> is Pakistan's trusted source for original handmade Peshawari chappals,
-              proudly preserving this timeless craft since 2010. Each pair is crafted with premium leather and traditional
-              stitching, reflecting generations of artisan expertise. Our brand stands for quality, heritage, and
-              affordability—offering unmatched comfort and durability. Explore our signature Norozi, Kaptaan, and classic
-              styles, along with new seasonal arrivals that blend tradition with modern flair. From everyday wear to special
-              occasions. <strong>Kaltoor Chappal</strong> delivers authentic designs and nationwide service you can count on.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Products */}
-      <section className="featured-products py-5"style={{width:"100%",display:"flex",alignContent:"center",alignItems:"center",justifyContent:"center"}}>
-        <div className="container">
-          <div className="products-grid">
-            {featuredProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-
-          <div className="text-center mt-4">
-            <a className="btn btn-secondary">View All Products</a>
-          </div>
-        </div>
-      </section>
-      <div className="whatsapp-chat">
-        <span className="whatsapp-icon">💬</span>
-        <span>Hi, Chat with us</span>
       </div>
-    </div>
+    </>
   );
 };
 
