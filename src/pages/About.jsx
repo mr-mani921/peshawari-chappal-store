@@ -12,7 +12,7 @@ const About = () => {
       <section className="brand-story py-5" style={{width:"100%"}}>
         <div className="container">
           <div className="story-content">
-            <div className="story-text">
+            <div className="story-text" style={{margin:"2rem"}}>
               <h2>Our Story</h2>
               <p>
                 Founded in 2010, PeshawariChappals.pk began as a small family business with a simple mission: 
@@ -42,22 +42,22 @@ const About = () => {
           <h2 className="section-title text-center mb-5">Our Values</h2>
           <div className="values-grid">
             <div className="value-card">
-              <div className="value-icon">🏺</div>
+              <div className="value-icon"style={{cursor:"pointer"}}>🏺</div>
               <h3>Heritage</h3>
               <p>We honor traditional craftsmanship techniques passed down through generations of skilled artisans.</p>
             </div>
             <div className="value-card">
-              <div className="value-icon">✨</div>
+              <div className="value-icon" style={{cursor:"pointer"}}>✨</div>
               <h3>Quality</h3>
               <p>Every chappal is meticulously crafted using premium leather and time-tested construction methods.</p>
             </div>
             <div className="value-card">
-              <div className="value-icon">🤝</div>
+              <div className="value-icon"style={{cursor:"pointer"}}>🤝</div>
               <h3>Authenticity</h3>
               <p>We guarantee genuine, handmade products that represent the true spirit of Pakistani footwear.</p>
             </div>
             <div className="value-card">
-              <div className="value-icon">🌍</div>
+              <div className="value-icon" style={{cursor:"pointer"}}>🌍</div>
               <h3>Accessibility</h3>
               <p>Making traditional Pakistani chappals available to customers worldwide with reliable service.</p>
             </div>
@@ -66,33 +66,33 @@ const About = () => {
       </section>
 
       {/* Craftsmanship Process */}
-      <section className="craftsmanship py-5">
+      <section className="craftsmanship py-10">
         <div className="container">
           <h2 className="section-title text-center mb-5">Our Craftsmanship Process</h2>
-          <div className="process-steps">
+          <div className="process-steps " >
             <div className="process-step">
-              <div className="step-number">1</div>
+              <div className="step-number" style={{backgroundColor:"white ",color:"black"}}>1</div>
               <div className="step-content">
                 <h3>Material Selection</h3>
                 <p>We carefully select the finest quality leather, ensuring durability and comfort for every pair.</p>
               </div>
             </div>
             <div className="process-step">
-              <div className="step-number">2</div>
+              <div className="step-number" style={{backgroundColor:"white ",color:"black"}}>2</div>
               <div className="step-content">
                 <h3>Traditional Cutting</h3>
                 <p>Master craftsmen cut each piece by hand, following patterns perfected over generations.</p>
               </div>
             </div>
             <div className="process-step">
-              <div className="step-number">3</div>
+              <div className="step-number" style={{backgroundColor:"white ",color:"black"}}>3</div>
               <div className="step-content">
                 <h3>Hand Stitching</h3>
                 <p>Every chappal is stitched by hand using traditional techniques that ensure longevity and comfort.</p>
               </div>
             </div>
             <div className="process-step">
-              <div className="step-number">4</div>
+              <div className="step-number" style={{backgroundColor:"white ",color:"black"}}>4</div>
               <div className="step-content">
                 <h3>Quality Inspection</h3>
                 <p>Each finished product undergoes rigorous quality checks before reaching our customers.</p>
@@ -103,11 +103,11 @@ const About = () => {
       </section>
 
       {/* Mission Statement */}
-      <section className="mission py-5">
-        <div className="container">
-          <div className="mission-content">
+      <section className="mission ">
+        <div className="">
+          <div style={{backgroundColor:"white", color:"black"}} className="mission-content">
             <h2>Our Mission</h2>
-            <p>
+            <p >
               To preserve and promote the rich heritage of Pakistani traditional footwear while providing 
               customers worldwide with authentic, high-quality chappals that combine comfort, durability, 
               and timeless style. We are committed to supporting local artisans and keeping traditional 

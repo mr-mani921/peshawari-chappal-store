@@ -33,6 +33,8 @@ interface OrderItem {
   quantity: number;
   image: string;
   sku?: string;
+  color:string;
+  style :string;
 }
 
 interface Order {
@@ -81,8 +83,22 @@ const mockOrders: Order[] = [
         name: 'Wireless Headphones', 
         price: 99.99, 
         quantity: 2, 
-        image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&h=100&fit=crop',
-        sku: 'WH-001'
+        image: 'https://www.peshawarichappals.pk/wp-content/uploads/2024/08/23-300x300.jpg',
+        sku: 'WH-001',
+        color:"black",
+        style :"Kaptaan Chappals"
+        
+
+      },
+       { 
+        id: '2', 
+        name: 'Wireless Headphones', 
+        price: 99.99, 
+        quantity: 1, 
+        image: 'https://www.peshawarichappals.pk/wp-content/uploads/2024/02/Norozi-Chappal-final-119-JPG-300x300.webp',
+        sku: 'WH-001',
+         color:"red",
+        style :"Zardari Chappals"
       }
     ],
     notes: 'Customer requested expedited shipping'
@@ -110,7 +126,9 @@ const mockOrders: Order[] = [
         price: 24.99, 
         quantity: 1, 
         image: 'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=100&h=100&fit=crop',
-        sku: 'SC-002'
+        sku: 'SC-002',
+         color:"red",
+        style :"Zardari Chappals"
       },
       { 
         id: '3', 
@@ -118,7 +136,9 @@ const mockOrders: Order[] = [
         price: 14.99, 
         quantity: 2, 
         image: 'https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=100&h=100&fit=crop',
-        sku: 'SP-003'
+        sku: 'SP-003',
+         color:"red",
+        style :"Peshawari Chappals"
       },
       { 
         id: '4', 
@@ -126,7 +146,9 @@ const mockOrders: Order[] = [
         price: 19.99, 
         quantity: 2, 
         image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=100&h=100&fit=crop',
-        sku: 'UC-004'
+        sku: 'UC-004',
+         color:"red",
+        style :"none"
       }
     ]
   },
@@ -153,7 +175,9 @@ const mockOrders: Order[] = [
         price: 149.99, 
         quantity: 1, 
         image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=100&h=100&fit=crop',
-        sku: 'BS-005'
+        sku: 'BS-005',
+         color:"red",
+        style :"xyz"
       }
     ],
     notes: 'Free shipping applied for orders over PKR100'
@@ -471,7 +495,10 @@ const Orders: React.FC = () => {
                       <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">SKU</th>
                       <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Quantity</th>
                       <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Price</th>
+                      <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">color</th>
+                      <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">style</th>
                       <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Total</th>
+
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
@@ -490,6 +517,9 @@ const Orders: React.FC = () => {
                         <td className="px-4 py-3 text-gray-600">{item.sku || 'N/A'}</td>
                         <td className="px-4 py-3">{item.quantity}</td>
                         <td className="px-4 py-3">PKR{item.price.toFixed(2)}</td>
+                        <td className="px-4 py-3">{item.color}</td>
+                        <td className="px-4 py-3">{item.style}</td>
+                        
                         <td className="px-4 py-3 font-medium">PKR{(item.quantity * item.price).toFixed(2)}</td>
                       </tr>
                     ))}

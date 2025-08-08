@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Star, Heart, Share2, MessageCircle, HelpCircle, ShoppingCart, Zap, Palette, Settings, Truck, ChartCandlestick } from 'lucide-react';
 import { addToCart, openCart } from '../store/slices/cartSlice';
 import { toggleWishlistItem } from '../store/slices/wishlistSlice';
+  import { Link } from 'react-router-dom';
 
 import { GitCompare ,Ruler,Phone} from 'lucide-react';
 const ProductInfo = () => {
@@ -564,7 +565,7 @@ const ProductInfo = () => {
             fontSize: '14px',
             color: '#666'
           }}>
-           <span style={{display:"flex",alignItems:"center",}}><Ruler />  Size Chart</span>
+           <span style={{display:"flex",alignItems:"center",}}><Ruler style={{marginRight:"1rem"}} />  Size Chart</span>
           </button>
         </div>
 
@@ -649,8 +650,7 @@ const ProductInfo = () => {
         {/* Action Buttons */}
         <div style={{ display: 'flex', gap: '15px', marginBottom: '25px' }}>
           <button 
-            onClick={handleAddToCart}
-            disabled={!selectedSize}
+           
             style={{
               flex: '1',
               padding: '15px',
@@ -668,8 +668,8 @@ const ProductInfo = () => {
               transition: 'all 0.3s ease'
             }}
           >
-            <ShoppingCart size={18} />
-            Add to cart
+            {/* <ShoppingCart size={18} /> */}
+     <Link to="./CheckoutPage" style={{color:"white"}}>CheckoutPage</Link>
           </button>
 
           <button 
@@ -688,7 +688,7 @@ const ProductInfo = () => {
               transition: 'all 0.3s ease'
             }}
           >
-            Buy Now
+            Add to cart
           </button>
         </div>
 
@@ -764,7 +764,7 @@ const ProductInfo = () => {
           fontSize: '16px',
           fontWeight: '600'
         }}>
-          <span style={{display:"flex", alignItems:"center"}}><Phone /> Order Via WhatsApp</span>
+          <span style={{display:"flex", alignItems:"center",}}><Phone style={{marginRight:"1rem"}} />  Order Via WhatsApp</span>
         </div>
       </div>
     </div>
@@ -1017,7 +1017,7 @@ const relatedProducts = [
           <div style={{ lineHeight: '1.6', color: '#555' }}>
             <div style={{ marginBottom: '30px' }}>
               <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '15px', color: '#333' }}>
-               <span style={{display:"flex",alignItems:"center"}}> <Truck /> Shipping</span>
+               <span style={{display:"flex",alignItems:"center"}}> <Truck style={{marginRight:"1rem"}} /> Shipping</span>
               </h3>
               <p style={{ marginBottom: '10px' }}>
                 <strong>Expected Delivery Time:</strong> 3-5 business days. Please note that delivery times may vary depending on your location.
@@ -1030,7 +1030,7 @@ const relatedProducts = [
             <div>
               <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '15px', color: '#333' }}>
                 <span style={{display:"flex",alignItems:"center"}}>
-                  <ChartCandlestick /> Hassle-Free Exchanges
+                  <ChartCandlestick style={{marginRight:"1rem"}} /> Hassle-Free Exchanges
                 </span>
               </h3>
               <p>

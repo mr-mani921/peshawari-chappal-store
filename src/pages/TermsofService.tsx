@@ -142,7 +142,7 @@ const TermsOfService = () => {
 
           {/* Contact Information */}
           <div className="mt-16 bg-orange-50 rounded-lg p-8 text-center">
-            <h3 className="text-xl font-semibold text-stone-800 mb-4">
+            <h3 className="text-xl font-semibold text-white-800 mb-4">
               Questions About These Terms?
             </h3>
             <p className="text-stone-600 mb-6 leading-relaxed">
@@ -150,10 +150,10 @@ const TermsOfService = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="/contact"
-                className="bg-orange-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-orange-700 transition-colors duration-300"
+                href="mailto:info@peshawari-chappals.com"
+                className="border border-orange-600 text-orange-600 px-6 py-2 rounded-lg font-medium hover:bg-orange-600 hover:text-white transition-all duration-300"
               >
-                Contact Us
+               Context US
               </a>
               <a
                 href="mailto:info@peshawari-chappals.com"

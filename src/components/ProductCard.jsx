@@ -1,6 +1,6 @@
   import React from 'react';
   import { useDispatch } from 'react-redux';
-  import { Heart, Eye, ShoppingCart } from 'lucide-react';
+  import { Heart, Eye, ShoppingCart, Star } from 'lucide-react';
   import { addToCart, openCart } from '../store/slices/cartSlice';
   import { toggleWishlistItem } from '../store/slices/wishlistSlice';
   import { Link } from 'react-router-dom';
@@ -39,7 +39,7 @@
         {/* ={`./ProductPage/${product.id}`} */}
 
         <div   className="product-image-container">
-          <Link to='./productInfo'>
+          <Link to="./ProductInfo">
 
             <img src={image} alt={name} className="product-image main-image" style={{
               width: "100%",
@@ -62,11 +62,15 @@
 
           <div className="product-actions">
             <button className="action-btn" aria-label="Add to wishlist">
-              <Heart size={16} onClick={handleAddToWishlist} />
+              <Heart style={{fontSize:"20px"}} size={16} onClick={handleAddToWishlist} />
             </button>
             <button className="action-btn" aria-label="Quick view">
-              <Eye size={16} />
+              <Eye style={{fontSize:"20px"}} size={16} />
             </button>
+             <button className="action-btn" aria-label="Quick view">
+              <Star style={{fontSize:"20px"}} size={16} />
+            </button>
+            
           </div>
 
           <button className="add-to-cart-btn" onClick={handleAddToCart}>
@@ -86,7 +90,7 @@
           <div className="product-rating">
             {[...Array(5)].map((_, i) => (
               <span key={i} className={`star ${i < rating ? 'filled' : ''}`}>
-                ★
+                
               </span>
             ))}
           </div>
