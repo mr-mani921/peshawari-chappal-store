@@ -263,7 +263,7 @@ const Header = () => {
           <div className="header-icons">
             {!isMobile && (
               <>
-                <Link to="/admin/dashboard">
+                <Link to="/login">
                   <button className="header-icon" aria-label="Account">
                     <User size={24} />
                   </button>

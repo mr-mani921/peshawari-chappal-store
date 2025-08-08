@@ -9,18 +9,28 @@ import {
   Check,
   AlertTriangle,
   User,
+  Loader2,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginPages = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertType, setAlertType] = useState("success");
   const [alertMessage, setAlertMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  // Authentication credentials
+  const AUTH_CREDENTIALS = {
+    email: "admin",
+    password: "passwords",
+    role: "admin"
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -37,16 +47,93 @@ const LoginPages = () => {
     setTimeout(() => setShowAlert(false), 4000);
   };
 
-  const handleSubmit = () => {
+  const authenticateUser = async (email, password) => {
+    // Simulate API call delay
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    // Check credentials
+    if (email.toLowerCase() === AUTH_CREDENTIALS.email.toLowerCase() && 
+        password === AUTH_CREDENTIALS.password) {
+      return {
+        success: true,
+        user: {
+          email: email,
+          role: AUTH_CREDENTIALS.role,
+          name: "Administrator"
+        }
+      };
+    }
+    
+    return {
+      success: false,
+      error: "Invalid email or password"
+    };
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    // Validation
     if (!formData.email || !formData.password) {
       showProfessionalAlert("error", "Please fill in all required fields");
       return;
     }
-    console.log(`login attempt:`, formData);
+
+    if (formData.email.length < 3) {
+      showProfessionalAlert("error", "Please enter a valid email");
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      showProfessionalAlert("error", "Password must be at least 6 characters");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const result = await authenticateUser(formData.email, formData.password);
+      
+      if (result.success) {
+        // Store user data in localStorage (in a real app, use secure storage)
+        localStorage.setItem('user', JSON.stringify(result.user));
+        localStorage.setItem('isAuthenticated', 'true');
+        localStorage.setItem('userRole', result.user.role);
+        localStorage.setItem('loginTime', new Date().toISOString());
+        
+        showProfessionalAlert("success", "Login successful! Redirecting...");
+        
+        // Redirect after success message
+        setTimeout(() => {
+          if (result.user.role === 'admin') {
+            navigate('/admin/dashboard');
+          } else {
+            navigate('/dashboard');
+          }
+        }, 1500);
+        
+      } else {
+        showProfessionalAlert("error", result.error);
+      }
+    } catch (error) {
+      showProfessionalAlert("error", "Login failed. Please try again.");
+      console.error("Authentication error:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  // Demo login function
+  const handleDemoLogin = () => {
+    setFormData({
+      email: "admin",
+      password: "passwords"
+    });
+    showProfessionalAlert("info", "Demo credentials filled in!");
   };
 
   // Professional Alert Component
@@ -198,15 +285,17 @@ const LoginPages = () => {
                 </div>
               </div>
 
+              {/* Demo Credentials Info */}
+            
               {/* Form */}
-              <div className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Email Field */}
                 <div className="group">
                   <label
                     htmlFor="email"
                     className="block text-sm font-semibold text-gray-700 mb-2"
                   >
-                    Email Address
+                    Email Address / Username
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -215,12 +304,13 @@ const LoginPages = () => {
                     <input
                       id="email"
                       name="email"
-                      type="email"
+                      type="text"
                       required
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="block w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 bg-gray-50 focus:bg-white shadow-sm hover:shadow-md"
-                      placeholder="Enter your email"
+                      disabled={isLoading}
+                      className="block w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 bg-gray-50 focus:bg-white shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                      placeholder="Enter your email or username"
                     />
                   </div>
                 </div>
@@ -241,15 +331,18 @@ const LoginPages = () => {
                       id="password"
                       name="password"
                       type={showPassword ? "text" : "password"}
+                      required
                       value={formData.password}
                       onChange={handleInputChange}
-                      className="block w-full pl-12 pr-12 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 bg-gray-50 focus:bg-white shadow-sm hover:shadow-md"
+                      disabled={isLoading}
+                      className="block w-full pl-12 pr-12 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 bg-gray-50 focus:bg-white shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                       placeholder="Enter your password"
                     />
                     <button
                       type="button"
                       onClick={togglePasswordVisibility}
-                      className="absolute inset-y-0 right-0 pr-4 flex items-center hover:text-red-500 transition-colors duration-200"
+                      disabled={isLoading}
+                      className="absolute inset-y-0 right-0 pr-4 flex items-center hover:text-red-500 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {showPassword ? (
                         <EyeOff className="h-5 w-5 text-gray-400" />
@@ -267,7 +360,8 @@ const LoginPages = () => {
                       id="remember-me"
                       name="remember-me"
                       type="checkbox"
-                      className="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded"
+                      disabled={isLoading}
+                      className="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded disabled:opacity-50"
                     />
                     <label
                       htmlFor="remember-me"
@@ -289,14 +383,21 @@ const LoginPages = () => {
                 {/* Submit Button */}
                 <div className="pt-4">
                   <button
-                    type="button"
-                    onClick={handleSubmit}
-                    className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-4 px-6 rounded-xl font-semibold hover:from-red-600 hover:to-red-700 focus:ring-4 focus:ring-red-200 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0"
+                    type="submit"
+                    disabled={isLoading}
+                    className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-4 px-6 rounded-xl font-semibold hover:from-red-600 hover:to-red-700 focus:ring-4 focus:ring-red-200 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-lg flex items-center justify-center"
                   >
-                    Sign In
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                        Signing In...
+                      </>
+                    ) : (
+                      "Sign In"
+                    )}
                   </button>
                 </div>
-              </div>
+              </form>
 
               {/* Divider */}
               <div className="relative my-8">
@@ -312,7 +413,10 @@ const LoginPages = () => {
 
               {/* Social Login Buttons */}
               <div className="grid grid-cols-2 gap-4 mb-8">
-                <button className="flex items-center justify-center gap-2 py-3 px-4 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors duration-200">
+                <button 
+                  disabled={isLoading}
+                  className="flex items-center justify-center gap-2 py-3 px-4 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
                   <svg className="w-5 h-5" viewBox="0 0 24 24">
                     <path
                       fill="#4285F4"
@@ -333,7 +437,10 @@ const LoginPages = () => {
                   </svg>
                   <span className="text-sm font-medium">Google</span>
                 </button>
-                <button className="flex items-center justify-center gap-2 py-3 px-4 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors duration-200">
+                <button 
+                  disabled={isLoading}
+                  className="flex items-center justify-center gap-2 py-3 px-4 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
                   <svg className="w-5 h-5" fill="#1877F2" viewBox="0 0 24 24">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                   </svg>

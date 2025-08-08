@@ -39,7 +39,7 @@
         {/* ={`./ProductPage/${product.id}`} */}
 
         <div   className="product-image-container">
-          <Link to='./productInfo'>
+          <Link to="./ProductInfo">
 
             <img src={image} alt={name} className="product-image main-image" style={{
               width: "100%",
