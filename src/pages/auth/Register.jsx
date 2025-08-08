@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
   Eye,
@@ -12,6 +13,7 @@ import {
   Users,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import API from '../../utils/api';
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -39,12 +41,19 @@ const Register = () => {
     setTimeout(() => setShowAlert(false), 4000);
   };
 
-  const handleSubmit = () => {
-    if (!formData.name || !formData.email || !formData.password) {
-      showProfessionalAlert("error", "Please fill in all required fields");
+  const handleSubmit = async() => {
+    if (!formData.email || !formData.password) {
+      showProfessionalAlert('error', 'Please fill in all required fields');
       return;
     }
-    console.log(`register attempt:`, formData);
+    console.log(`login attempt:`, formData);
+    try {
+     const res =   await API.post('/auth/signup', formData)
+     console.log(res.data)
+     } catch (error) {
+       console.log(error.response.data);
+    }
+
   };
 
   const togglePasswordVisibility = () => {
@@ -105,6 +114,7 @@ const Register = () => {
   };
 
   return (
+
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
       <style jsx>{`
         @keyframes slide-in {

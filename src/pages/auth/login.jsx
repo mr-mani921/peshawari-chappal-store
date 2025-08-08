@@ -1,17 +1,8 @@
-import React, { useState } from "react";
-import {
-  Eye,
-  EyeOff,
-  Mail,
-  Lock,
-  Info,
-  X,
-  Check,
-  AlertTriangle,
-  User,
-  Loader2,
-} from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { Eye, EyeOff, Mail, Lock, Info, X, Check, AlertTriangle } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import API from '../../utils/api';
+
 
 const LoginPages = () => {
   const navigate = useNavigate();
@@ -47,79 +38,21 @@ const LoginPages = () => {
     setTimeout(() => setShowAlert(false), 4000);
   };
 
-  const authenticateUser = async (email, password) => {
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    // Check credentials
-    if (email.toLowerCase() === AUTH_CREDENTIALS.email.toLowerCase() && 
-        password === AUTH_CREDENTIALS.password) {
-      return {
-        success: true,
-        user: {
-          email: email,
-          role: AUTH_CREDENTIALS.role,
-          name: "Administrator"
-        }
-      };
-    }
-    
-    return {
-      success: false,
-      error: "Invalid email or password"
-    };
-  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    // Validation
+  const handleSubmit = async() => {
+
     if (!formData.email || !formData.password) {
       showProfessionalAlert("error", "Please fill in all required fields");
       return;
     }
 
-    if (formData.email.length < 3) {
-      showProfessionalAlert("error", "Please enter a valid email");
-      return;
-    }
-
-    if (formData.password.length < 6) {
-      showProfessionalAlert("error", "Password must be at least 6 characters");
-      return;
-    }
-
-    setIsLoading(true);
-
+    console.log(`login attempt:`, formData);
     try {
-      const result = await authenticateUser(formData.email, formData.password);
-      
-      if (result.success) {
-        // Store user data in localStorage (in a real app, use secure storage)
-        localStorage.setItem('user', JSON.stringify(result.user));
-        localStorage.setItem('isAuthenticated', 'true');
-        localStorage.setItem('userRole', result.user.role);
-        localStorage.setItem('loginTime', new Date().toISOString());
-        
-        showProfessionalAlert("success", "Login successful! Redirecting...");
-        
-        // Redirect after success message
-        setTimeout(() => {
-          if (result.user.role === 'admin') {
-            navigate('/admin/dashboard');
-          } else {
-            navigate('/dashboard');
-          }
-        }, 1500);
-        
-      } else {
-        showProfessionalAlert("error", result.error);
-      }
-    } catch (error) {
-      showProfessionalAlert("error", "Login failed. Please try again.");
-      console.error("Authentication error:", error);
-    } finally {
-      setIsLoading(false);
+     const res =   await API.post('/auth/login', formData)
+     console.log(res.data)
+     localStorage.setItem('user', JSON.stringify(res.data.user));
+     } catch (error) {
+       console.log(error.response.data);
     }
   };
 
