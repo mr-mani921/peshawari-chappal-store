@@ -28,7 +28,7 @@ const Inventory: React.FC = () => {
 
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         product.sku.toLowerCase().includes(searchTerm.toLowerCase());
+                         product.color.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -62,7 +62,7 @@ const Inventory: React.FC = () => {
     const newProduct: Product = {
       id: `PRD-${String(products.length + 1).padStart(3, '0')}`,
       name: productData.name,
-      sku: productData.sku,
+      color: productData.color,
       category: productData.category,
       price: parseFloat(productData.price),
       stock: parseInt(productData.stock),
@@ -80,7 +80,7 @@ const Inventory: React.FC = () => {
     const updatedProduct: Product = {
       ...editingProduct,
       name: productData.name,
-      sku: productData.sku,
+      color: productData.color,
       category: productData.category,
       price: parseFloat(productData.price),
       stock: parseInt(productData.stock),
@@ -127,7 +127,7 @@ const Inventory: React.FC = () => {
   }) => {
     const [formData, setFormData] = useState({
       name: product?.name || '',
-      sku: product?.sku || '',
+      color: product?.color || '',
       category: product?.category || 'Electronics',
       price: product?.price?.toString() || '',
       stock: product?.stock?.toString() || '',
@@ -161,13 +161,13 @@ const Inventory: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">SKU</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">color</label>
                   <input
                     type="text"
-                    value={formData.sku}
-                    onChange={(e) => setFormData({...formData, sku: e.target.value})}
+                    value={formData.color}
+                    onChange={(e) => setFormData({...formData, color: e.target.value})}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter SKU"
+                    placeholder="Enter color"
                     required
                   />
                 </div>
@@ -279,7 +279,7 @@ const Inventory: React.FC = () => {
               <div className="flex-1">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">{selectedProduct.name}</h3>
                 <div className="space-y-2">
-                  <p><span className="font-medium">SKU:</span> {selectedProduct.sku}</p>
+                  <p><span className="font-medium">color:</span> {selectedProduct.color}</p>
                   <p><span className="font-medium">Category:</span> {selectedProduct.category}</p>
                   <p><span className="font-medium">Supplier:</span> {selectedProduct.supplier}</p>
                   <p><span className="font-medium">Price:</span> ${selectedProduct.price.toFixed(2)}</p>
@@ -352,11 +352,11 @@ const Inventory: React.FC = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">SKU</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">color</label>
                 <input
                   type="text"
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Enter SKU"
+                  placeholder="Enter color"
                 />
               </div>
               <div>
@@ -451,7 +451,7 @@ const Inventory: React.FC = () => {
               <Search size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
-                placeholder="Search products or SKU..."
+                placeholder="Search products or color..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent w-full sm:w-64"
@@ -486,7 +486,7 @@ const Inventory: React.FC = () => {
                   Product
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  SKU
+                  color
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Category
@@ -522,7 +522,7 @@ const Inventory: React.FC = () => {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {product.sku}
+                    {product.color}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {product.category}

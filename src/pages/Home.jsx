@@ -1,5 +1,7 @@
 import React from "react";
 import ProductCard from "../components/ProductCard";
+import { Link } from "lucide-react";
+import logoimg from "../assets/bgc-removebg-preview.png"
 
 const Home = () => {
   const featuredProducts = [
@@ -157,38 +159,23 @@ const Home = () => {
             {/* Product Image */}
             <div className="flex justify-center items-center">
               <img
-                src="https://pakhtunwardrobe.com/cdn/shop/products/PW-Premium-Black-1.jpg?v=1668556447"
+                src={logoimg}
                 alt="SHIKARI Norozi Chappal"
-                className="max-w-full h-auto max-h-[500px] lg:max-h-[350px] xl:max-h-[350px] 2xl:max-h-[350px] object-contain drop-shadow-lg transition-transform duration-300 ease-in-out hover:scale-105 md:max-h-[300px] sm:max-h-[250px] xs:max-h-[200px]"
+                className="max-h-[600px] lg:max-h-[350px] xl:max-h-[350px] 2xl:max-h-[350px] object-contain drop-shadow-lg transition-transform duration-300 ease-in-out hover:scale-105 md:max-h-[300px] sm:max-h-[250px] xs:max-h-[200px]"
               />
             </div>
 
             {/* Text Content */}
             <div className="text-left lg:text-center xl:text-center 2xl:text-center md:text-center sm:text-center xs:text-center">
-              {/* Logo */}
-              <div className="mb-[30px]">
-                <a
-                  href="/"
-                  className="flex gap-2 items-center no-underline mb-[30px]"
-                >
-                  <span className="text-black text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl font-semibold md:text-xl sm:text-base xs:text-sm">
-                    Kaltoor
-                  </span>
-                  <span className="text-white bg-black rounded-md py-1 px-2 text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl font-semibold md:text-xl sm:text-base xs:text-sm">
-                    Chappal
-                  </span>
-                </a>
+              <div style={{ fontSize: "2rem" }} className="logo">
+
+                <span g                                                                                                                                                                                                                                                   className="logo-text-main">Kaltoor</span>
+                <span style={{ marginTop: "2rem" }} className="logo-text-accent">Chappal</span>
+              
+
+
               </div>
-
-              {/* Title */}
-              <h1 className="text-6xl lg:text-5xl xl:text-5xl 2xl:text-5xl font-bold text-black mb-[10px] tracking-widest leading-tight md:text-4xl md:tracking-wide sm:text-3xl sm:tracking-wide xs:text-2xl">
-                SHIKARI
-              </h1>
-
-              {/* Subtitle */}
-              <p className="text-2xl lg:text-2xl xl:text-2xl 2xl:text-2xl text-gray-600 font-normal mb-[30px] md:text-xl sm:text-base xs:text-sm">
-                Kaltoor Chappal
-              </p>
+              {/* Logo */}
             </div>
           </div>
         </section>
