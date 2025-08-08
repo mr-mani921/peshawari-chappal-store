@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Eye, EyeOff, Mail, Lock, Info, X, Check, AlertTriangle } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, Info, X, Check, AlertTriangle, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import API from '../../utils/api';
 
 
 const LoginPages = () => {
-  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertType, setAlertType] = useState("success");
