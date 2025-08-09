@@ -49,7 +49,7 @@ const LoginPages = () => {
     console.log(`login attempt:`, formData);
     try {
      const res =   await API.post('/auth/login', formData)
-      console.log(res.data)
+     console.log(res)
      localStorage.setItem('user', JSON.stringify(res.data.user));
      } catch (error) {
        console.log(error.response.data);
@@ -223,7 +223,7 @@ const LoginPages = () => {
               {/* Demo Credentials Info */}
             
               {/* Form */}
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form className="space-y-6">
                 {/* Email Field */}
                 <div className="group">
                   <label
@@ -318,8 +318,8 @@ const LoginPages = () => {
                 {/* Submit Button */}
                 <div className="pt-4">
                   <button
-                    type="submit"
-                    disabled={isLoading}
+                    onClick={handleSubmit}
+                    // disabled={isLoading}
                     className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-4 px-6 rounded-xl font-semibold hover:from-red-600 hover:to-red-700 focus:ring-4 focus:ring-red-200 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-lg flex items-center justify-center"
                   >
                     {isLoading ? (

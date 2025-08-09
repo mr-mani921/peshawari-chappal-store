@@ -6,8 +6,7 @@ import API from '../utils/api';
 
 const CheckoutPage = () => {
   const { items, totalAmount, totalQuantity } = useSelector(state => state.cart);
-  
-  const [formData, setFormData] = useState({
+  const initialState={
     fullName: '',
     phone: '',
     email: '',
@@ -16,7 +15,10 @@ const CheckoutPage = () => {
     country: 'Pakistan',
     note: '',
     coupon: ''
-  });
+  }
+  const [formData, setFormData] = useState(initialState);
+    const localStorageUser = JSON.parse(localStorage.getItem('user'));
+
 
   const [paymentMethod, setPaymentMethod] = useState('cash-on-delivery');
 
@@ -27,11 +29,11 @@ const CheckoutPage = () => {
       [name]: value
     }));
   };
-
   const handleSubmit = async(e) => {
     e.preventDefault();
     
     const orderData = {
+      uid: localStorageUser?._id,
       customerInfo: formData,
       paymentMethod,
       items,
@@ -45,7 +47,8 @@ const CheckoutPage = () => {
     try {
      const res= await API.post('/orders/add', orderData);
      console.log('Order response:', res.data);
-
+     
+     setFormData(initialState); 
     } catch (error) {
       console.log(error.response?.data || error.message);
       alert('Failed to place order. Please try again later.');

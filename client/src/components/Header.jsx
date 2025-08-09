@@ -18,7 +18,8 @@ const Header = () => {
   const { items, totalQuantity, totalAmount, isOpen } = useSelector(state => state.cart);
   const wishlistItems = useSelector(state => state.wishlist?.items || []);
   const totalWishlistItems = wishlistItems.length;
-
+  const localStorageUser = JSON.parse(localStorage.getItem('user'));
+   
   // Check if device is mobile
   useEffect(() => {
     const checkMobile = () => {
@@ -233,7 +234,7 @@ const Header = () => {
                   className={`nav-link ${isActive('/signature-collection') ? 'active' : ''}`}
                   onClick={() => handleLinkClick('/signature-collection')}
                 >
-                  Signature Collection
+                  Collection
                 </Link>
               </li>
               
@@ -256,6 +257,20 @@ const Header = () => {
                   Contact
                 </Link>
               </li>
+              {
+                localStorageUser.role=== 'admin' && (
+
+              <li className="nav-item">
+                <Link
+                  to="/admin/dashboard"
+                  className={`nav-link ${isActive('/sale') ? 'active' : ''}`}
+                  onClick={() => handleLinkClick('/sale')}
+                >
+                  Admin
+                </Link>
+              </li>
+                )
+              }
             </ul>
           </nav>
 
