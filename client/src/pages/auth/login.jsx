@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Eye, EyeOff, Mail, Lock, Info, X, Check, AlertTriangle, User } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, Info, X, Check, AlertTriangle, User,Loader2  } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import API from '../../utils/api';
 
@@ -39,24 +39,48 @@ const LoginPages = () => {
   };
 
 
-  const handleSubmit = async() => {
-     console.log("first")
-    if (!formData.email || !formData.password) {
-      showProfessionalAlert("error", "Please fill in all required fields");
-      return;
-    }
+  // const handleSubmit = async() => {
+    
+  //    console.log("first")
+  //   if (!formData.email || !formData.password) {
+  //     showProfessionalAlert("error", "Please fill in all required fields");
+  //     return;
+  //   }
 
-    console.log(`login attempt:`, formData);
-    try {
-     const res =   await API.post('/auth/login', formData)
-     console.log(res)
-     localStorage.setItem('user', JSON.stringify(res.data.user));
-     } catch (error) {
-       console.log(error.response.data);
-    }
-         console.log("second")
+  //   console.log(`login attempt:`, formData);
+  //   try {
+  //    const res =   await API.post('/auth/login', formData)
+  //    console.log(res)
+  //    localStorage.setItem('user', JSON.stringify(res.data.user));
+  //    navigate('/signature-collection')
+  //    } catch (error) {
+  //      console.log(error.response.data);
+  //   }
+  //        console.log("second")
 
-  };
+  // };
+
+ const handleSubmit = async (e) => {
+  e.preventDefault(); // Prevent default form submission
+  console.log("login attempt");
+  
+  if (!formData.email || !formData.password) {
+    showProfessionalAlert("error", "Please fill in all required fields");
+    return;
+  }
+
+  try {
+    setIsLoading(true);
+    const res = await API.post('/auth/login', formData);
+    localStorage.setItem('user', JSON.stringify(res.data.user));
+    navigate('/signature-collection'); // Navigate to new page
+  } catch (error) {
+    const errorMsg = error.response?.data?.message || "Login failed";
+    showProfessionalAlert("error", errorMsg);
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -223,7 +247,7 @@ const LoginPages = () => {
               {/* Demo Credentials Info */}
             
               {/* Form */}
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 {/* Email Field */}
                 <div className="group">
                   <label
@@ -318,8 +342,8 @@ const LoginPages = () => {
                 {/* Submit Button */}
                 <div className="pt-4">
                   <button
-                    onClick={handleSubmit}
-                    // disabled={isLoading}
+                    type="submit"
+                    disabled={isLoading}
                     className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-4 px-6 rounded-xl font-semibold hover:from-red-600 hover:to-red-700 focus:ring-4 focus:ring-red-200 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-lg flex items-center justify-center"
                   >
                     {isLoading ? (
