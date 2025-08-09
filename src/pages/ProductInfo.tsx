@@ -3,18 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Star, Heart, Share2, MessageCircle, HelpCircle, ShoppingCart, Zap, Palette, Settings, Truck, ChartCandlestick } from 'lucide-react';
 import { addToCart, openCart } from '../store/slices/cartSlice';
 import { toggleWishlistItem } from '../store/slices/wishlistSlice';
-  import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import { GitCompare ,Ruler,Phone} from 'lucide-react';
+import { GitCompare, Ruler, Phone } from 'lucide-react';
 const ProductInfo = () => {
   const dispatch = useDispatch();
   const { items: wishlistItems } = useSelector((state) => state.wishlist);
   const { items: cartItems } = useSelector((state) => state.cart);
-  
+
   const [selectedSize, setSelectedSize] = useState('M');
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
-  
+
   // Customization states
   const [selectedColor, setSelectedColor] = useState('mustard');
   const [selectedStyle, setSelectedStyle] = useState('classic');
@@ -40,7 +40,7 @@ const ProductInfo = () => {
   ];
 
   const styleOptions = [
-    { name: 'classic', label: 'Norozi Chappals', price: 0 },
+    { name: 'classic', label: 'Norozi Chappals', price: 250 },
     { name: 'modern', label: 'Zardari Chappals', price: 500 },
     { name: 'embroidered', label: 'Kaptaan Chappals', price: 1200 },
     { name: 'beaded', label: 'Peshawari Chappals ', price: 800 }
@@ -65,30 +65,30 @@ const ProductInfo = () => {
     const imageMap = {
       'classic': [
         "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/23-300x300.jpg",
-  "https://www.peshawarichappals.pk/wp-content/uploads/2024/02/Norozi-Chappal-final-119-JPG-300x300.webp",
-  "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/Zalmi-chappal-min-jpg-300x300.webp",
-  "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal5-min-jpg-300x300.webp"
+        "https://www.peshawarichappals.pk/wp-content/uploads/2024/02/Norozi-Chappal-final-119-JPG-300x300.webp",
+        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/Zalmi-chappal-min-jpg-300x300.webp",
+        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal5-min-jpg-300x300.webp"
       ],
       'modern': [
         "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/48-300x300.jpg",
-  "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/4-300x300.jpg",
-  "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/37-300x300.jpg",
-  "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/38-300x300.jpg"
+        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/4-300x300.jpg",
+        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/37-300x300.jpg",
+        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/38-300x300.jpg"
       ],
       'embroidered': [
-     "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/231-300x300.jpg",
-  "https://www.peshawarichappals.pk/wp-content/uploads/2024/02/Norozi-Chappal-final-6-JPG-300x300.webp",
-  "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal1-min-1-jpg-300x300.webp",
-  "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
+        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/231-300x300.jpg",
+        "https://www.peshawarichappals.pk/wp-content/uploads/2024/02/Norozi-Chappal-final-6-JPG-300x300.webp",
+        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal1-min-1-jpg-300x300.webp",
+        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
       ],
       'beaded': [
-"https://www.peshawarichappals.pk/wp-content/uploads/2024/08/482-300x300.jpg",
-  "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/42-300x300.jpg",
-  "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/372-300x300.jpg",
-  "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/382-300x300.jpg",
+        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/482-300x300.jpg",
+        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/42-300x300.jpg",
+        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/372-300x300.jpg",
+        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/382-300x300.jpg",
       ]
     };
-    
+
     return imageMap[style] || imageMap['classic'];
   };
 
@@ -106,7 +106,7 @@ const ProductInfo = () => {
     const stylePrice = styleOptions.find(s => s.name === selectedStyle)?.price || 0;
     const materialPrice = materialOptions.find(m => m.name === selectedMaterial)?.price || 0;
     const solePrice = soleOptions.find(s => s.name === selectedSole)?.price || 0;
-    
+
     return colorPrice + stylePrice + materialPrice + solePrice;
   };
 
@@ -150,7 +150,7 @@ const ProductInfo = () => {
     }
 
     const product = createProductObject();
-    
+
     dispatch(addToCart({
       ...product,
       quantity,
@@ -199,572 +199,342 @@ const ProductInfo = () => {
   };
 
   return (
-    <div style={{ 
-      display: 'flex', 
-      maxWidth: '1200px', 
-      margin: '0 auto', 
-      padding: '20px', 
+    <div style={{
+      display: 'flex',
+      maxWidth: '1200px',
+      margin: '0 auto',
+      padding: '20px',
       gap: '40px',
       fontFamily: 'Arial, sans-serif'
     }}>
-      {/* Left Side - Product Images */}
-      <div style={{ flex: '1', maxWidth: '500px' }}>
-        {/* Main Image */}
-        <div style={{ 
-          marginBottom: '20px',
-          border: '2px solid #f0f0f0',
-          borderRadius: '12px',
-          overflow: 'hidden',
-          position: 'relative'
-        }}>
-          <img
-            src={images[selectedImage]}
-            alt="Product Main"
-            style={{ 
-              width: '100%', 
-              height: '400px', 
-              objectFit: 'cover',
-              filter: selectedColor === 'black' ? 'brightness(0.7) sepia(1) hue-rotate(200deg)' :
-                     selectedColor === 'brown' ? 'sepia(0.8) hue-rotate(20deg)' :
-                     selectedColor === 'maroon' ? 'sepia(1) hue-rotate(320deg) saturate(1.5)' :
-                     selectedColor === 'tan' ? 'sepia(0.5) brightness(1.1)' : 'none'
-            }}
-          />
-          {customizationPrice !== 0 && (
-            <div style={{
-              position: 'absolute',
-              top: '10px',
-              right: '10px',
-              background: '#FF6B6B',
-              color: 'white',
-              padding: '5px 10px',
-              borderRadius: '15px',
-              fontSize: '12px',
-              fontWeight: 'bold'
-            }}>
-              +PKR {customizationPrice}
-            </div>
-          )}
-          
-          {/* Wishlist Heart */}
-          <button
-            onClick={handleWishlistToggle}
-            style={{
-              position: 'absolute',
-              top: '10px',
-              left: '10px',
-              background: 'rgba(255, 255, 255, 0.9)',
-              border: 'none',
-              borderRadius: '50%',
-              width: '40px',
-              height: '40px',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'all 0.3s ease'
-            }}
-          >
-            <Heart
-              size={20}
-              style={{
-                color: isInWishlist ? '#FF6B6B' : '#666',
-                fill: isInWishlist ? '#FF6B6B' : 'none'
-              }}
-            />
-          </button>
-        </div>
+      {/* Main Container with Grid Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-7xl mx-auto p-4">
 
-        {/* Thumbnail Images */}
-        <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
-          {images.map((image, index) => (
+        {/* Left Side - Product Images */}
+        <div className="order-1 lg:order-1 max-w-full lg:max-w-[500px]">
+          {/* Main Image */}
+          <div className="mb-5 border-2 border-gray-200 rounded-xl overflow-hidden relative">
             <img
-              key={index}
-              src={image}
-              alt={`Product ${index + 1}`}
-              style={{ 
-                width: '80px', 
-                height: '80px', 
-                objectFit: 'cover',
-                border: selectedImage === index ? '3px solid #FF6B6B' : '2px solid #ddd',
-                borderRadius: '8px',
-                cursor: 'pointer',
+              src={images[selectedImage]}
+              alt="Product Main"
+              className="w-full h-64 sm:h-80 lg:h-96 object-cover"
+              style={{
                 filter: selectedColor === 'black' ? 'brightness(0.7) sepia(1) hue-rotate(200deg)' :
-                       selectedColor === 'brown' ? 'sepia(0.8) hue-rotate(20deg)' :
-                       selectedColor === 'maroon' ? 'sepia(1) hue-rotate(320deg) saturate(1.5)' :
-                       selectedColor === 'tan' ? 'sepia(0.5) brightness(1.1)' : 'none'
+                  selectedColor === 'brown' ? 'sepia(0.8) hue-rotate(20deg)' :
+                    selectedColor === 'maroon' ? 'sepia(1) hue-rotate(320deg) saturate(1.5)' :
+                      selectedColor === 'tan' ? 'sepia(0.5) brightness(1.1)' : 'none'
               }}
-              onClick={() => setSelectedImage(index)}
             />
-          ))}
-        </div>
-      </div>
 
-      {/* Right Side - Product Info */}
-      <div style={{ flex: '1', maxWidth: '600px' }}>
-        {/* Sale Badge */}
-        <div style={{ 
-          display: 'inline-block',
-          background: '#FF6B6B',
-          color: 'white',
-          padding: '5px 15px',
-          borderRadius: '20px',
-          fontSize: '12px',
-          fontWeight: 'bold',
-          marginBottom: '15px'
-        }}>
-          SALE
-        </div>
-
-        {/* Product Title & Rating */}
-        <div style={{ marginBottom: '20px' }}>
-          <h1 style={{ 
-            fontSize: '28px', 
-            fontWeight: 'bold', 
-            margin: '0 0 10px 0',
-            color: '#333'
-          }}>
-            {selectedColor.charAt(0).toUpperCase() + selectedColor.slice(1)} Smart Zalmi Chappal — {productId}
-          </h1>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ display: 'flex' }}>
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  size={16}
-                  style={{ 
-                    color: i < Math.floor(rating) ? '#FFD700' : '#ddd',
-                    fill: i < Math.floor(rating) ? '#FFD700' : 'none'
-                  }}
-                />
-              ))}
-            </div>
-            <span style={{ color: '#666', fontSize: '14px' }}>({reviewCount} reviews)</span>
-          </div>
-        </div>
-
-        {/* Price Info */}
-        <div style={{ marginBottom: '25px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '5px' }}>
-            <span style={{ 
-              textDecoration: 'line-through', 
-              color: '#999',
-              fontSize: '18px'
-            }}>
-              PKR {(10500 * quantity).toLocaleString()}.00
-            </span>
-            <span style={{ 
-              fontSize: '24px', 
-              fontWeight: 'bold', 
-              color: '#FF6B6B'
-            }}>
-              PKR {totalPrice.toLocaleString()}.00
-            </span>
-          </div>
-          
-          {/* Unit price display */}
-          <div style={{ fontSize: '14px', color: '#666', marginBottom: '5px' }}>
-            Unit price: PKR{unitPrice.toLocaleString()}.00 each
-          </div>
-          
-          {customizationPrice > 0 && (
-            <p style={{ color: '#666', fontSize: '14px', margin: '0' }}>
-              Includes PKR{customizationPrice} customization fee per item
-            </p>
-          )}
-          
-          {quantity > 1 && (
-            <div style={{ 
-              backgroundColor: '#e8f5e8', 
-              color: '#2d5f2d', 
-              padding: '8px 12px', 
-              borderRadius: '6px', 
-              fontSize: '14px',
-              fontWeight: '500',
-              marginTop: '8px',
-              border: '1px solid #c3d9c3'
-            }}>
-              Total for {quantity} items: PKR{totalPrice.toLocaleString()}.00
-            </div>
-          )}
-        </div>
-
-        {/* Customization Toggle */}
-        <div style={{ marginBottom: '20px' }}>
-          <button
-            onClick={() => setIsCustomizing(!isCustomizing)}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              background: isCustomizing ? '#FF6B6B' : '#f8f8f8',
-              color: isCustomizing ? 'white' : '#333',
-              border: 'none',
-              padding: '10px 20px',
-              borderRadius: '25px',
-              cursor: 'pointer',
-              fontSize: '14px',
-              fontWeight: '600',
-              transition: 'all 0.3s ease'
-            }}
-          >
-            <Palette size={16} />
-            {isCustomizing ? 'Hide Customization' : 'Customize Product'}
-          </button>
-        </div>
-
-        {/* Customization Options */}
-        {isCustomizing && (
-          <div style={{ 
-            background: '#f9f9f9', 
-            padding: '20px', 
-            borderRadius: '12px', 
-            marginBottom: '20px',
-            border: '1px solid #e0e0e0'
-          }}>
-            <h3 style={{ 
-              fontSize: '18px', 
-              fontWeight: 'bold', 
-              marginBottom: '15px',
-              color: '#333',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px'
-            }}>
-              <Settings size={18} />
-              Customize Your Chappal
-            </h3>
-
-            {/* Color Selection */}
-            <div style={{ marginBottom: '20px' }}>
-              <h4 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '10px', color: '#555' }}>
-                Color:
-              </h4>
-              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                {colorOptions.map((color) => (
-                  <div
-                    key={color.name}
-                    onClick={() => setSelectedColor(color.name)}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      padding: '8px 12px',
-                      border: selectedColor === color.name ? '2px solid #FF6B6B' : '1px solid #ddd',
-                      borderRadius: '20px',
-                      cursor: 'pointer',
-                      background: selectedColor === color.name ? '#fff5f5' : 'white',
-                      fontSize: '12px'
-                    }}
-                  >
-                    <div style={{
-                      width: '16px',
-                      height: '16px',
-                      borderRadius: '50%',
-                      background: color.hex,
-                      border: '1px solid #ccc'
-                    }}></div>
-                    <span>{color.label}</span>
-                    {color.price > 0 && <span style={{ color: '#FF6B6B', fontWeight: 'bold' }}>+PKR{color.price}</span>}
-                  </div>
-                ))}
+            {customizationPrice !== 0 && (
+              <div className="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                +PKR {customizationPrice}
               </div>
-            </div>
+            )}
 
-            {/* Style Selection */}
-            <div style={{ marginBottom: '20px' }}>
-              <h4 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '10px', color: '#555' }}>
-                Style:
-              </h4>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '10px' }}>
-                {styleOptions.map((style) => (
-                  <div
-                    key={style.name}
-                    onClick={() => setSelectedStyle(style.name)}
-                    style={{
-                      padding: '12px',
-                      border: selectedStyle === style.name ? '2px solid #FF6B6B' : '1px solid #ddd',
-                      borderRadius: '8px',
-                      cursor: 'pointer',
-                      background: selectedStyle === style.name ? '#fff5f5' : 'white',
-                      textAlign: 'center',
-                      fontSize: '12px',
-                      transition: 'all 0.3s ease'
-                    }}
-                  >
-                    <div style={{ fontWeight: '600', marginBottom: '4px' }}>{style.label}</div>
-                    {style.price > 0 && (
-                      <div style={{ color: '#FF6B6B', fontWeight: 'bold' }}>+PKR{style.price}</div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Material Selection */}
-            <div style={{ marginBottom: '20px' }}>
-              <h4 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '10px', color: '#555' }}>
-                Material:
-              </h4>
-              <select
-                value={selectedMaterial}
-                onChange={(e) => setSelectedMaterial(e.target.value)}
+            {/* Wishlist Heart */}
+            <button
+              onClick={handleWishlistToggle}
+              className="absolute top-2 left-2 bg-white bg-opacity-90 border-none rounded-full w-10 h-10 cursor-pointer flex items-center justify-center transition-all duration-300 hover:bg-opacity-100"
+            >
+              <Heart
+                size={20}
                 style={{
-                  width: '100%',
-                  padding: '10px',
-                  border: '1px solid #ddd',
-                  borderRadius: '6px',
-                  fontSize: '14px',
-                  background: 'white'
+                  color: isInWishlist ? '#FF6B6B' : '#666',
+                  fill: isInWishlist ? '#FF6B6B' : 'none'
                 }}
-              >
-                {materialOptions.map((material) => (
-                  <option key={material.name} value={material.name}>
-                    {material.label} {material.price !== 0 && `(${material.price > 0 ? '+' : ''}PKR${material.price})`}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Sole Selection */}
-            <div style={{ marginBottom: '10px' }}>
-              <h4 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '10px', color: '#555' }}>
-                Sole Type:
-              </h4>
-              <select
-                value={selectedSole}
-                onChange={(e) => setSelectedSole(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '10px',
-                  border: '1px solid #ddd',
-                  borderRadius: '6px',
-                  fontSize: '14px',
-                  background: 'white'
-                }}
-              >
-                {soleOptions.map((sole) => (
-                  <option key={sole.name} value={sole.name}>
-                    {sole.label} {sole.price > 0 && `(+PKR${sole.price})`}
-                  </option>
-                ))}
-              </select>
-            </div>
+              />
+            </button>
           </div>
-        )}
 
-        {/* Size Chart Link */}
-        <div style={{ marginBottom: '20px' }}>
-          <button style={{
-            background: 'none',
-            border: '1px solid #ddd',
-            padding: '8px 16px',
-            borderRadius: '20px',
-            cursor: 'pointer',
-            fontSize: '14px',
-            color: '#666'
-          }}>
-           <span style={{display:"flex",alignItems:"center",}}><Ruler style={{marginRight:"1rem"}} />  Size Chart</span>
-          </button>
-        </div>
-
-        {/* Size Selector */}
-        <div style={{ marginBottom: '20px' }}>
-          <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '10px', color: '#333' }}>
-            Size: <span style={{ color: '#FF6B6B' }}>*</span>
-          </h3>
-          <select
-            value={selectedSize}
-            onChange={(e) => setSelectedSize(e.target.value)}
-            style={{
-              width: '100%',
-              padding: '12px',
-              border: selectedSize ? '1px solid #ddd' : '2px solid #FF6B6B',
-              borderRadius: '6px',
-              fontSize: '16px',
-              background: 'white'
-            }}
-          >
-            <option value="">Choose an option</option>
-            {sizes.map((size) => (
-              <option key={size} value={size}>{size}</option>
+          {/* Thumbnail Images */}
+          <div className="flex gap-2 sm:gap-3 justify-center overflow-x-auto pb-2">
+            {images.map((image, index) => (
+              <img
+                key={index}
+                src={image}
+                alt={`Product ${index + 1}`}
+                className={`w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-lg cursor-pointer flex-shrink-0 transition-all duration-200 ${selectedImage === index
+                    ? 'border-3 border-red-500'
+                    : 'border-2 border-gray-300 hover:border-gray-400'
+                  }`}
+                style={{
+                  filter: selectedColor === 'black' ? 'brightness(0.7) sepia(1) hue-rotate(200deg)' :
+                    selectedColor === 'brown' ? 'sepia(0.8) hue-rotate(20deg)' :
+                      selectedColor === 'maroon' ? 'sepia(1) hue-rotate(320deg) saturate(1.5)' :
+                        selectedColor === 'tan' ? 'sepia(0.5) brightness(1.1)' : 'none'
+                }}
+                onClick={() => setSelectedImage(index)}
+              />
             ))}
-          </select>
-          {!selectedSize && (
-            <p style={{ color: '#FF6B6B', fontSize: '12px', margin: '5px 0 0 0' }}>
-              Please select a size
-            </p>
-          )}
-        </div>
-
-        {/* Quantity Selector */}
-        <div style={{ marginBottom: '25px' }}>
-          <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '10px', color: '#333' }}>
-            Quantity
-          </h3>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <button
-              onClick={decrementQuantity}
-              style={{
-                width: '40px',
-                height: '40px',
-                border: '1px solid #ddd',
-                background: 'white',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontSize: '18px',
-                fontWeight: 'bold'
-              }}
-            >
-              -
-            </button>
-            <span style={{ 
-              padding: '10px 20px',
-              border: '1px solid #ddd',
-              borderRadius: '6px',
-              fontSize: '16px',
-              minWidth: '60px',
-              textAlign: 'center'
-            }}>
-              {quantity}
-            </span>
-            <button
-              onClick={incrementQuantity}
-              style={{
-                width: '40px',
-                height: '40px',
-                border: '1px solid #ddd',
-                background: 'white',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontSize: '18px',
-                fontWeight: 'bold'
-              }}
-            >
-              +
-            </button>
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div style={{ display: 'flex', gap: '15px', marginBottom: '25px' }}>
-          <button 
-           
-            style={{
-              flex: '1',
-              padding: '15px',
-              background: selectedSize ? '#333' : '#ccc',
-              color: 'white',
-              border: 'none',
-              borderRadius: '6px',
-              fontSize: '16px',
-              fontWeight: '600',
-              cursor: selectedSize ? 'pointer' : 'not-allowed',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '8px',
-              transition: 'all 0.3s ease'
-            }}
-          >
-            {/* <ShoppingCart size={18} /> */}
-     <Link to="./CheckoutPage" style={{color:"white"}}>CheckoutPage</Link>
-          </button>
+        {/* Right Side - Product Info */}
+        <div className="order-2 lg:order-2 max-w-full lg:max-w-[600px]">
+          {/* Sale Badge */}
+          <div className="inline-block bg-red-500 text-white px-4 py-1 rounded-full text-xs font-bold mb-4">
+            SALE
+          </div>
 
-          <button 
-            onClick={handleBuyNow}
-            disabled={!selectedSize}
-            style={{
-              flex: '1',
-              padding: '15px',
-              background: selectedSize ? '#FF6B6B' : '#ffb3b3',
-              color: 'white',
-              border: 'none',
-              borderRadius: '6px',
-              fontSize: '16px',
-              fontWeight: '600',
-              cursor: selectedSize ? 'pointer' : 'not-allowed',
-              transition: 'all 0.3s ease'
-            }}
-          >
-            Add to cart
-          </button>
-        </div>
+          {/* Product Title & Rating */}
+          <div className="mb-5">
+            <h1 className="text-2xl sm:text-3xl font-bold mb-3 text-gray-800">
+              {selectedColor.charAt(0).toUpperCase() + selectedColor.slice(1)} Smart Zalmi Chappal — {productId}
+            </h1>
 
-        {/* Secondary Actions */}
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'space-around', 
-          marginBottom: '20px',
-          padding: '15px',
-          background: '#f8f8f8',
-          borderRadius: '8px'
-        }}>
-          <button style={{ 
-            background: 'none', 
-            border: 'none', 
-            cursor: 'pointer',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '5px',
-            fontSize: '12px',
-            color: '#666'
-          }}>
-            <span style={{ fontSize: '18px' }}><GitCompare /></span>
-            <span>Compare</span>
-          </button>
+            <div className="flex items-center gap-3">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    size={16}
+                    style={{
+                      color: i < Math.floor(rating) ? '#FFD700' : '#ddd',
+                      fill: i < Math.floor(rating) ? '#FFD700' : 'none'
+                    }}
+                  />
+                ))}
+              </div>
+              <span className="text-gray-600 text-sm">({reviewCount} reviews)</span>
+            </div>
+          </div>
 
-          <button style={{ 
-            background: 'none', 
-            border: 'none', 
-            cursor: 'pointer',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '5px',
-            fontSize: '12px',
-            color: '#666'
-          }}>
-            <HelpCircle size={18} />
-            <span>Ask a Question</span>
-          </button>
+          {/* Price Info */}
+          <div className="mb-6">
+            <div className="flex items-center gap-4 mb-2">
+              <span className="line-through text-gray-500 text-lg">
+                PKR {(10500 * quantity).toLocaleString()}.00
+              </span>
+              <span className="text-2xl font-bold text-red-500">
+                PKR {totalPrice.toLocaleString()}.00
+              </span>
+            </div>
 
-          <button 
-            onClick={handleShare}
-            style={{ 
-              background: 'none', 
-              border: 'none', 
-              cursor: 'pointer',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '5px',
-              fontSize: '12px',
-              color: '#666'
-            }}
-          >
-            <Share2 size={18} />
-            <span>Share</span>
-          </button>
-        </div>
+            {/* Unit price display */}
+            <div className="text-sm text-gray-600 mb-2">
+              Unit price: PKR{unitPrice.toLocaleString()}.00 each
+            </div>
 
-        {/* WhatsApp Order */}
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '10px',
-          padding: '15px',
-          background: '#25D366',
-          color: 'white',
-          borderRadius: '8px',
-          cursor: 'pointer',
-          fontSize: '16px',
-          fontWeight: '600'
-        }}>
-          <span style={{display:"flex", alignItems:"center",}}><Phone style={{marginRight:"1rem"}} />  Order Via WhatsApp</span>
+            {customizationPrice > 0 && (
+              <p className="text-gray-600 text-sm">
+                Includes PKR{customizationPrice} customization fee per item
+              </p>
+            )}
+
+            {quantity > 1 && (
+              <div className="bg-green-100 text-green-800 p-3 rounded-lg text-sm font-medium mt-2 border border-green-300">
+                Total for {quantity} items: PKR{totalPrice.toLocaleString()}.00
+              </div>
+            )}
+          </div>
+
+          {/* Customization Toggle */}
+          <div className="mb-5">
+            <button
+              onClick={() => setIsCustomizing(!isCustomizing)}
+              className={`flex items-center gap-2 px-5 py-3 rounded-full cursor-pointer text-sm font-semibold transition-all duration-300 ${isCustomizing
+                  ? 'bg-red-500 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+            >
+              <Palette size={16} />
+              {isCustomizing ? 'Hide Customization' : 'Customize Product'}
+            </button>
+          </div>
+
+          {/* Customization Options */}
+          {isCustomizing && (
+            <div className="bg-gray-50 p-5 rounded-xl mb-5 border border-gray-200">
+              <h3 className="text-lg font-bold mb-4 text-gray-700 flex items-center gap-2">
+                <Settings size={18} />
+                Customize Your Chappal
+              </h3>
+
+              {/* Color Selection */}
+              <div className="mb-5">
+                <h4 className="text-sm font-semibold mb-3 text-gray-600">Color:</h4>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-2">
+                  {colorOptions.map((color) => (
+                    <div
+                      key={color.name}
+                      onClick={() => setSelectedColor(color.name)}
+                      className={`flex items-center gap-2 p-2 sm:p-3 rounded-2xl cursor-pointer text-xs transition-all duration-200 ${selectedColor === color.name
+                          ? 'border-2 border-red-500 bg-red-50'
+                          : 'border border-gray-300 bg-white hover:border-gray-400'
+                        }`}
+                    >
+                      <div
+                        className="w-4 h-4 rounded-full border border-gray-300 flex-shrink-0"
+                        style={{ backgroundColor: color.hex }}
+                      ></div>
+                      <span className="truncate">{color.label}</span>
+                      {color.price > 0 && (
+                        <span className="text-red-500 font-bold">+PKR{color.price}</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Style Selection */}
+              <div className="mb-5">
+                <h4 className="text-sm font-semibold mb-3 text-gray-600">Style:</h4>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {styleOptions.map((style) => (
+                    <div
+                      key={style.name}
+                      onClick={() => setSelectedStyle(style.name)}
+                      className={`p-3 rounded-lg cursor-pointer text-center text-xs transition-all duration-300 ${selectedStyle === style.name
+                          ? 'border-2 border-red-500 bg-red-50'
+                          : 'border border-gray-300 bg-white hover:border-gray-400'
+                        }`}
+                    >
+                      <div className="font-semibold mb-1">{style.label}</div>
+                      {style.price > 0 && (
+                        <div className="text-red-500 font-bold">+PKR{style.price}</div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Material Selection */}
+              <div className="mb-5">
+                <h4 className="text-sm font-semibold mb-3 text-gray-600">Material:</h4>
+                <select
+                  value={selectedMaterial}
+                  onChange={(e) => setSelectedMaterial(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                >
+                  {materialOptions.map((material) => (
+                    <option key={material.name} value={material.name}>
+                      {material.label} {material.price !== 0 && `(${material.price > 0 ? '+' : ''}PKR${material.price})`}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Sole Selection */}
+              <div className="mb-3">
+                <h4 className="text-sm font-semibold mb-3 text-gray-600">Sole Type:</h4>
+                <select
+                  value={selectedSole}
+                  onChange={(e) => setSelectedSole(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                >
+                  {soleOptions.map((sole) => (
+                    <option key={sole.name} value={sole.name}>
+                      {sole.label} {sole.price > 0 && `(+PKR${sole.price})`}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          )}
+
+          {/* Size Chart Link */}
+          <div className="mb-5">
+            <button className="border border-gray-300 px-4 py-2 rounded-full cursor-pointer text-sm text-gray-600 hover:border-gray-400 transition-colors duration-200">
+              <span className="flex items-center">
+                <Ruler className="mr-2" size={16} />
+                Size Chart
+              </span>
+            </button>
+          </div>
+
+          {/* Size Selector */}
+          <div className="mb-5">
+            <h3 className="text-base font-semibold mb-3 text-gray-700">
+              Size: <span className="text-red-500">*</span>
+            </h3>
+            <select
+              value={selectedSize}
+              onChange={(e) => setSelectedSize(e.target.value)}
+              className={`w-full p-3 rounded-lg text-base bg-white focus:outline-none focus:ring-2 focus:ring-red-500 ${selectedSize ? 'border border-gray-300' : 'border-2 border-red-500'
+                }`}
+            >
+              <option value="">Choose an option</option>
+              {sizes.map((size) => (
+                <option key={size} value={size}>{size}</option>
+              ))}
+            </select>
+            {!selectedSize && (
+              <p className="text-red-500 text-xs mt-1">Please select a size</p>
+            )}
+          </div>
+
+          {/* Quantity Selector */}
+          <div className="mb-6">
+            <h3 className="text-base font-semibold mb-3 text-gray-700">Quantity</h3>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={decrementQuantity}
+                className="w-10 h-10 border border-gray-300 bg-white rounded-lg cursor-pointer text-lg font-bold hover:bg-gray-50 transition-colors duration-200"
+              >
+                -
+              </button>
+              <span className="px-5 py-2 border border-gray-300 rounded-lg text-base min-w-[60px] text-center bg-gray-50">
+                {quantity}
+              </span>
+              <button
+                onClick={incrementQuantity}
+                className="w-10 h-10 border border-gray-300 bg-white rounded-lg cursor-pointer text-lg font-bold hover:bg-gray-50 transition-colors duration-200"
+              >
+                +
+              </button>
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-6">
+            <button
+              className={`flex-1 py-4 rounded-lg text-base font-semibold flex items-center justify-center gap-2 transition-all duration-300 ${selectedSize
+                  ? 'bg-gray-800 text-bluck cursor-pointer hover:bg-gray-700'
+                  : 'bg-gray-400 text-bluck cursor-not-allowed'
+                }`}
+            >
+              <Link to="./CheckoutPage" className="text-white">CheckoutPage</Link>
+            </button>
+
+            <button
+              onClick={handleBuyNow}
+              disabled={!selectedSize}
+              className={`flex-1 py-4 rounded-lg text-base font-semibold transition-all duration-300 ${selectedSize
+                  ? 'bg-red-500 text-bluck cursor-pointer hover:bg-red-600'
+                  : 'bg-red-300 text-white cursor-not-allowed'
+                }`}
+            >
+              Add to cart
+            </button>
+          </div>
+
+          {/* Secondary Actions */}
+          <div className="flex justify-around mb-5 p-4 bg-gray-100 rounded-lg">
+            <button className="flex flex-col items-center gap-1 text-xs text-gray-600 hover:text-gray-800 transition-colors duration-200">
+              <GitCompare size={18} />
+              <span>Compare</span>
+            </button>
+
+            <button className="flex flex-col items-center gap-1 text-xs text-gray-600 hover:text-gray-800 transition-colors duration-200">
+              <HelpCircle size={18} />
+              <span>Ask a Question</span>
+            </button>
+
+            <button
+              onClick={handleShare}
+              className="flex flex-col items-center gap-1 text-xs text-gray-600 hover:text-gray-800 transition-colors duration-200"
+            >
+              <Share2 size={18} />
+              <span>Share</span>
+            </button>
+          </div>
+
+          {/* WhatsApp Order */}
+          <div className="flex items-center justify-center gap-3 p-4 bg-green-500 text-white rounded-lg cursor-pointer text-base font-semibold hover:bg-green-600 transition-colors duration-200">
+            <Phone size={18} />
+            <span>Order Via WhatsApp</span>
+          </div>
         </div>
       </div>
     </div>
@@ -814,141 +584,141 @@ const ProductDetailsSection = () => {
     }
   ];
 
-const relatedProducts = [
-  {
-    id: '1',
-    name: "Black Charsadda Gol T Chappal – 092242",
-    price: 5999,
-    originalPrice: 7999,
-    image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/48-300x300.jpg",
-    badge: null,
-    rating: 5
-  },
-  {
-    id: '2',
-    name: "Mustard Smart Zalmi Chappal – 09274",
-    price: 6999,
-    originalPrice: 17430,
-    image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/4-300x300.jpg",
-    badge: "SALE",
-    rating: 5
-  },
-  {
-    id: '3',
-    name: "Black Smart Zalmi Chappal – 09275",
-    price: 6999,
-    originalPrice: 17430,
-    image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/37-300x300.jpg",
-    badge: "SALE",
-    rating: 5
-  },
-  {
-    id: '4',
-    name: "Brown Smart Zalmi Chappal – 09276",
-    price: 6999,
-    originalPrice: 17430,
-    image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/38-300x300.jpg",
-    badge: "SALE",
-    rating: 5
-  },
-  {
-    id: '5',
-    name: "Iconic Black Kaptaan Chappal – 092271",
-    price: 6999,
-    originalPrice: 10790,
-    image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/231-300x300.jpg",
-    badge: "SALE",
-    rating: 5
-  },
-  {
-    id: '6',
-    name: "Handmade Black Norozi Chappal With Leather Sole – 092306",
-    price: 11618,
-    originalPrice: 15770,
-    image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/02/Norozi-Chappal-final-6-JPG-300x300.webp",
-    badge: "SALE",
-    rating: 5
-  },
-  {
-    id: '7',
-    name: "Suede Traditional Brown Chappal – 09288",
-    price: 6999,
-    originalPrice: 17430,
-    image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal1-min-1-jpg-300x300.webp",
-    badge: "SALE",
-    rating: 5
-  },
-  {
-    id: '8',
-    name: "Suede Traditional Camel Chappal – 09290",
-    price: 6999,
-    originalPrice: 17430,
-    image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-    badge: "SALE",
-    rating: 5
-  },
-  {
-    id: '9',
-    name: "Suede Traditional Camel Chappal – 09290",
-    price: 7999,
-    originalPrice: 17430,
-    image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-    badge: "SALE",
-    rating: 4
-  },
-  {
-    id: '10',
-    name: "Suede Traditional Camel Chappal – 09290",
-    price: 5999,
-    originalPrice: 17430,
-    image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-    badge: "SALE",
-    rating: 5
-  },
-  {
-    id: '11',
-    name: "Suede Traditional Camel Chappal – 09290",
-    price: 6999,
-    originalPrice: 17430,
-    image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-    badge: "SALE",
-    rating: 5
-  },
-  {
-    id: '12',
-    name: "Suede Traditional Camel Chappal – 09290",
-    price: 6999,
-    originalPrice: 17430,
-    image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-    badge: "SALE",
-    rating: 5
-  },
-  {
-    id: '13',
-    name: "Suede Traditional Camel Chappal – 09290",
-    price: 6999,
-    originalPrice: 17430,
-    image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-    badge: "SALE",
-    rating: 5
-  },
-  {
-    id: '14',
-    name: "Suede Traditional Camel Chappal – 09290",
-    price: 6999,
-    originalPrice: 17430,
-    image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-    badge: "SALE",
-    rating: 5
-  }
-];
+  const relatedProducts = [
+    {
+      id: '1',
+      name: "Black Charsadda Gol T Chappal – 092242",
+      price: 5999,
+      originalPrice: 7999,
+      image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/48-300x300.jpg",
+      badge: null,
+      rating: 5
+    },
+    {
+      id: '2',
+      name: "Mustard Smart Zalmi Chappal – 09274",
+      price: 6999,
+      originalPrice: 17430,
+      image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/4-300x300.jpg",
+      badge: "SALE",
+      rating: 5
+    },
+    {
+      id: '3',
+      name: "Black Smart Zalmi Chappal – 09275",
+      price: 6999,
+      originalPrice: 17430,
+      image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/37-300x300.jpg",
+      badge: "SALE",
+      rating: 5
+    },
+    {
+      id: '4',
+      name: "Brown Smart Zalmi Chappal – 09276",
+      price: 6999,
+      originalPrice: 17430,
+      image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/38-300x300.jpg",
+      badge: "SALE",
+      rating: 5
+    },
+    {
+      id: '5',
+      name: "Iconic Black Kaptaan Chappal – 092271",
+      price: 6999,
+      originalPrice: 10790,
+      image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/231-300x300.jpg",
+      badge: "SALE",
+      rating: 5
+    },
+    {
+      id: '6',
+      name: "Handmade Black Norozi Chappal With Leather Sole – 092306",
+      price: 11618,
+      originalPrice: 15770,
+      image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/02/Norozi-Chappal-final-6-JPG-300x300.webp",
+      badge: "SALE",
+      rating: 5
+    },
+    {
+      id: '7',
+      name: "Suede Traditional Brown Chappal – 09288",
+      price: 6999,
+      originalPrice: 17430,
+      image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal1-min-1-jpg-300x300.webp",
+      badge: "SALE",
+      rating: 5
+    },
+    {
+      id: '8',
+      name: "Suede Traditional Camel Chappal – 09290",
+      price: 6999,
+      originalPrice: 17430,
+      image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
+      badge: "SALE",
+      rating: 5
+    },
+    {
+      id: '9',
+      name: "Suede Traditional Camel Chappal – 09290",
+      price: 7999,
+      originalPrice: 17430,
+      image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
+      badge: "SALE",
+      rating: 4
+    },
+    {
+      id: '10',
+      name: "Suede Traditional Camel Chappal – 09290",
+      price: 5999,
+      originalPrice: 17430,
+      image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
+      badge: "SALE",
+      rating: 5
+    },
+    {
+      id: '11',
+      name: "Suede Traditional Camel Chappal – 09290",
+      price: 6999,
+      originalPrice: 17430,
+      image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
+      badge: "SALE",
+      rating: 5
+    },
+    {
+      id: '12',
+      name: "Suede Traditional Camel Chappal – 09290",
+      price: 6999,
+      originalPrice: 17430,
+      image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
+      badge: "SALE",
+      rating: 5
+    },
+    {
+      id: '13',
+      name: "Suede Traditional Camel Chappal – 09290",
+      price: 6999,
+      originalPrice: 17430,
+      image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
+      badge: "SALE",
+      rating: 5
+    },
+    {
+      id: '14',
+      name: "Suede Traditional Camel Chappal – 09290",
+      price: 6999,
+      originalPrice: 17430,
+      image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
+      badge: "SALE",
+      rating: 5
+    }
+  ];
 
 
   return (
     <div style={{ maxWidth: '1200px', margin: '40px auto 0', padding: '0 20px' }}>
       {/* Tabs Navigation */}
-      <div style={{ 
-        display: 'flex', 
+      <div style={{
+        display: 'flex',
         borderBottom: '2px solid #f0f0f0',
         marginBottom: '30px'
       }}>
@@ -967,7 +737,7 @@ const relatedProducts = [
               background: 'none',
               fontSize: '16px',
               fontWeight: '600',
-              borderRadius:"0px",
+              borderRadius: "0px",
               cursor: 'pointer',
               color: activeTab === tab.key ? '#FF6B6B' : '#666',
               borderBottom: activeTab === tab.key ? '3px solid #FF6B6B' : 'none',
@@ -987,7 +757,7 @@ const relatedProducts = [
             <p style={{ fontSize: '16px', marginBottom: '20px' }}>
               Feel the transformation of the old era with a modernistic touch with our Midnight Black Printed Leather Quetta Norozi Chappal. The textured leather goes hand in hand with the intricate designing and simple shape of this sturdy yet comfortable chappal made with the best materials available.
             </p>
-            
+
             <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '15px', color: '#333' }}>
               Features:
             </h3>
@@ -998,11 +768,11 @@ const relatedProducts = [
               <li style={{ marginBottom: '8px' }}>Metal buckle for good looks and better grip</li>
             </ul>
 
-            <div style={{ 
-              background: '#f8f9fa', 
-              padding: '20px', 
+            <div style={{
+              background: '#f8f9fa',
+              padding: '20px',
               borderRadius: '8px',
-              border: '1px solid #e9ecef' 
+              border: '1px solid #e9ecef'
             }}>
               <p style={{ margin: '0', fontSize: '14px' }}>
                 <strong>Order now on our website or Call/WhatsApp us at:</strong>{' '}
@@ -1017,7 +787,7 @@ const relatedProducts = [
           <div style={{ lineHeight: '1.6', color: '#555' }}>
             <div style={{ marginBottom: '30px' }}>
               <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '15px', color: '#333' }}>
-               <span style={{display:"flex",alignItems:"center"}}> <Truck style={{marginRight:"1rem"}} /> Shipping</span>
+                <span style={{ display: "flex", alignItems: "center" }}> <Truck style={{ marginRight: "1rem" }} /> Shipping</span>
               </h3>
               <p style={{ marginBottom: '10px' }}>
                 <strong>Expected Delivery Time:</strong> 3-5 business days. Please note that delivery times may vary depending on your location.
@@ -1029,8 +799,8 @@ const relatedProducts = [
 
             <div>
               <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '15px', color: '#333' }}>
-                <span style={{display:"flex",alignItems:"center"}}>
-                  <ChartCandlestick style={{marginRight:"1rem"}} /> Hassle-Free Exchanges
+                <span style={{ display: "flex", alignItems: "center" }}>
+                  <ChartCandlestick style={{ marginRight: "1rem" }} /> Hassle-Free Exchanges
                 </span>
               </h3>
               <p>
@@ -1051,7 +821,7 @@ const relatedProducts = [
             <p style={{ color: '#999', fontSize: '14px', marginBottom: '30px' }}>
               There are no questions found.
             </p>
-            
+
             <button style={{
               background: '#FF6B6B',
               color: 'white',
@@ -1071,10 +841,10 @@ const relatedProducts = [
         {activeTab === 'reviews' && (
           <div>
             {/* Reviews Header */}
-            <div style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '20px', 
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '20px',
               marginBottom: '30px',
               padding: '20px',
               background: '#f8f9fa',
@@ -1091,7 +861,7 @@ const relatedProducts = [
                       <Star
                         key={i}
                         size={18}
-                        style={{ 
+                        style={{
                           color: i < 4 ? '#FFD700' : '#ddd',
                           fill: i < 4 ? '#FFD700' : 'none'
                         }}
@@ -1125,7 +895,7 @@ const relatedProducts = [
                         <Star
                           key={i}
                           size={14}
-                          style={{ 
+                          style={{
                             color: i < review.rating ? '#FFD700' : '#ddd',
                             fill: i < review.rating ? '#FFD700' : 'none'
                           }}
@@ -1163,11 +933,11 @@ const relatedProducts = [
         <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '30px', color: '#333', textAlign: 'center' }}>
           Related Products
         </h2>
-        
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-          gap: '20px' 
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+          gap: '20px'
         }}>
           {relatedProducts.map((product) => (
             <div key={product.id} style={{
@@ -1178,14 +948,14 @@ const relatedProducts = [
               transition: 'transform 0.3s ease, box-shadow 0.3s ease',
               cursor: 'pointer'
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-5px)';
-              e.currentTarget.style.boxShadow = '0 10px 25px rgba(0,0,0,0.1)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'none';
-            }}>
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.boxShadow = '0 10px 25px rgba(0,0,0,0.1)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}>
               <div style={{ position: 'relative' }}>
                 <img
                   src={product.image}
@@ -1209,19 +979,19 @@ const relatedProducts = [
                   <Heart size={16} style={{ color: '#666' }} />
                 </button>
               </div>
-              
+
               <div style={{ padding: '15px' }}>
                 <h3 style={{ fontSize: '14px', fontWeight: '600', margin: '0 0 8px 0', color: '#333' }}>
                   {product.name}
                 </h3>
-                
+
                 <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginBottom: '8px' }}>
                   <div style={{ display: 'flex' }}>
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
                         size={12}
-                        style={{ 
+                        style={{
                           color: i < Math.floor(product.rating) ? '#FFD700' : '#ddd',
                           fill: i < Math.floor(product.rating) ? '#FFD700' : 'none'
                         }}
@@ -1230,24 +1000,24 @@ const relatedProducts = [
                   </div>
                   <span style={{ fontSize: '12px', color: '#666' }}>({product.rating})</span>
                 </div>
-                
+
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-                  <span style={{ 
-                    textDecoration: 'line-through', 
+                  <span style={{
+                    textDecoration: 'line-through',
                     color: '#999',
                     fontSize: '12px'
                   }}>
                     PKR{product.originalPrice.toLocaleString()}
                   </span>
-                  <span style={{ 
-                    fontSize: '16px', 
-                    fontWeight: 'bold', 
+                  <span style={{
+                    fontSize: '16px',
+                    fontWeight: 'bold',
                     color: '#FF6B6B'
                   }}>
                     PKR{product.price.toLocaleString()}
                   </span>
                 </div>
-                
+
                 <button style={{
                   width: '100%',
                   padding: '8px',

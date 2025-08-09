@@ -24,6 +24,7 @@
   import Wishlist from './pages/Wishlist';
    import TermsOfService from './pages/TermsofService';
   import Services from './pages/Services';
+  import PeshawarChappalCustomizer from "./pages//temp"
   // Import Admin Components
   import Dashboard from './AdminComponents/Dashboard';
   import Inventory from './AdminComponents/Inventory';
@@ -58,6 +59,8 @@ import LoginPages from './pages/auth/login';
         { path: 'contact', element: <Contact /> },
         { path: 'CheckoutPage', element: <CheckoutPage /> },
         { path: 'products', element: <Products /> },
+        { path: 'temp', element: <PeshawarChappalCustomizer /> },
+        
         { path: 'productInfo', element: <ProductInfo /> },
         { path: 'wishlist', element: <Wishlist /> },
         { path: 'services', element: <Services /> },

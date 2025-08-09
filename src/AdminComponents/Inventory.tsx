@@ -24,7 +24,7 @@ const Inventory: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showProductDetails, setShowProductDetails] = useState(false);
 
-  const categories = ['all', 'Electronics', 'Furniture', 'Accessories'];
+  const categories = ['all', 'Norozi', 'Zardari', 'Peshawari'];
 
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -128,7 +128,7 @@ const Inventory: React.FC = () => {
     const [formData, setFormData] = useState({
       name: product?.name || '',
       color: product?.color || '',
-      category: product?.category || 'Electronics',
+      category: product?.category || 'Norozi',
       price: product?.price?.toString() || '',
       stock: product?.stock?.toString() || '',
       minStock: product?.minStock?.toString() || '',
@@ -178,9 +178,9 @@ const Inventory: React.FC = () => {
                     onChange={(e) => setFormData({...formData, category: e.target.value})}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   >
-                    <option>Electronics</option>
-                    <option>Furniture</option>
-                    <option>Accessories</option>
+                    <option>Norozi</option>
+                    <option>Zardari</option>
+                    <option>Peshawari</option>
                   </select>
                 </div>
                 <div>
@@ -362,9 +362,9 @@ const Inventory: React.FC = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
                 <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                  <option>Electronics</option>
-                  <option>Furniture</option>
-                  <option>Accessories</option>
+                  <option>Norozi</option>
+                  <option>Zardari</option>
+                  <option>Peshawari</option>
                 </select>
               </div>
               <div>

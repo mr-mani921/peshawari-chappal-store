@@ -46,9 +46,11 @@ const Analytics: React.FC = () => {
     .slice(0, 5);
 
   const categoryData = [
-    { name: 'Electronics', value: 45, color: 'bg-blue-500' },
-    { name: 'Furniture', value: 30, color: 'bg-green-500' },
-    { name: 'Accessories', value: 25, color: 'bg-purple-500' }
+    { name: 'Peshawari Chappal', value: 85, color: 'bg-blue-500' },
+    { name: ' Norozi Chappal', value: 60, color: 'bg-green-500' },
+    { name: ' Zardari Chappal', value: 45, color: 'bg-purple-500' },
+    { name: ' Kaptaan Chappal', value: 25, color: 'bg-purple-500' },
+
   ];
 
   const kpiCards = [

@@ -396,6 +396,21 @@ const LoginPages = () => {
                       "Sign In"
                     )}
                   </button>
+                  
+                   <button
+                    type="submit"
+                   
+                    className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-4 px-6 rounded-xl font-semibold hover:from-red-600 hover:to-red-700 focus:ring-4 focus:ring-red-200 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-lg flex items-center justify-center"
+                  >
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                        Signing In...
+                      </>
+                    ) : (
+                      "register"
+                    )}
+                  </button>
                 </div>
               </form>
 
