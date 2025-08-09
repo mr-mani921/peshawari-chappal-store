@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Edit, Tag } from 'lucide-react';
 import './CheckoutPage.css';
+import API from '../utils/api';
 
 const CheckoutPage = () => {
   const { items, totalAmount, totalQuantity } = useSelector(state => state.cart);
@@ -27,7 +28,7 @@ const CheckoutPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     
     const orderData = {
@@ -41,6 +42,15 @@ const CheckoutPage = () => {
     };
     
     console.log('Order submitted:', orderData);
+    try {
+     const res= await API.post('/orders/add', orderData);
+     console.log('Order response:', res.data);
+
+    } catch (error) {
+      console.log(error.response?.data || error.message);
+      alert('Failed to place order. Please try again later.');
+    }
+
     alert('Order placed successfully!');
     // Handle form submission here
   };

@@ -12,7 +12,7 @@ import {
   User,
   Users,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import API from '../../utils/api';
 
 const Register = () => {
@@ -25,6 +25,7 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -50,6 +51,8 @@ const Register = () => {
     try {
      const res =   await API.post('/auth/signup', formData)
      console.log(res.data)
+     navigate('/home'); 
+     
      } catch (error) {
        console.log(error.response.data);
     }
