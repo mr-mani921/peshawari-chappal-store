@@ -28,7 +28,7 @@ const About = () => {
             </div>
             <div className="story-image">
               <img 
-                src="https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                src="https://www.peshawarichappals.pk/wp-content/uploads/2024/08/48-300x300.jpg" 
                 alt="Traditional Craftsmanship" 
               />
             </div>
