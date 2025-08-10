@@ -38,6 +38,7 @@
   import './App.css';
 import LoginPages from './pages/auth/login';
  import Register from './pages/auth/Register';
+import AddProduct from './AdminComponents/ProductAdd';
 
   const router = createBrowserRouter([
     // Main Website Routes with Layout
@@ -84,6 +85,7 @@ import LoginPages from './pages/auth/login';
       children: [
         { path: '', element: <Navigate to="dashboard" replace /> },
         { path: 'dashboard', element: <Dashboard /> },
+        { path: 'productadd', element: <AddProduct /> },
         { path: 'inventory', element: <Inventory /> },
         { path: 'orders', element: <Orders /> },
         { path: 'users', element: <Users /> },

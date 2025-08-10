@@ -12,7 +12,7 @@ import {
   User,
   Users,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import API from '../../utils/api';
 
 const Register = () => {
@@ -24,7 +24,8 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
-  });
+   });
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -41,20 +42,34 @@ const Register = () => {
     setTimeout(() => setShowAlert(false), 4000);
   };
 
-  const handleSubmit = async() => {
-    if (!formData.email || !formData.password) {
-      showProfessionalAlert('error', 'Please fill in all required fields');
-      return;
-    }
-    console.log(`login attempt:`, formData);
-    try {
-     const res =   await API.post('/auth/signup', formData)
-     console.log(res.data)
-     } catch (error) {
-       console.log(error.response.data);
+const handleSubmit = async () => {
+  if (!formData.email || !formData.password) {
+    showProfessionalAlert('error', 'Please fill in all required fields');
+    return;
+  }
+
+ 
+  try {
+    const { name, email, password } = formData;
+
+    let payload = { name, email, password };
+
+    if (email == "chappals@gmail.com" && name == 'chappals') {
+      payload.role = 'admin';
     }
 
-  };
+    const res = await API.post('/auth/signup', payload);
+
+    console.log(res.data.user);
+    localStorage.setItem('user', JSON.stringify(res.data.user));
+    navigate('/home'); // or navigate('/') depending on your routing
+
+  } catch (error) {
+    console.log(error.response?.data || error.message);
+    showProfessionalAlert('error', error.response?.data?.message || 'Signup failed');
+  }  
+};
+
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

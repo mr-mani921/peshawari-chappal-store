@@ -13,9 +13,11 @@ import {
 } from 'lucide-react';
 import { mockProducts } from './Data/mockData';
 import { Product } from './types/inventory';
+import { useProducts } from '../pages/Contexts/Product';
+import API from '../utils/api';
 
 const Inventory: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>(mockProducts);
+  const {products,setProducts} = useProducts();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showAddModal, setShowAddModal] = useState(false);
@@ -93,9 +95,15 @@ const Inventory: React.FC = () => {
     setEditingProduct(null);
   };
 
-  const deleteProduct = (productId: string) => {
+  const deleteProduct =async (productId: string) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
-      setProducts(products.filter(p => p.id !== productId));
+      try {
+        const res= await API.delete(`/products/delete/${productId}`);
+        console.log(res.data);
+        setProducts(products.filter(p => p.id !== productId));
+      } catch (error) {
+        console.log(error.message);
+      }
     }
   };
 
@@ -135,9 +143,24 @@ const Inventory: React.FC = () => {
       supplier: product?.supplier || ''
     });
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit =async (e: React.FormEvent) => {
       e.preventDefault();
+      console.log(editingProduct)
+
       onSubmit(formData);
+
+      try {
+        const res= await API.post(`/products/update/${editingProduct.id}`, formData)
+        if (res.status === 200) {
+          setProducts(prev => prev.map(p => p.id === editingProduct.id ? {...p, ...formData} : p));
+          onClose();
+          console.log(products)
+        } else {
+          throw new Error("Failed to update product");
+        }
+      } catch (error) {
+        
+      }
     };
 
     return (
@@ -239,7 +262,7 @@ const Inventory: React.FC = () => {
                 </button>
                 <button 
                   type="submit"
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                  className="px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700"
                 >
                   {product ? 'Update Product' : 'Add Product'}
                 </button>
@@ -528,7 +551,8 @@ const Inventory: React.FC = () => {
                     {product.category}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    ${product.price.toFixed(2)}
+                    {Number(product.price).toFixed(2)}
+
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     <div>

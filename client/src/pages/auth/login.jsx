@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Eye, EyeOff, Mail, Lock, Info, X, Check, AlertTriangle, User } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Eye, EyeOff, Mail, Lock, Info, X, Check, AlertTriangle, User,Loader2  } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import API from '../../utils/api';
 
 
@@ -14,6 +14,7 @@ const LoginPages = () => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   // Authentication credentials
   const AUTH_CREDENTIALS = {
@@ -38,22 +39,48 @@ const LoginPages = () => {
   };
 
 
-  const handleSubmit = async() => {
+  // const handleSubmit = async() => {
+    
+  //    console.log("first")
+  //   if (!formData.email || !formData.password) {
+  //     showProfessionalAlert("error", "Please fill in all required fields");
+  //     return;
+  //   }
 
-    if (!formData.email || !formData.password) {
-      showProfessionalAlert("error", "Please fill in all required fields");
-      return;
-    }
+  //   console.log(`login attempt:`, formData);
+  //   try {
+  //    const res =   await API.post('/auth/login', formData)
+  //    console.log(res)
+  //    localStorage.setItem('user', JSON.stringify(res.data.user));
+  //    navigate('/signature-collection')
+  //    } catch (error) {
+  //      console.log(error.response.data);
+  //   }
+  //        console.log("second")
 
-    console.log(`login attempt:`, formData);
-    try {
-     const res =   await API.post('/auth/login', formData)
-     console.log(res.data)
-     localStorage.setItem('user', JSON.stringify(res.data.user));
-     } catch (error) {
-       console.log(error.response.data);
-    }
-  };
+  // };
+
+ const handleSubmit = async (e) => {
+  e.preventDefault(); // Prevent default form submission
+  console.log("login attempt");
+  
+  if (!formData.email || !formData.password) {
+    showProfessionalAlert("error", "Please fill in all required fields");
+    return;
+  }
+
+  try {
+    setIsLoading(true);
+    const res = await API.post('/auth/login', formData);
+    localStorage.setItem('user', JSON.stringify(res.data.user));
+    navigate('/signature-collection'); // Navigate to new page
+  } catch (error) {
+    const errorMsg = error.response?.data?.message || "Login failed";
+    showProfessionalAlert("error", errorMsg);
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -220,7 +247,7 @@ const LoginPages = () => {
               {/* Demo Credentials Info */}
             
               {/* Form */}
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 {/* Email Field */}
                 <div className="group">
                   <label

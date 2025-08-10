@@ -11,6 +11,7 @@ import {
   Trash2
 } from 'lucide-react';
 import { mockDashboardStats, mockProducts, mockStockMovements } from './Data/mockData';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard: React.FC = () => {
   const stats = [
@@ -47,6 +48,10 @@ const Dashboard: React.FC = () => {
       isPositive: true
     }
   ];
+  const Navigate=useNavigate()
+  const moveotherRoutes = (route) => {
+  return  Navigate(route);
+  }
 
   const lowStockProducts = mockProducts.filter(product => product.stock <= product.minStock);
 
@@ -171,7 +176,7 @@ const Dashboard: React.FC = () => {
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <h2 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <button className="flex items-center space-x-3 p-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+          <button onClick={()=>moveotherRoutes('/admin/productadd')} className="flex items-center space-x-3 p-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200">
             <Package size={20} className="text-blue-600" />
             <span className="font-medium text-gray-900">Add New Product</span>
           </button>
