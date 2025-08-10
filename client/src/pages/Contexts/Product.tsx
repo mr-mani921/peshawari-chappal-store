@@ -6,14 +6,11 @@ export const ProductsContext = createContext();
 
 export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+ 
 
-  // Fetch products when component mounts
-  useEffect(() => {
+   useEffect(() => {
     const fetchProducts = async () => {
-      setLoading(true);
-      try {
+       try {
         const res = await API.get("/products/all");
 
         // If API returns { products: [...] }
@@ -26,24 +23,20 @@ export const ProductsProvider = ({ children }) => {
         }
 
       } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
+        console.log(err.message);
+      }  
     };
 
     fetchProducts();
   }, []);
 
-     
-
   // Log whenever products change
-  useEffect(() => {
-    console.log("Fetched products:", products);
-  }, [products]);
+  // useEffect(() => {
+  //   console.log("Fetched products:", products);
+  // }, [products]);
 
   return (
-    <ProductsContext.Provider value={{ products, loading, error, setProducts }}>
+    <ProductsContext.Provider value={{ products,setProducts }}>
       {children}
     </ProductsContext.Provider>
   );

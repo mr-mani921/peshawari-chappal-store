@@ -1,8 +1,12 @@
-export const isTokenExpired = (token) => {
-  if (!token || typeof token !== "string") return true;
+export const isTokenExpired = () => {
+  const token = localStorage.getItem("token");
+  if (!token || typeof token !== "string") {
+    handleLogout();
+    return true;
+  }
 
   try {
-    const base64Url = token.split(".")[1]; 
+    const base64Url = token.split(".")[1];
     const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
 
     const jsonPayload = decodeURIComponent(
@@ -18,12 +22,24 @@ export const isTokenExpired = (token) => {
     console.log("Now:     ", new Date(currentTime * 1000));
     console.log("Expires: ", new Date(exp * 1000));
 
-    return exp < currentTime;
+    if (exp < currentTime) {
+      handleLogout();
+      return true;
+    }
+
+    return false;
   } catch (error) {
     console.error("Token decode error:", error);
+    handleLogout();
     return true;
   }
 };
 
+const handleLogout = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  console.log("Token expired or invalid. Logging out...");
 
-
+  // Optional redirect to login page
+  window.location.href = "/login";
+};

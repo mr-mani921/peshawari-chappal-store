@@ -7,6 +7,7 @@
   // import CartDrawer from './components/CartDrawer';
 
   // Import pages
+  import './utils/auth.js'
   import Home from './pages/Home';
   import About from './pages/About';
   import PeshawariChappal from './pages/PeshawariChappal';

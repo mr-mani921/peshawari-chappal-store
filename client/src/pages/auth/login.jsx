@@ -73,6 +73,8 @@ const LoginPages = () => {
     setIsLoading(true);
     const res = await API.post('/auth/login', formData);
     localStorage.setItem('user', JSON.stringify(res.data.user));
+    localStorage.setItem('token', res.data.token);
+    showProfessionalAlert("success", res.data.message);
     navigate('/signature-collection'); // Navigate to new page
   } catch (error) {
     const errorMsg = error.response?.data?.message || "Login failed";

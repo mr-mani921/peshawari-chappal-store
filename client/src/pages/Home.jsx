@@ -1,155 +1,12 @@
 import React from "react";
 import ProductCard from "../components/ProductCard";
-import { Link } from "lucide-react";
 import logoimg from "../assets/bgc-removebg-preview.png"
-
+import { useProducts } from "./Contexts/Product";
+import UserHistory from "../components/UserHistory";
+ 
 const Home = () => {
-  const featuredProducts = [
-    {
-      id: 1,
-      name: "Black Charsadda Gol T Chappal – 092242",
-      price: "59.99",
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/48-300x300.jpg",
-      hoverImage:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/482-300x300.jpg",
-      rating: 5,
-      badge: "SALE",
-    },
-    {
-      id: 2,
-      name: "Mustard Smart Zalmi Chappal – 09274",
-      price: "69.99",
-      originalPrice: "174.30",
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/4-300x300.jpg",
-      hoverImage:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/42-300x300.jpg",
-      badge: "SALE",
-      rating: 5,
-    },
-    {
-      id: 3,
-      name: "Black Smart Zalmi Chappal – 09275",
-      price: "69.99",
-      originalPrice: "174.30",
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/37-300x300.jpg",
-      hoverImage:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/372-300x300.jpg",
-      badge: "SALE",
-      rating: 5,
-    },
-    {
-      id: 4,
-      name: "Brown Smart Zalmi Chappal – 09276",
-      price: "69.99",
-      originalPrice: "174.30",
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/38-300x300.jpg",
-      hoverImage:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/382-300x300.jpg",
-      badge: "SALE",
-      rating: 5,
-    },
-    {
-      id: 5,
-      name: "Iconic Black Kaptaan Chappal – 092271",
-      price: "69.99",
-      originalPrice: "107.90",
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/231-300x300.jpg",
-      hoverImage:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/23-300x300.jpg",
-      badge: "SALE",
-      rating: 5,
-    },
-    {
-      id: 6,
-      name: "Handmade Black Norozi Chappal With Leather Sole – 092306",
-      price: "116.18",
-      originalPrice: "157.70",
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2024/02/Norozi-Chappal-final-6-JPG-300x300.webp",
-      hoverImage:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2024/02/Norozi-Chappal-final-119-JPG-300x300.webp",
-      badge: "SALE",
-      rating: 5,
-    },
-    {
-      id: 7,
-      name: "Suede Traditional Brown Chappal – 09288",
-      price: "69.99",
-      originalPrice: "174.30",
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal1-min-1-jpg-300x300.webp",
-      hoverImage:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/Zalmi-chappal-min-jpg-300x300.webp",
-      badge: "SALE",
-      rating: 5,
-    },
-    {
-      id: 8,
-      name: "Suede Traditional Camel Chappal – 09290",
-      price: "69.99",
-      originalPrice: "174.30",
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-      hoverImage:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal5-min-jpg-300x300.webp",
-      badge: "SALE",
-      rating: 5,
-    },
-    {
-      id: 9,
-      name: "Premium Leather Chappal – 09291",
-      price: "79.99",
-      originalPrice: "174.30",
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-      hoverImage:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal5-min-jpg-300x300.webp",
-      badge: "SALE",
-      rating: 4,
-    },
-    {
-      id: 10,
-      name: "Classic Brown Chappal – 09292",
-      price: "59.99",
-      originalPrice: "174.30",
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-      hoverImage:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal5-min-jpg-300x300.webp",
-      badge: "SALE",
-      rating: 5,
-    },
-    {
-      id: 11,
-      name: "Heritage Collection Chappal – 09293",
-      price: "69.99",
-      originalPrice: "174.30",
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-      hoverImage:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal5-min-jpg-300x300.webp",
-      badge: "SALE",
-      rating: 5,
-    },
-    {
-      id: 12,
-      name: "Royal Black Chappal – 09294",
-      price: "69.99",
-      originalPrice: "174.30",
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-      hoverImage:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal5-min-jpg-300x300.webp",
-      badge: "SALE",
-      rating: 5,
-    },
-  ];
-
+ const { products }= useProducts()
+    
   return (
     <>
       <div className="w-full overflow-x-hidden">
@@ -169,7 +26,7 @@ const Home = () => {
             <div className="text-left lg:text-center xl:text-center 2xl:text-center md:text-center sm:text-center xs:text-center">
               <div style={{ fontSize: "2rem" }} className="logo">
 
-                <span g                                                                                                                                                                                                                                                   className="logo-text-main">Kaltoor</span>
+                                                                                                       <span className="logo-text-main">Kaltoor</span>
                 <span style={{ marginTop: "2rem" }} className="logo-text-accent">Chappal</span>
               
 
@@ -214,7 +71,7 @@ const Home = () => {
         <section className="bg-gray-50 py-[60px] lg:py-[50px] xl:py-[50px] 2xl:py-[50px] md:py-10 sm:py-[30px] xs:py-[25px]">
           <div className="max-w-[1200px] mx-auto px-5 lg:px-5 xl:px-5 2xl:px-5 md:px-[15px] sm:px-[10px] xs:px-[10px]">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-[30px] lg:gap-[30px] xl:gap-[30px] 2xl:gap-[30px] mb-[50px] md:gap-5 sm:gap-[15px] xs:gap-[15px]">
-              {featuredProducts.map((product) => (
+              {products.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
@@ -226,7 +83,11 @@ const Home = () => {
             </div> */}
           </div>
         </section>
-
+          <section className="bg-gray-50 py-[60px] lg:py-[50px] xl:py-[50px] 2xl:py-   [50px] md:py-10 sm:py-[30px] xs:py-[25px]">
+              <h2 className="text-4xl  lg:text-3xl xl:text-3xl font-semibold text-black mb-[30px] leading-tight md:text-2xl sm:text-xl xs:text-lg text-center">
+              Order History</h2>
+          <UserHistory/>
+        </section>
         {/* WhatsApp Chat Button */}
         <div className="fixed bottom-5 right-5 bg-green-500 text-white py-3 px-5 rounded-full flex items-center gap-2 cursor-pointer shadow-lg font-medium transition-all duration-300 ease-in-out z-[1000] hover:-translate-y-0.5 hover:shadow-xl sm:py-[10px] sm:px-[15px] sm:text-sm sm:bottom-[15px] sm:right-[15px] xs:py-[8px] xs:px-3 xs:text-xs">
           <span className="text-xl">💬</span>
