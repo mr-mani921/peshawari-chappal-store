@@ -494,7 +494,7 @@ const ProductInfo = () => {
                   : 'bg-gray-400 text-bluck cursor-not-allowed'
                 }`}
             >
-              <Link to="./CheckoutPage" className="text-white">CheckoutPage</Link>
+              <Link to="/CheckoutPage" className="text-white">CheckoutPage</Link>
             </button>
 
             <button

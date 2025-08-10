@@ -6,11 +6,12 @@ import './CartDrawer.css';
 import { Link } from 'react-router-dom';
 
 const CartDrawer = () => {
-  
   const dispatch = useDispatch();
   const { items, totalQuantity, totalAmount, isOpen } = useSelector(state => state.cart);
 
   const handleUpdateQuantity = (item, newQuantity) => {
+    if (newQuantity < 1) return; // Prevent quantity from going below 1
+    
     dispatch(updateQuantity({
       id: item.id,
       selectedOptions: item.selectedOptions,
@@ -19,16 +20,23 @@ const CartDrawer = () => {
   };
 
   const handleRemoveItem = (item) => {
-    dispatch(removeFromCart({
-      id: item.id,
-      selectedOptions: item.selectedOptions
-    }));
+    // Show confirmation before deleting
+    if (window.confirm(`Are you sure you want to remove "${item.name}" from your cart?`)) {
+      dispatch(removeFromCart({
+        id: item.id,
+        selectedOptions: item.selectedOptions
+      }));
+    }
   };
 
   const handleClearCart = () => {
-    if (window.confirm('Are you sure you want to clear your cart?')) {
+    if (window.confirm('Are you sure you want to clear your entire cart?')) {
       dispatch(clearCart());
     }
+  };
+
+  const handleCloseCart = () => {
+    dispatch(closeCart());
   };
 
   return (
@@ -37,7 +45,7 @@ const CartDrawer = () => {
       {isOpen && (
         <div 
           className="cart-overlay" 
-          onClick={() => dispatch(closeCart())}
+          onClick={handleCloseCart}
         />
       )}
       
@@ -50,7 +58,7 @@ const CartDrawer = () => {
           </div>
           <button 
             className="cart-close-btn"
-            onClick={() => dispatch(closeCart())}
+            onClick={handleCloseCart}
             aria-label="Close cart"
           >
             <X size={20} />
@@ -87,7 +95,7 @@ const CartDrawer = () => {
                       )}
                       
                       <div className="cart-item-price">
-                        ${item.price.toFixed(2)}
+                        PKR{item.price.toFixed(2)}
                       </div>
                       
                       <div className="cart-item-actions">
@@ -96,6 +104,7 @@ const CartDrawer = () => {
                             className="quantity-btn"
                             onClick={() => handleUpdateQuantity(item, item.quantity - 1)}
                             disabled={item.quantity <= 1}
+                            aria-label="Decrease quantity"
                           >
                             <Minus size={14} />
                           </button>
@@ -103,23 +112,28 @@ const CartDrawer = () => {
                           <button
                             className="quantity-btn"
                             onClick={() => handleUpdateQuantity(item, item.quantity + 1)}
+                            aria-label="Increase quantity"
                           >
                             <Plus size={14} />
                           </button>
                         </div>
-                        
-                        <button
-                          className="remove-btn"
-                          onClick={() => handleRemoveItem(item)}
-                          aria-label="Remove item"
-                        >
-                          <Trash2 size={16} />
-                        </button>
                       </div>
                     </div>
                     
-                    <div className="cart-item-total">
-                      ${item.totalPrice.toFixed(2)}
+                    <div className="cart-item-right">
+                      <div className="cart-item-total">
+                        PKR{item.totalPrice.toFixed(2)}
+                      </div>
+                      
+                      {/* Delete Button - Positioned on the right */}
+                      <button
+                        className="delete-item-btn"
+                        onClick={() => handleRemoveItem(item)}
+                        aria-label={`Remove ${item.name} from cart`}
+                        title="Remove item from cart"
+                      >
+                        <Trash2 size={16} />
+                      </button>
                     </div>
                   </div>
                 ))}
@@ -128,23 +142,26 @@ const CartDrawer = () => {
               <div className="cart-footer">
                 <div className="cart-summary">
                   <div className="cart-total">
-                    <span>Total: <strong>${totalAmount.toFixed(2)}</strong></span>
+                    <span>Total: <strong>PKR{totalAmount.toFixed(2)}</strong></span>
                   </div>
                   
                   <div className="cart-actions">
                     <button 
                       className="btn btn-secondary cart-clear-btn"
                       onClick={handleClearCart}
+                      aria-label="Clear entire cart"
                     >
                       Clear Cart
                     </button>
-                    <Link to ='./CheckoutPage'>
-                    <button className="btn btn-primary cart-checkout-btn">
-                      Checkout
-                    </button></Link>
-                  
-                     
                     
+                    <Link to="/CheckoutPage" className="checkout-link">
+                      <button 
+                        className="btn btn-primary cart-checkout-btn"
+                        onClick={handleCloseCart}
+                      >
+                        Checkout
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>

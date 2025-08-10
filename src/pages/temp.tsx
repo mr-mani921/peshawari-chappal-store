@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, Star, Settings, Palette, Ruler, HelpCircle, Share2, Phone, GitCompare } from 'lucide-react';
+import { Heart, Star, Settings, Palette, Ruler, HelpCircle, Share2, Phone, GitCompare, Crown, Gem, Sparkles, Award } from 'lucide-react';
 
 const PeshawarChappalCustomizer = () => {
   const [selectedImage, setSelectedImage] = useState(0);
@@ -15,6 +15,10 @@ const PeshawarChappalCustomizer = () => {
   const [selectedPattern, setSelectedPattern] = useState(null);
   const [customText, setCustomText] = useState('');
   const [selectedThreadColor, setSelectedThreadColor] = useState('#FFD700');
+  const [selectedPremiumMaterial, setSelectedPremiumMaterial] = useState(null);
+  const [selectedSpecialEdition, setSelectedSpecialEdition] = useState(null);
+  const [selectedArtistry, setSelectedArtistry] = useState([]);
+  const [selectedStitching, setSelectedStitching] = useState('standard');
 
   // Sample data
   const images = [
@@ -31,14 +35,78 @@ const PeshawarChappalCustomizer = () => {
   ];
 
   const styleOptions = [
-    { name: 'classic', label: 'Classic', price: 0 },
-    { name: 'modern', label: 'Modern', price: 500 },
-    { name: 'premium', label: 'Premium', price: 1000 }
+    { name: 'classic', label: 'Classic Peshawar', price: 0, desc: 'Traditional design passed down through generations' },
+    { name: 'modern', label: 'Modern Fusion', price: 500, desc: 'Contemporary style with traditional craftsmanship' },
+    { name: 'premium', label: 'Premium Heritage', price: 1000, desc: 'Luxury edition with enhanced comfort' },
+    { name: 'royal', label: 'Royal Collection', price: 1800, desc: 'Fit for royalty with premium materials' },
+    { name: 'artisan', label: 'Artisan Masterpiece', price: 2500, desc: 'Hand-crafted by master artisans' }
   ];
 
   const materialOptions = [
     { name: 'leather', label: 'Genuine Leather', price: 0 },
     { name: 'suede', label: 'Premium Suede', price: 800 }
+  ];
+
+  const premiumMaterialOptions = [
+    { name: 'buffalo-leather', label: 'Buffalo Leather', price: 1200, desc: 'Extra durable and weather resistant' },
+    { name: 'camel-leather', label: 'Camel Leather', price: 1800, desc: 'Luxuriously soft and breathable' },
+    { name: 'exotic-ostrich', label: 'Exotic Ostrich', price: 3500, desc: 'Rare and distinctive texture' },
+    { name: 'premium-suede', label: 'Premium Italian Suede', price: 2200, desc: 'Imported Italian craftsmanship' },
+    { name: 'vintage-leather', label: 'Vintage Aged Leather', price: 1600, desc: 'Pre-aged for authentic vintage look' }
+  ];
+
+  const specialEditionOptions = [
+    { 
+      name: 'eid-collection', 
+      label: 'Eid Special', 
+      price: 2000, 
+      desc: 'Gold embroidery with crescent moon designs',
+      icon: '🌙'
+    },
+    { 
+      name: 'wedding-edition', 
+      label: 'Wedding Edition', 
+      price: 3500, 
+      desc: 'Intricate beadwork and premium finishes',
+      icon: '💍'
+    },
+    { 
+      name: 'tribal-heritage', 
+      label: 'Tribal Heritage', 
+      price: 2800, 
+      desc: 'Traditional tribal patterns and symbols',
+      icon: '🏺'
+    },
+    { 
+      name: 'pashtun-pride', 
+      label: 'Pashtun Pride', 
+      price: 2200, 
+      desc: 'Cultural motifs celebrating Pashtun heritage',
+      icon: '🦅'
+    },
+    { 
+      name: 'limited-anniversary', 
+      label: 'Anniversary Limited', 
+      price: 4000, 
+      desc: 'Numbered edition with certificate',
+      icon: '🏆'
+    }
+  ];
+
+  const artistryOptions = [
+    { name: 'hand-tooling', label: 'Hand Tooling', price: 800, desc: 'Intricate leather carving by hand' },
+    { name: 'gold-leafing', label: 'Gold Leafing', price: 1200, desc: '24k gold leaf accents' },
+    { name: 'silver-inlay', label: 'Silver Inlay', price: 1000, desc: 'Sterling silver decorative elements' },
+    { name: 'beadwork', label: 'Traditional Beadwork', price: 600, desc: 'Handcrafted bead patterns' },
+    { name: 'mirror-work', label: 'Mirror Work', price: 700, desc: 'Traditional mirror embellishments' },
+    { name: 'stone-setting', label: 'Stone Setting', price: 1500, desc: 'Semi-precious stone accents' }
+  ];
+
+  const stitchingOptions = [
+    { name: 'standard', label: 'Standard Stitching', price: 0 },
+    { name: 'reinforced', label: 'Reinforced Stitching', price: 300 },
+    { name: 'decorative', label: 'Decorative Contrast Stitching', price: 500 },
+    { name: 'hand-sewn', label: 'Hand-Sewn Premium', price: 1200 }
   ];
 
   const soleOptions = [
@@ -51,17 +119,36 @@ const PeshawarChappalCustomizer = () => {
   const rating = 4.5;
   const reviewCount = 128;
 
+  const handleArtistryToggle = (artistry) => {
+    setSelectedArtistry(prev => 
+      prev.includes(artistry) 
+        ? prev.filter(item => item !== artistry)
+        : [...prev, artistry]
+    );
+  };
+
   // Calculate prices
   const basePrice = 8500;
   const colorPrice = colorOptions.find(c => c.name === selectedColor)?.price || 0;
   const stylePrice = styleOptions.find(s => s.name === selectedStyle)?.price || 0;
   const materialPrice = materialOptions.find(m => m.name === selectedMaterial)?.price || 0;
+  const premiumMaterialPrice = selectedPremiumMaterial 
+    ? premiumMaterialOptions.find(pm => pm.name === selectedPremiumMaterial)?.price || 0 
+    : 0;
   const solePrice = soleOptions.find(s => s.name === selectedSole)?.price || 0;
   const logoPrice = selectedLogo ? 250 : 0;
   const patternPrice = selectedPattern ? 350 : 0;
   const textPrice = customText ? 600 : 0;
+  const specialEditionPrice = selectedSpecialEdition 
+    ? specialEditionOptions.find(se => se.name === selectedSpecialEdition)?.price || 0 
+    : 0;
+  const artistryPrice = selectedArtistry.reduce((total, artistry) => {
+    const option = artistryOptions.find(a => a.name === artistry);
+    return total + (option?.price || 0);
+  }, 0);
+  const stitchingPrice = stitchingOptions.find(s => s.name === selectedStitching)?.price || 0;
   
-  const customizationPrice = colorPrice + stylePrice + materialPrice + solePrice + logoPrice + patternPrice + textPrice;
+  const customizationPrice = colorPrice + stylePrice + materialPrice + premiumMaterialPrice + solePrice + logoPrice + patternPrice + textPrice + specialEditionPrice + artistryPrice + stitchingPrice;
   const unitPrice = basePrice + customizationPrice;
   const totalPrice = unitPrice * quantity;
 
@@ -90,7 +177,15 @@ const PeshawarChappalCustomizer = () => {
             
             {customizationPrice !== 0 && (
               <div className="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">
-                +PKR {customizationPrice}
+                +PKR {customizationPrice.toLocaleString()}
+              </div>
+            )}
+
+            {/* Special Edition Badge */}
+            {selectedSpecialEdition && (
+              <div className="absolute top-12 right-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-2 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                <Crown size={12} />
+                Special Edition
               </div>
             )}
             
@@ -138,6 +233,7 @@ const PeshawarChappalCustomizer = () => {
           <div className="mb-5">
             <h1 className="text-2xl sm:text-3xl font-bold mb-3 text-gray-800">
               {selectedColor.charAt(0).toUpperCase() + selectedColor.slice(1)} Smart Zalmi Chappal — {productId}
+              {selectedSpecialEdition && <span className="text-purple-600 ml-2">Special Edition</span>}
             </h1>
 
             <div className="flex items-center gap-3">
@@ -174,7 +270,7 @@ const PeshawarChappalCustomizer = () => {
             
             {customizationPrice > 0 && (
               <p className="text-gray-600 text-sm">
-                Includes PKR{customizationPrice} customization fee per item
+                Includes PKR{customizationPrice.toLocaleString()} customization fee per item
               </p>
             )}
             
@@ -232,6 +328,28 @@ const PeshawarChappalCustomizer = () => {
                         strokeWidth="2"
                       />
                       <ellipse cx="90" cy="45" rx="70" ry="35" fill="none" stroke="#654321" strokeWidth="1" strokeDasharray="3,3"/>
+                      
+                      {/* Special Edition Glow */}
+                      {selectedSpecialEdition && (
+                        <ellipse 
+                          cx="90" 
+                          cy="60" 
+                          rx="87" 
+                          ry="57" 
+                          fill="none" 
+                          stroke="url(#goldGradient)" 
+                          strokeWidth="3"
+                          opacity="0.8"
+                        />
+                      )}
+                      
+                      <defs>
+                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#FFD700" />
+                          <stop offset="50%" stopColor="#FFA500" />
+                          <stop offset="100%" stopColor="#FF8C00" />
+                        </linearGradient>
+                      </defs>
                     </svg>
                     
                     {/* Selected Logo/Icon Overlay */}
@@ -258,33 +376,184 @@ const PeshawarChappalCustomizer = () => {
                       </div>
                     )}
                     
-                    {/* Selected Pattern Overlay */}
-                    {selectedPattern && (
-                      <div className="absolute inset-0 opacity-30">
-                        {selectedPattern === 'geometric' && (
-                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xs">
-                            ◇ ◆ ◇ ◆ ◇
-                          </div>
-                        )}
-                        {selectedPattern === 'floral' && (
-                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xs">
-                            🌸 🌿 🌸
-                          </div>
-                        )}
-                        {selectedPattern === 'traditional' && (
-                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xs">
-                            ◆ ◇ ◆
-                          </div>
-                        )}
-                      </div>
+                    {/* Artistry Effects */}
+                    {selectedArtistry.includes('gold-leafing') && (
+                      <div className="absolute top-3 right-3 text-yellow-400 text-xs animate-pulse">✨</div>
+                    )}
+                    {selectedArtistry.includes('beadwork') && (
+                      <div className="absolute top-3 left-3 text-blue-400 text-xs">●●●</div>
+                    )}
+                    {selectedArtistry.includes('mirror-work') && (
+                      <div className="absolute bottom-3 right-3 text-gray-300 text-xs animate-bounce">◊</div>
                     )}
                   </div>
                   
                   {/* Preview Text */}
                   <div className="absolute bottom-2 right-2 text-xs text-gray-600 bg-white px-2 py-1 rounded">
-                    Preview: {selectedColor} • {selectedLogo || 'No Logo'} • {selectedPattern || 'No Pattern'}
+                    {selectedStyle} • {selectedColor} • {selectedPattern || 'No Pattern'} • {selectedArtistry.length > 0 ? `+${selectedArtistry.length} artistry` : 'Standard'}
                   </div>
                 </div>
+              </div>
+
+              {/* Chappal Style Selection */}
+              <div className="mb-6">
+                <h4 className="text-sm font-semibold mb-3 text-gray-600 flex items-center gap-2">
+                  <Crown size={16} />
+                  Chappal Style Selection:
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {styleOptions.map((style) => (
+                    <div
+                      key={style.name}
+                      onClick={() => setSelectedStyle(style.name)}
+                      className={`p-4 rounded-lg cursor-pointer transition-all duration-300 border-2 ${
+                        selectedStyle === style.name 
+                          ? 'border-red-500 bg-red-50 shadow-md' 
+                          : 'border-gray-300 bg-white hover:border-gray-400 hover:shadow-sm'
+                      }`}
+                    >
+                      <div className="flex justify-between items-start mb-2">
+                        <h5 className="font-semibold text-sm">{style.label}</h5>
+                        {style.price > 0 && (
+                          <span className="text-red-500 font-bold text-sm">+PKR{style.price}</span>
+                        )}
+                      </div>
+                      <p className="text-xs text-gray-600">{style.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Premium Material Options */}
+              <div className="mb-6">
+                <h4 className="text-sm font-semibold mb-3 text-gray-600 flex items-center gap-2">
+                  <Gem size={16} />
+                  Premium Material Options:
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div
+                    onClick={() => setSelectedPremiumMaterial(null)}
+                    className={`p-3 rounded-lg cursor-pointer transition-all duration-300 border-2 ${
+                      !selectedPremiumMaterial 
+                        ? 'border-red-500 bg-red-50' 
+                        : 'border-gray-300 bg-white hover:border-gray-400'
+                    }`}
+                  >
+                    <div className="font-semibold text-sm">Standard Materials</div>
+                    <div className="text-xs text-gray-600">Regular leather and suede options</div>
+                  </div>
+                  {premiumMaterialOptions.map((material) => (
+                    <div
+                      key={material.name}
+                      onClick={() => setSelectedPremiumMaterial(material.name)}
+                      className={`p-3 rounded-lg cursor-pointer transition-all duration-300 border-2 ${
+                        selectedPremiumMaterial === material.name 
+                          ? 'border-red-500 bg-red-50' 
+                          : 'border-gray-300 bg-white hover:border-gray-400'
+                      }`}
+                    >
+                      <div className="flex justify-between items-start mb-1">
+                        <div className="font-semibold text-sm">{material.label}</div>
+                        <span className="text-red-500 font-bold text-sm">+PKR{material.price}</span>
+                      </div>
+                      <div className="text-xs text-gray-600">{material.desc}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Special Edition Designs */}
+              <div className="mb-6">
+                <h4 className="text-sm font-semibold mb-3 text-gray-600 flex items-center gap-2">
+                  <Sparkles size={16} />
+                  Special Edition Designs:
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div
+                    onClick={() => setSelectedSpecialEdition(null)}
+                    className={`p-3 rounded-lg cursor-pointer transition-all duration-300 border-2 ${
+                      !selectedSpecialEdition 
+                        ? 'border-red-500 bg-red-50' 
+                        : 'border-gray-300 bg-white hover:border-gray-400'
+                    }`}
+                  >
+                    <div className="font-semibold text-sm">Regular Edition</div>
+                    <div className="text-xs text-gray-600">Standard design without special themes</div>
+                  </div>
+                  {specialEditionOptions.map((edition) => (
+                    <div
+                      key={edition.name}
+                      onClick={() => setSelectedSpecialEdition(edition.name)}
+                      className={`p-3 rounded-lg cursor-pointer transition-all duration-300 border-2 ${
+                        selectedSpecialEdition === edition.name 
+                          ? 'border-purple-500 bg-purple-50' 
+                          : 'border-gray-300 bg-white hover:border-gray-400'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg">{edition.icon}</span>
+                          <div className="font-semibold text-sm">{edition.label}</div>
+                        </div>
+                        <span className="text-purple-600 font-bold text-sm">+PKR{edition.price}</span>
+                      </div>
+                      <div className="text-xs text-gray-600">{edition.desc}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Artistry & Detailing */}
+              <div className="mb-6">
+                <h4 className="text-sm font-semibold mb-3 text-gray-600 flex items-center gap-2">
+                  <Award size={16} />
+                  Artistry & Detailing (Multiple Selection):
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {artistryOptions.map((artistry) => (
+                    <div
+                      key={artistry.name}
+                      onClick={() => handleArtistryToggle(artistry.name)}
+                      className={`p-3 rounded-lg cursor-pointer transition-all duration-300 border-2 ${
+                        selectedArtistry.includes(artistry.name) 
+                          ? 'border-green-500 bg-green-50' 
+                          : 'border-gray-300 bg-white hover:border-gray-400'
+                      }`}
+                    >
+                      <div className="flex justify-between items-start mb-1">
+                        <div className="font-semibold text-sm flex items-center gap-2">
+                          {selectedArtistry.includes(artistry.name) && <span className="text-green-500">✓</span>}
+                          {artistry.label}
+                        </div>
+                        <span className="text-green-600 font-bold text-sm">+PKR{artistry.price}</span>
+                      </div>
+                      <div className="text-xs text-gray-600">{artistry.desc}</div>
+                    </div>
+                  ))}
+                </div>
+                {selectedArtistry.length > 0 && (
+                  <div className="mt-3 p-3 bg-green-100 rounded-lg border border-green-300">
+                    <div className="text-sm font-medium text-green-800">
+                      Selected Artistry: {selectedArtistry.length} items (+PKR{artistryPrice})
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Stitching Quality */}
+              <div className="mb-6">
+                <h4 className="text-sm font-semibold mb-3 text-gray-600">Stitching Quality:</h4>
+                <select
+                  value={selectedStitching}
+                  onChange={(e) => setSelectedStitching(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                >
+                  {stitchingOptions.map((stitching) => (
+                    <option key={stitching.name} value={stitching.name}>
+                      {stitching.label} {stitching.price > 0 && `(+PKR${stitching.price})`}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               {/* Color Selection */}
@@ -416,7 +685,7 @@ const PeshawarChappalCustomizer = () => {
 
               {/* Material Selection */}
               <div className="mb-5">
-                <h4 className="text-sm font-semibold mb-3 text-gray-600">Material:</h4>
+                <h4 className="text-sm font-semibold mb-3 text-gray-600">Base Material:</h4>
                 <select
                   value={selectedMaterial}
                   onChange={(e) => setSelectedMaterial(e.target.value)}
@@ -444,6 +713,42 @@ const PeshawarChappalCustomizer = () => {
                     </option>
                   ))}
                 </select>
+              </div>
+            </div>
+          )}
+
+          {/* Customization Summary */}
+          {(selectedSpecialEdition || selectedPremiumMaterial || selectedArtistry.length > 0 || customText) && (
+            <div className="mb-5 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
+              <h4 className="text-sm font-semibold mb-3 text-blue-800 flex items-center gap-2">
+                <Sparkles size={16} />
+                Your Customizations:
+              </h4>
+              <div className="space-y-2 text-sm">
+                {selectedSpecialEdition && (
+                  <div className="flex justify-between">
+                    <span>Special Edition: {specialEditionOptions.find(se => se.name === selectedSpecialEdition)?.label}</span>
+                    <span className="font-bold text-purple-600">+PKR{specialEditionPrice}</span>
+                  </div>
+                )}
+                {selectedPremiumMaterial && (
+                  <div className="flex justify-between">
+                    <span>Premium Material: {premiumMaterialOptions.find(pm => pm.name === selectedPremiumMaterial)?.label}</span>
+                    <span className="font-bold text-blue-600">+PKR{premiumMaterialPrice}</span>
+                  </div>
+                )}
+                {selectedArtistry.length > 0 && (
+                  <div className="flex justify-between">
+                    <span>Artistry ({selectedArtistry.length} items)</span>
+                    <span className="font-bold text-green-600">+PKR{artistryPrice}</span>
+                  </div>
+                )}
+                {customText && (
+                  <div className="flex justify-between">
+                    <span>Custom Text: "{customText}"</span>
+                    <span className="font-bold text-orange-600">+PKR{textPrice}</span>
+                  </div>
+                )}
               </div>
             </div>
           )}

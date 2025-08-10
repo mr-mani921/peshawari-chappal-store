@@ -3,10 +3,51 @@ import { useSelector } from 'react-redux';
 import { Edit, Tag } from 'lucide-react';
 import './CheckoutPage.css';
 
-const CheckoutPage = () => {
-  const { items, totalAmount, totalQuantity } = useSelector(state => state.cart);
+// Define types for better TypeScript support
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  image?: string;
+  size?: string;
+  color?: string;
+  style?: string;
+  material?: string;
+  sole?: string;
+  customizations?: {
+    style?: { label: string };
+    material?: { label: string };
+    sole?: { label: string };
+  };
+}
+
+interface CartState {
+  items: CartItem[];
+  totalAmount: number;
+  totalQuantity: number;
+}
+
+interface RootState {
+  cart: CartState;
+}
+
+interface FormData {
+  fullName: string;
+  phone: string;
+  email: string;
+  townCity: string;
+  streetAddress: string;
+  country: string;
+  note: string;
+  coupon: string;
+}
+
+const CheckoutPage: React.FC = () => {
+  // Use proper typing for useSelector
+  const { items, totalAmount, totalQuantity } = useSelector((state: RootState) => state.cart);
   
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     fullName: '',
     phone: '',
     email: '',
@@ -17,9 +58,9 @@ const CheckoutPage = () => {
     coupon: ''
   });
 
-  const [paymentMethod, setPaymentMethod] = useState('cash-on-delivery');
+  const [paymentMethod, setPaymentMethod] = useState<string>('cash-on-delivery');
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -27,7 +68,7 @@ const CheckoutPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     const orderData = {
@@ -46,8 +87,8 @@ const CheckoutPage = () => {
   };
 
   // Format customization details for display
-  const formatCustomizations = (item) => {
-    const customizations = [];
+  const formatCustomizations = (item: CartItem): string[] => {
+    const customizations: string[] = [];
     
     if (item.size) customizations.push(`Size: ${item.size}`);
     if (item.color) customizations.push(`Color: ${item.color.charAt(0).toUpperCase() + item.color.slice(1)}`);

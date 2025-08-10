@@ -169,9 +169,9 @@ const Home = () => {
             <div className="text-left lg:text-center xl:text-center 2xl:text-center md:text-center sm:text-center xs:text-center">
               <div style={{ fontSize: "2rem" }} className="logo">
 
-                <span g                                                                                                                                                                                                                                                   className="logo-text-main">Kaltoor</span>
+                <span g className="logo-text-main">Kaltoor</span>
                 <span style={{ marginTop: "2rem" }} className="logo-text-accent">Chappal</span>
-              
+
 
 
               </div>
