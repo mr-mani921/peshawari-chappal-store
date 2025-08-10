@@ -62,7 +62,9 @@ const handleSubmit = async () => {
 
     console.log(res.data.user);
     localStorage.setItem('user', JSON.stringify(res.data.user));
-    navigate('/home'); // or navigate('/') depending on your routing
+    localStorage.setItem('token', res.data.token);
+    showProfessionalAlert('success', res.data.message);
+    navigate('/home');  
 
   } catch (error) {
     console.log(error.response?.data || error.message);
