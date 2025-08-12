@@ -13,7 +13,7 @@
   import PeshawariChappal from './pages/PeshawariChappal';
   import CharsaddaChappal from './pages/CharsaddaChappal';
   import QuettaChappal from './pages/QuettaChappal';
-  import NoroziChappal from './pages/NoroziChappal';
+  import NoroziChappal from './pages/NoroziChappal.jsx';
   import KaptaanChappal from './pages/KaptaanChappal';
   import ZalmiChappal from './pages/ZalmiChappal';
   import SignatureCollection from './pages/SignatureCollection';

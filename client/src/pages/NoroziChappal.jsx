@@ -1,5 +1,7 @@
 import React from 'react';
 import ProductCard from '../components/ProductCard';
+import { Shield, Mountain, Briefcase, Zap, Droplets, Wind, Wrench, Package } from 'lucide-react';
+
 import './CategoryPage.css';
 
 const NoroziChappal = () => {
@@ -41,112 +43,112 @@ const NoroziChappal = () => {
   ];
 
   return (
-    <div className="category-page" style={{width:"118%"}}>
-      {/* Category Header */}
-      <section className="category-header">
-        <div className="container">
-          <div className="category-hero">
-            <div className="category-content">
-              <h1 className="category-title">Norozi Chappal</h1>
-              <p className="category-description">
-                Explore our premium collection of Norozi Chappals, featuring the iconic closed-toe design that has 
-                been a symbol of Pakistani tradition for generations. These sophisticated chappals offer unmatched 
-                comfort and style, perfect for both traditional and contemporary settings.
-              </p>
-              <div className="category-stats">
-                <div className="stat">
-                  <span className="stat-number">{products.length}</span>
-                  <span className="stat-label">Products</span>
-                </div>
-                <div className="stat">
-                  <span className="stat-number">Iconic</span>
-                  <span className="stat-label">Design</span>
-                </div>
-                <div className="stat">
-                  <span className="stat-number">Premium</span>
-                  <span className="stat-label">Comfort</span>
-                </div>
-              </div>
+   <div className="category-page">
+  {/* Category Header */}
+  <section className="category-header" style={{width:"115%", marginLeft:"6%"}}>
+    <div className="container">
+      <div className="category-hero">
+        <div className="category-content">
+          <h1 className="category-title">Quetta Chappal</h1>
+          <p className="category-description">
+            Discover the rugged elegance of Quetta Chappals, designed for durability and style. These robust 
+            chappals are perfect for those who appreciate traditional craftsmanship combined with modern comfort. 
+            Each pair is built to withstand daily wear while maintaining their distinctive appearance.
+          </p>
+          <div className="category-stats">
+            <div className="stat">
+              <span className="stat-number">{products.length}</span>
+              <span className="stat-label">Products</span>
             </div>
-            <div className="category-image">
-              <img 
-                src="https://www.peshawarichappals.pk/wp-content/uploads/2024/02/Norozi-Chappal-final-6-JPG-300x300.webp" 
-                alt="Norozi Chappal" 
-                className="featured-product-image"
-              />
+            <div className="stat">
+              <span className="stat-number">Durable</span>
+              <span className="stat-label">Design</span>
+            </div>
+            <div className="stat">
+              <span className="stat-number">Premium</span>
+              <span className="stat-label">Leather</span>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="category-features py-5">
-        <div className="container">
-          <h2 className="section-title text-center mb-4">Norozi Chappal Features</h2>
-          <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-icon">👑</div>
-              <h3>Iconic Closed-Toe Design</h3>
-              <p>The signature closed-toe style that defines the classic Norozi chappal.</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">🎭</div>
-              <h3>Formal & Casual</h3>
-              <p>Versatile design suitable for both formal events and casual wear.</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">🏆</div>
-              <h3>Premium Materials</h3>
-              <p>Crafted from the finest leather with attention to every detail.</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">💫</div>
-              <h3>Timeless Appeal</h3>
-              <p>Classic design that never goes out of style, perfect for any generation.</p>
-            </div>
-          </div>
+        <div className="category-image">
+          <img 
+            src="https://www.peshawarichappals.pk/wp-content/uploads/2022/09/norozi-chappal103-min-jpg-300x300.webp" 
+            alt="Quetta Chappal" 
+            className="featured-product-image"
+          />
         </div>
-      </section>
-
-      {/* Products Section */}
-      <section className="category-products py-5">
-        <div className="container">
-          <h2 className="section-title text-center mb-4">Our Norozi Chappal Collection</h2>
-          <div className="products-grid">
-            {products.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Care Instructions */}
-      <section className="care-instructions py-5">
-        <div className="container">
-          <div className="care-content">
-            <h2>Care Instructions</h2>
-            <div className="care-tips">
-              <div className="care-tip">
-                <h4>✨ Polish Regularly</h4>
-                <p>Use quality leather polish to maintain the shine and appearance.</p>
-              </div>
-              <div className="care-tip">
-                <h4>🧴 Condition Monthly</h4>
-                <p>Apply leather conditioner monthly to keep the material supple.</p>
-              </div>
-              <div className="care-tip">
-                <h4>🌡️ Avoid Extremes</h4>
-                <p>Keep away from extreme temperatures and direct heat sources.</p>
-              </div>
-              <div className="care-tip">
-                <h4>🔄 Rest Between Wears</h4>
-                <p>Allow 24 hours between wears to let the leather breathe and recover.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
+  </section>
+
+  {/* Features Section */}
+  <section style={{marginLeft:"5%"}} className="category-features py-5">
+    <div className="container">
+      <h2 className="section-title text-center mb-4">Quetta Chappal Features</h2>
+      <div className="features-grid">
+        <div className="feature-card">
+          <div className="feature-icon"><Shield size={24} /></div>
+          <h3>Robust Construction</h3>
+          <p>Built with reinforced stitching and durable materials for long-lasting wear.</p>
+        </div>
+        <div className="feature-card">
+          <div className="feature-icon"><Mountain size={24} /></div>
+          <h3>Weather Resistant</h3>
+          <p>Designed to withstand various weather conditions while maintaining comfort.</p>
+        </div>
+        <div className="feature-card">
+          <div className="feature-icon"><Briefcase size={24} /></div>
+          <h3>Versatile Appeal</h3>
+          <p>Suitable for both casual and semi-formal occasions with timeless style.</p>
+        </div>
+        <div className="feature-card">
+          <div className="feature-icon"><Zap size={24} /></div>
+          <h3>Enhanced Grip</h3>
+          <p>Superior sole design provides excellent traction and stability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Products Section */}
+  <section style={{marginLeft:"5%"}} className="category-products py-5">
+    <div className="container">
+      <h2 className="section-title text-center mb-4">Our Quetta Chappal Collection</h2>
+      <div className="products-grid">
+        {products.map(product => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Care Instructions */}
+  <section style={{marginLeft:"5%"}} className="care-instructions py-5">
+    <div className="container">
+      <div className="care-content">
+        <h2>Care Instructions</h2>
+        <div className="care-tips">
+          <div className="care-tip">
+            <h4><Droplets size={20} /> Deep Cleaning</h4>
+            <p>Use leather cleaner for thorough cleaning when needed.</p>
+          </div>
+          <div className="care-tip">
+            <h4><Wind size={20} /> Air Circulation</h4>
+            <p>Allow proper air circulation after wear to prevent moisture buildup.</p>
+          </div>
+          <div className="care-tip">
+            <h4><Wrench size={20} /> Maintenance</h4>
+            <p>Regular conditioning keeps the leather supple and prevents cracking.</p>
+          </div>
+          <div className="care-tip">
+            <h4><Package size={20} /> Storage</h4>
+            <p>Store in a breathable bag or box to maintain shape and quality.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
   );
 };
 

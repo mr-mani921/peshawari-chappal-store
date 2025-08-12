@@ -1,6 +1,7 @@
 import React from 'react';
 import './TheBrand.css';
 import Header from '../components/Header';
+import { Accessibility, BadgeCheck, ScanFace, ShieldCheck } from 'lucide-react';
 
 const About = () => {
   return (
@@ -28,7 +29,7 @@ const About = () => {
             </div>
             <div className="story-image">
               <img 
-                src="https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                src="https://www.peshawarichappals.pk/wp-content/uploads/2024/08/48-300x300.jpg" 
                 alt="Traditional Craftsmanship" 
               />
             </div>
@@ -37,27 +38,27 @@ const About = () => {
       </section>
 
       {/* Values Section */}
-      <section className="brand-values py-5">
+      <section style={{marginLeft:"7%"}} className="brand-values py-5">
         <div className="container">
           <h2 className="section-title text-center mb-5">Our Values</h2>
           <div className="values-grid">
             <div className="value-card">
-              <div className="value-icon"style={{cursor:"pointer"}}>🏺</div>
+              <div className="value-icon" ><BadgeCheck style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"center"}}  size={30}/></div>
               <h3>Heritage</h3>
               <p>We honor traditional craftsmanship techniques passed down through generations of skilled artisans.</p>
             </div>
             <div className="value-card">
-              <div className="value-icon" style={{cursor:"pointer"}}>✨</div>
+              <div className="value-icon"  ><ShieldCheck style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"center"}}  size={30}/></div>
               <h3>Quality</h3>
               <p>Every chappal is meticulously crafted using premium leather and time-tested construction methods.</p>
             </div>
             <div className="value-card">
-              <div className="value-icon"style={{cursor:"pointer"}}>🤝</div>
+              <div className="value-icon" ><ScanFace style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"center"}}  size={30}/></div>
               <h3>Authenticity</h3>
               <p>We guarantee genuine, handmade products that represent the true spirit of Pakistani footwear.</p>
             </div>
             <div className="value-card">
-              <div className="value-icon" style={{cursor:"pointer"}}>🌍</div>
+              <div className="value-icon" ><Accessibility style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"center"}}y size={30} /></div>
               <h3>Accessibility</h3>
               <p>Making traditional Pakistani chappals available to customers worldwide with reliable service.</p>
             </div>

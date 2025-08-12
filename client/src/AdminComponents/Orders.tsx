@@ -384,7 +384,7 @@ const Orders: React.FC = () => {
           <p className="text-gray-600 mt-2">Track and manage customer orders</p>
         </div>
         <div className="flex items-center space-x-2 mt-4 sm:mt-0">
-          <button
+          <button style={{color:"black"}}
             className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <Plus size={16} className="mr-2" />

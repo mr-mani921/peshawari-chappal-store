@@ -1,6 +1,6 @@
 /* Contact Header */
 .contact-header {
-  background: linear-gradient(135deg, #DA3F3F 0%, #c23636 100%);
+    background: linear-gradient(135deg, #b6acac 0%, #554f4f 50%, #eddddd 100%); 
   color: white;
   padding: 100px 0;
   text-align: center;
