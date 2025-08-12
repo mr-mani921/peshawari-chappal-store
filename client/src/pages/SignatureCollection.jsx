@@ -1,6 +1,7 @@
 import React from 'react';
 import ProductCard from '../components/ProductCard';
 import './CategoryPage.css';
+import { Anvil, Columns3Cog, GraduationCap, HandPlatter, HousePlus, Medal, ShieldPlus, Warehouse } from 'lucide-react';
 
 const SignatureCollection = () => {
   const products = [
@@ -46,7 +47,7 @@ const SignatureCollection = () => {
   ];
 
   return (
-    <div className="category-page"  style={{width:"118%"}}>
+    <div className="category-page"  style={{width:"118%",marginLeft:"4%"}}>
       {/* Category Header */}
       <section className="category-header">
         <div className="container">
@@ -90,22 +91,22 @@ const SignatureCollection = () => {
           <h2 className="section-title text-center mb-4">Signature Collection Features</h2>
           <div className="features-grid">
             <div className="feature-card">
-              <div className="feature-icon">💎</div>
+              <div className="feature-icon"><Anvil /></div>
               <h3>Premium Materials</h3>
               <p>Only the finest leather and materials are selected for our signature pieces.</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">🎨</div>
+              <div className="feature-icon"><Columns3Cog /></div>
               <h3>Exclusive Designs</h3>
               <p>Unique designs available only in our signature collection.</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">👨‍🎨</div>
+              <div className="feature-icon"><GraduationCap /></div>
               <h3>Master Artisans</h3>
               <p>Crafted by our most skilled and experienced artisans.</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">🏆</div>
+              <div className="feature-icon"><HousePlus /></div>
               <h3>Limited Edition</h3>
               <p>Exclusive pieces with limited availability for discerning customers.</p>
             </div>
@@ -126,52 +127,28 @@ const SignatureCollection = () => {
       </section>
 
       {/* Exclusivity Section */}
-      <section className="exclusivity py-5">
-        <div className="container">
-          <div className="exclusivity-content">
-            <h2>What Makes Our Signature Collection Special?</h2>
-            <div className="exclusivity-features">
-              <div className="exclusivity-feature">
-                <h4>🔍 Meticulous Selection</h4>
-                <p>Each piece is carefully selected based on exceptional quality and unique design elements.</p>
-              </div>
-              <div className="exclusivity-feature">
-                <h4>⏰ Extended Crafting Time</h4>
-                <p>Our signature pieces require additional time and attention to achieve perfection.</p>
-              </div>
-              <div className="exclusivity-feature">
-                <h4>📜 Certificate of Authenticity</h4>
-                <p>Every signature piece comes with a certificate guaranteeing its authenticity and quality.</p>
-              </div>
-              <div className="exclusivity-feature">
-                <h4>🎁 Premium Packaging</h4>
-                <p>Beautifully packaged in our exclusive signature collection boxes.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+     
 
       {/* Care Instructions */}
-      <section  className="care-instructions py-5"  style={{width:"98%"}}>
+      <section  className="care-instructions py-5"  style={{width:"72%",display:"flex",alignItems:"center",justifyContent:"center"}}>
         <div className="container">
           <div className="care-content">
             <h2>Premium Care Instructions</h2>
             <div className="care-tips">
               <div className="care-tip">
-                <h4>🌟 Premium Products</h4>
+                <h4><Medal /> Premium Products</h4>
                 <p>Use only premium leather care products for signature pieces.</p>
               </div>
               <div className="care-tip">
-                <h4>🧤 Gentle Handling</h4>
+                <h4><HandPlatter /> Gentle Handling</h4>
                 <p>Handle with extra care to preserve the premium finish and details.</p>
               </div>
               <div className="care-tip">
-                <h4>🏛️ Museum Storage</h4>
+                <h4><Warehouse />Museum Storage</h4>
                 <p>Store in the original packaging or premium storage solutions.</p>
               </div>
               <div className="care-tip">
-                <h4>👨‍🔧 Professional Service</h4>
+                <h4><ShieldPlus /> Professional Service</h4>
                 <p>Consider professional cleaning and maintenance for best results.</p>
               </div>
             </div>

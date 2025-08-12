@@ -33,7 +33,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="contact-page"  style={{width:"115%"}}>
+    <div className="contact-page"  style={{width:"88%",marginLeft:"5%"}}>
       {/* Contact Header */}
       <section className="contact-header">
         <div className="container">
@@ -109,7 +109,7 @@ const Contact = () => {
               </div>
 
               {/* Social Links */}
-              <div className="social-section">
+              {/* <div className="social-section">
                 <h4>Follow Us</h4>
                 <div className="social-links">
                   <a href="https://www.facebook.com/PeshawariChappalsPK" target="_blank" rel="noopener noreferrer" className="social-link facebook">
@@ -122,7 +122,7 @@ const Contact = () => {
                     YouTube
                   </a>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* Contact Form */}

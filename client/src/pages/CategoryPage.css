@@ -119,8 +119,8 @@
 
 /* Care Instructions */
 .care-instructions {
-  background: linear-gradient(135deg, #000 0%, #333 100%);
-  color: white;
+  /* background: linear-gradient(135deg, #000 0%, #333 100%); */
+  color:black;
 }
 
 .care-content h2 {
@@ -137,7 +137,8 @@
 }
 
 .care-tip {
-  background: rgba(255, 255, 255, 0.1);
+  /* background: rgba(255, 255, 255, 0.1); */
+  border: 1px solid black;
   padding: 30px;
   border-radius: 10px;
   backdrop-filter: blur(10px);
@@ -146,11 +147,11 @@
 .care-tip h4 {
   font-size: 1.2rem;
   margin-bottom: 15px;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .care-tip p {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.9);
   line-height: 1.6;
 }
 

@@ -3,10 +3,10 @@ import ProductCard from "../components/ProductCard";
 import logoimg from "../assets/bgc-removebg-preview.png"
 import { useProducts } from "./Contexts/Product";
 import UserHistory from "../components/UserHistory";
- 
+
 const Home = () => {
- const { products }= useProducts()
-    
+  const { products } = useProducts()
+
   return (
     <>
       <div className="w-full overflow-x-hidden">
@@ -26,9 +26,11 @@ const Home = () => {
             <div className="text-left lg:text-center xl:text-center 2xl:text-center md:text-center sm:text-center xs:text-center">
               <div style={{ fontSize: "2rem" }} className="logo">
 
-                                                                                                       <span className="logo-text-main">Kaltoor</span>
+                <h1>SHIKARI</h1>
+                <h5>Norozi Chappal</h5>
+                <span className="logo-text-main">Kaltoor</span>
                 <span style={{ marginTop: "2rem" }} className="logo-text-accent">Chappal</span>
-              
+
 
 
               </div>
@@ -83,10 +85,12 @@ const Home = () => {
             </div> */}
           </div>
         </section>
-          <section className="bg-gray-50 py-[60px] lg:py-[50px] xl:py-[50px] 2xl:py-   [50px] md:py-10 sm:py-[30px] xs:py-[25px]">
-              <h2 className="text-4xl  lg:text-3xl xl:text-3xl font-semibold text-black mb-[30px] leading-tight md:text-2xl sm:text-xl xs:text-lg text-center">
-              Order History</h2>
-          <UserHistory/>
+        <section className="bg-gray-50 py-[60px] lg:py-[50px] xl:py-[50px] 2xl:py-   [50px] md:py-10 sm:py-[30px] xs:py-[25px]">
+          <h2 className="text-4xl  lg:text-3xl xl:text-3xl font-semibold text-black mb-[30px] leading-tight md:text-2xl sm:text-xl xs:text-lg text-center">
+            Order History</h2>
+           <div className="w-full flex justify-center items-center px-4 xs:px-3 sm:px-5 md:px-6 lg:px-8 xl:px-10 2xl:px-12">
+            <UserHistory />
+          </div>
         </section>
         {/* WhatsApp Chat Button */}
         <div className="fixed bottom-5 right-5 bg-green-500 text-white py-3 px-5 rounded-full flex items-center gap-2 cursor-pointer shadow-lg font-medium transition-all duration-300 ease-in-out z-[1000] hover:-translate-y-0.5 hover:shadow-xl sm:py-[10px] sm:px-[15px] sm:text-sm sm:bottom-[15px] sm:right-[15px] xs:py-[8px] xs:px-3 xs:text-xs">

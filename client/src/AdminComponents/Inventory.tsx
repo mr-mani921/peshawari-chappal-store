@@ -26,7 +26,8 @@ const Inventory: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showProductDetails, setShowProductDetails] = useState(false);
 
-  const categories = ['all', 'Electronics', 'Furniture', 'Accessories'];
+  // const categories = ['all', 'Electronics', 'Zardari', 'Peshawari '];
+  const categories = ['all', 'Norozi ', 'Zardari ', 'Peshawari'];
 
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -136,7 +137,7 @@ const Inventory: React.FC = () => {
     const [formData, setFormData] = useState({
       name: product?.name || '',
       color: product?.color || '',
-      category: product?.category || 'Electronics',
+      category: product?.category || 'Norozi',
       price: product?.price?.toString() || '',
       stock: product?.stock?.toString() || '',
       minStock: product?.minStock?.toString() || '',
@@ -201,9 +202,9 @@ const Inventory: React.FC = () => {
                     onChange={(e) => setFormData({...formData, category: e.target.value})}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   >
-                    <option>Electronics</option>
-                    <option>Furniture</option>
-                    <option>Accessories</option>
+                    <option>Norozi</option>
+                    <option>Zardari</option>
+                    <option>Peshawari </option>
                   </select>
                 </div>
                 <div>
@@ -357,96 +358,146 @@ const Inventory: React.FC = () => {
     );
   };
 
-  const OldAddProductModal = () => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
-        <div className="p-6 border-b border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">Add New Product</h2>
-        </div>
-        <div className="p-6">
-          <form className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Product Name</label>
-                <input
-                  type="text"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Enter product name"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">color</label>
-                <input
-                  type="text"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Enter color"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
-                <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                  <option>Electronics</option>
-                  <option>Furniture</option>
-                  <option>Accessories</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Price</label>
-                <input
-                  type="number"
-                  step="0.01"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="0.00"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Stock Quantity</label>
-                <input
-                  type="number"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="0"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Minimum Stock</label>
-                <input
-                  type="number"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="0"
-                />
-              </div>
-            </div>
+
+
+const OldAddProductModal = () => (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
+      <div className="p-6 border-b border-gray-200">
+        <h2 className="text-xl font-semibold text-gray-900">Add New Product</h2>
+      </div>
+      <div className="p-6">
+        <form className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Supplier</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Product Name</label>
               <input
                 type="text"
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Enter supplier name"
+                placeholder="Enter product name"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
-              <textarea
-                rows={3}
+              <label className="block text-sm font-medium text-gray-700 mb-2">Color</label>
+              <input
+                type="text"
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Enter product description"
+                placeholder="Enter color"
               />
             </div>
-          </form>
-        </div>
-        <div className="p-6 border-t border-gray-200 flex justify-end space-x-3">
-          <button
-            onClick={() => setShowAddModal(false)}
-            className="px-4 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50"
-          >
-            Cancel
-          </button>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-            Add Product
-          </button>
-        </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+              <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <option>Norozi</option>
+                <option>Zardari</option>
+                <option>Peshawari</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Price</label>
+              <input
+                type="number"
+                step="0.01"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="0.00"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Stock Quantity</label>
+              <input
+                type="number"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="0"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Minimum Stock</label>
+              <input
+                type="number"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="0"
+              />
+            </div>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Supplier</label>
+            <input
+              type="text"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Enter supplier name"
+            />
+          </div>
+
+          {/* Image Upload Section */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Product Images (Optional)</label>
+            <div className="space-y-4">
+              {/* Image Upload Area */}
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 hover:border-blue-400 transition-colors">
+                <div className="text-center">
+                  <div className="text-sm text-gray-600">
+                    <label htmlFor="file-upload" className="cursor-pointer">
+                      <span className="text-blue-600 hover:text-blue-500 font-medium">Click to upload images</span>
+                      <span> or drag and drop</span>
+                    </label>
+                    <input id="file-upload" name="file-upload" type="file" className="sr-only" multiple accept="image/*" />
+                  </div>
+                  <p className="text-xs text-gray-500 mt-2">PNG, JPG, GIF up to 10MB each</p>
+                  <p className="text-xs text-gray-400 mt-1">You can add product images later if needed</p>
+                </div>
+              </div>
+              
+              {/* Preview Area (when images are uploaded) */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {/* Example preview item - this would be dynamically generated */}
+                <div className="relative group">
+                  <div className="aspect-square bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center">
+                    <span className="text-gray-400 text-xs">Image Preview</span>
+                  </div>
+                  <button 
+                    type="button"
+                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    ×
+                  </button>
+                </div>
+                
+                {/* Add more images button */}
+                <div className="aspect-square border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center hover:border-blue-400 transition-colors cursor-pointer">
+                  <div className="text-center">
+                    <span className="text-xs text-gray-500">+ Add More</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+            <textarea
+              rows={3}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Enter product description"
+            />
+          </div>
+        </form>
+      </div>
+      <div className="p-6 border-t border-gray-200 flex justify-end space-x-3">
+        <button
+          onClick={() => setShowAddModal(false)}
+          className="px-4 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50"
+        >
+          Cancel
+        </button>
+        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          Add Product
+        </button>
       </div>
     </div>
+  </div>
+
+
   );
 
   return (
@@ -459,7 +510,7 @@ const Inventory: React.FC = () => {
         </div>
         <button
           onClick={() => setShowAddModal(true)}
-          className="mt-4 sm:mt-0 inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
+          className="mt-4 sm:mt-0 inline-flex items-center px-4 py-2 bg-blue-600 text-bluck rounded-lg hover:bg-blue-700 transition-colors duration-200"
         >
           <Plus size={20} className="mr-2" />
           Add Product
