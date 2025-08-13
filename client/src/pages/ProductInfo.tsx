@@ -7,12 +7,12 @@ import { toggleWishlistItem } from '../store/slices/wishlistSlice';
 
 import { GitCompare ,Ruler,Phone} from 'lucide-react';
 import { useProducts } from './Contexts/Product';
+import ChappalCustomizer from '../components/ChappalCustomizer';
   const ProductInfo = () => {
    const { id } = useParams();
      const { products }=useProducts()
     const product = products.find((product) => product.id == id);
-     console.log("product",product)
-
+ 
   const dispatch = useDispatch();
   const { items: wishlistItems } = useSelector((state) => state.wishlist);
   const { items: cartItems } = useSelector((state) => state.cart);
@@ -224,7 +224,7 @@ import { useProducts } from './Contexts/Product';
           position: 'relative'
         }}>
           <img
-            src={images[selectedImage]}
+            src={product.image}
             alt="Product Main"
             style={{ 
               width: '100%', 
@@ -421,144 +421,25 @@ import { useProducts } from './Contexts/Product';
         </div>
 
         {/* Customization Options */}
-        {isCustomizing && (
-          <div style={{ 
-            background: '#f9f9f9', 
-            padding: '20px', 
-            borderRadius: '12px', 
-            marginBottom: '20px',
-            border: '1px solid #e0e0e0'
-          }}>
-            <h3 style={{ 
-              fontSize: '18px', 
-              fontWeight: 'bold', 
-              marginBottom: '15px',
-              color: '#333',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px'
-            }}>
-              <Settings size={18} />
-              Customize Your Chappal
-            </h3>
+       {isCustomizing && (
+  <ChappalCustomizer
+    size={selectedSize}
+    product={product}
+    // colorOptions={colorOptions}
+    styleOptions={styleOptions}
+    materialOptions={materialOptions}
+    soleOptions={soleOptions}
+    selectedColor={selectedColor}
+    setSelectedColor={setSelectedColor}
+    selectedStyle={selectedStyle}
+    setSelectedStyle={setSelectedStyle}
+    selectedMaterial={selectedMaterial}
+    setSelectedMaterial={setSelectedMaterial}
+    selectedSole={selectedSole}
+    setSelectedSole={setSelectedSole}
+  />
+)}
 
-            {/* Color Selection */}
-            <div style={{ marginBottom: '20px' }}>
-              <h4 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '10px', color: '#555' }}>
-                Color:
-              </h4>
-              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                {colorOptions.map((color) => (
-                  <div
-                    key={color.name}
-                    onClick={() => setSelectedColor(color.name)}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      padding: '8px 12px',
-                      border: selectedColor === color.name ? '2px solid #FF6B6B' : '1px solid #ddd',
-                      borderRadius: '20px',
-                      cursor: 'pointer',
-                      background: selectedColor === color.name ? '#fff5f5' : 'white',
-                      fontSize: '12px'
-                    }}
-                  >
-                    <div style={{
-                      width: '16px',
-                      height: '16px',
-                      borderRadius: '50%',
-                      background: color.hex,
-                      border: '1px solid #ccc'
-                    }}></div>
-                    <span>{color.label}</span>
-                    {color.price > 0 && <span style={{ color: '#FF6B6B', fontWeight: 'bold' }}>+PKR{color.price}</span>}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Style Selection */}
-            <div style={{ marginBottom: '20px' }}>
-              <h4 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '10px', color: '#555' }}>
-                Style:
-              </h4>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '10px' }}>
-                {styleOptions.map((style) => (
-                  <div
-                    key={style.name}
-                    onClick={() => setSelectedStyle(style.name)}
-                    style={{
-                      padding: '12px',
-                      border: selectedStyle === style.name ? '2px solid #FF6B6B' : '1px solid #ddd',
-                      borderRadius: '8px',
-                      cursor: 'pointer',
-                      background: selectedStyle === style.name ? '#fff5f5' : 'white',
-                      textAlign: 'center',
-                      fontSize: '12px',
-                      transition: 'all 0.3s ease'
-                    }}
-                  >
-                    <div style={{ fontWeight: '600', marginBottom: '4px' }}>{style.label}</div>
-                    {style.price > 0 && (
-                      <div style={{ color: '#FF6B6B', fontWeight: 'bold' }}>+PKR{style.price}</div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Material Selection */}
-            <div style={{ marginBottom: '20px' }}>
-              <h4 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '10px', color: '#555' }}>
-                Material:
-              </h4>
-              <select
-                value={selectedMaterial}
-                onChange={(e) => setSelectedMaterial(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '10px',
-                  border: '1px solid #ddd',
-                  borderRadius: '6px',
-                  fontSize: '14px',
-                  background: 'white'
-                }}
-              >
-                {materialOptions.map((material) => (
-                  <option key={material.name} value={material.name}>
-                    {material.label} {material.price !== 0 && `(${material.price > 0 ? '+' : ''}PKR${material.price})`}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Sole Selection */}
-            <div style={{ marginBottom: '10px' }}>
-              <h4 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '10px', color: '#555' }}>
-                Sole Type:
-              </h4>
-              <select
-                value={selectedSole}
-                onChange={(e) => setSelectedSole(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '10px',
-                  border: '1px solid #ddd',
-                  borderRadius: '6px',
-                  fontSize: '14px',
-                  background: 'white'
-                }}
-              >
-                {soleOptions.map((sole) => (
-                  <option key={sole.name} value={sole.name}>
-                    {sole.label} {sole.price > 0 && `(+PKR${sole.price})`}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-        )}
 
         {/* Size Chart Link */}
         <div style={{ marginBottom: '20px' }}>
