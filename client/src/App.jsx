@@ -1,5 +1,6 @@
   import React from 'react';
   import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
+  // import { ToastContainer } from 'react-toastify';
 
   // Import components
   // import Header from './components/Header';
@@ -40,6 +41,7 @@
 import LoginPages from './pages/auth/login';
  import Register from './pages/auth/Register';
 import AddProduct from './AdminComponents/ProductAdd';
+import { ToastContainer } from 'react-toastify';
 
   const router = createBrowserRouter([
     // Main Website Routes with Layout
@@ -101,5 +103,8 @@ import AddProduct from './AdminComponents/ProductAdd';
   ]);
 
   export default function App() {
-    return <RouterProvider router={router} />;
+    return <>
+    <RouterProvider router={router} /> 
+    <ToastContainer position="top-right" autoClose={3000} />
+</>
   }

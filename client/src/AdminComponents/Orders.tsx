@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { useOrders } from '../pages/Contexts/Order';
 import API from '../utils/api';
+import { Danger, Info, Success } from '../utils/Tostify';
 
 // Updated Type Definitions according to Mongoose schema
 interface OrderItem {
@@ -68,7 +69,7 @@ const Orders: React.FC = () => {
   const [dateRange, setDateRange] = useState({ start: '', end: '' });
 
   // Constants
-  const statuses = ['all', 'pending', 'delivered'];
+  const statuses = ['all', 'delivered'];
 
   // Computed Statistics
   const orderStats = useMemo(() => {
@@ -152,10 +153,12 @@ const Orders: React.FC = () => {
       ));
       if (selectedOrder?._id === orderId) {
         setSelectedOrder(prev => prev ? { ...prev, orderStatus: newStatus } : null);
+        Success("Order successfully delivered")
       }
 
     } catch (error) {
       console.log(error.message);
+      Danger("Failed to deliver order")
     }
 
 
@@ -171,6 +174,7 @@ const Orders: React.FC = () => {
         const res=await API.delete(`/orders/delete/${orderId}`);
         console.log( res.data);
          setOrders(orders.filter(order => order._id !== orderId));
+         Info("Order successfully deleted")
         if (selectedOrder?._id === orderId) {
         setShowOrderDetails(false);
       }
@@ -352,13 +356,13 @@ const Orders: React.FC = () => {
             </div>
 
             {/* Status Update */}
-            <div>
+            <div >
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Update Status</h3>
               <div className="flex flex-wrap gap-2">
                 {statuses.filter(s => s !== 'all').map(status => (
                   <button
                     key={status}
-                    onClick={() => updateOrderStatus(selectedOrder._id, status as "pending" | "delivered")}
+                    onClick={() => updateOrderStatus(selectedOrder._id, status as "delivered")}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${selectedOrder.orderStatus === status
                       ? 'bg-blue-600'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'

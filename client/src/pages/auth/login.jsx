@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, Info, X, Check, AlertTriangle, User,Loader2  } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import API from '../../utils/api';
+import { Danger, Success } from '../../utils/Tostify';
 
 
 const LoginPages = () => {
@@ -38,32 +39,9 @@ const LoginPages = () => {
     setTimeout(() => setShowAlert(false), 4000);
   };
 
-
-  // const handleSubmit = async() => {
-    
-  //    console.log("first")
-  //   if (!formData.email || !formData.password) {
-  //     showProfessionalAlert("error", "Please fill in all required fields");
-  //     return;
-  //   }
-
-  //   console.log(`login attempt:`, formData);
-  //   try {
-  //    const res =   await API.post('/auth/login', formData)
-  //    console.log(res)
-  //    localStorage.setItem('user', JSON.stringify(res.data.user));
-  //    navigate('/signature-collection')
-  //    } catch (error) {
-  //      console.log(error.response.data);
-  //   }
-  //        console.log("second")
-
-  // };
-
  const handleSubmit = async (e) => {
   e.preventDefault(); // Prevent default form submission
-  console.log("login attempt");
-  
+   
   if (!formData.email || !formData.password) {
     showProfessionalAlert("error", "Please fill in all required fields");
     return;
@@ -74,10 +52,11 @@ const LoginPages = () => {
     const res = await API.post('/auth/login', formData);
     localStorage.setItem('user', JSON.stringify(res.data.user));
     localStorage.setItem('token', res.data.token);
-    showProfessionalAlert("success", res.data.message);
-    navigate('/signature-collection'); // Navigate to new page
+    Success("User succussfully Login");
+    navigate('/signature-collection');  
   } catch (error) {
     const errorMsg = error.response?.data?.message || "Login failed";
+    Danger(error.response?.data?.message || "Login failed")
     showProfessionalAlert("error", errorMsg);
   } finally {
     setIsLoading(false);

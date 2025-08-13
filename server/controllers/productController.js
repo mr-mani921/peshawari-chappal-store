@@ -8,7 +8,11 @@ export const addProduct = async (req, res) => {
       status,
       category,
       image,
+      sales,
+      percentage,
+      hoverImage,
       price,
+      badge,
       name,
       quantity,
       color,
@@ -20,16 +24,20 @@ export const addProduct = async (req, res) => {
     } = req.body;
 
     // Basic validation
-    if (!id || !category || !image || !price || !quantity || !color || !size || !stock || !minStock || !supplier || !description) {
+    if (!id || !category || !image || !hoverImage || !price || !quantity || !color || !size || !stock || !minStock || !supplier || !description) {
       return res.status(400).json({ message: "All required fields must be provided" });
     }
 
     const newProduct = new Product({
       id,
       status: status || "active",
+      sales,
       category,
       image,
+      hoverImage,
+      badge,
       price,
+      percentage,
       name: name || null,
       quantity,
       color,
@@ -64,10 +72,10 @@ export const updateProduct = async (req, res) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    res.status(200).json(updatedProduct);
+    res.status(200).json({updateproduct:updatedProduct,mesaage: "Product updated successfully" });
   } catch (err) {
     console.error("Error updating product:", err);
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: "Server error from server",error:err });
   }
 };
 

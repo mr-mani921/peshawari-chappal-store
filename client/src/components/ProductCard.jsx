@@ -8,7 +8,7 @@
 
   const ProductCard = ({ product }) => {
     const dispatch = useDispatch();
-    const { id, name, price, originalPrice, image, hoverImage, badge, rating = 5 } = product;
+    const { id, name, price, originalPrice, image ,percentage, hoverImage, badge, rating = 5,sales } = product;
 
     const handleAddToCart = (e) => {
       e.preventDefault();
@@ -19,6 +19,8 @@
         name,
         price: parseFloat(price),
         image,
+        sales,
+        percentage,
         quantity: 1,
         selectedOptions: {
           size: '8', // Default size
@@ -33,7 +35,7 @@
       <div className="product-card">
         {badge && (
           <div className="product-badge">
-            <span>{badge}</span>
+            <span >{badge}</span>
           </div>
         )}
         {/* ={`./ProductPage/${product.id}`} */}
@@ -79,15 +81,31 @@
           </button>
         </div>
 
-        <div className="product-info">
+        <div className="product-info ">
           <h3 className="product-title">{name}</h3>
-          <div className="product-price">
+          <div className="product-price flex justify-between">
             {originalPrice && (
-              <span className="original-price">PKR {originalPrice}</span>
+              <span className="original-price ">PKR {originalPrice}</span>
             )}
-            <span className="current-price">PKR {price}</span>
+            
+              <span className="original-price ">PKR {price}</span>
+            {
+              sales &&
+            <span className="current-price ">PKR {Math.round(price-((percentage * price) / 100))}</span>
+            }
+            
           </div>
-          <div className="product-rating">
+          {
+            sales && 
+           <div className="product-price flex justify-center">
+            
+              
+            <span className="current-price ">OFF {percentage}%</span>
+            
+            
+          </div>
+          }
+          <div className="product-rating ">
             {[...Array(5)].map((_, i) => (
               <span key={i} className={`star ${i < rating ? 'filled' : ''}`}>
                 

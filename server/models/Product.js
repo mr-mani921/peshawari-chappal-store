@@ -11,11 +11,25 @@ const productSchema = new mongoose.Schema(
       enum: ['active', 'inactive'],
       default: 'active',
     },
+    sales:{
+      type:Boolean,
+      default: false
+    },
+    percentage:{
+     type: String
+    },
     category:{
       type: String,
       required: true,
     },
+    badge:{
+      type: String,
+     },
     image: {
+      type: String,
+      required: true,
+    },
+    hoverImage:{
       type: String,
       required: true,
     },
