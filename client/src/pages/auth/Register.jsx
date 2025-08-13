@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import API from '../../utils/api';
+import { Success } from "../../utils/Tostify";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -54,7 +55,7 @@ const handleSubmit = async () => {
 
     let payload = { name, email, password };
 
-    if (email == "chappals@gmail.com" && name == 'chappals') {
+    if (email == "ali.raza@example.com" && name == 'Ali Raza') {
       payload.role = 'admin';
     }
 
@@ -63,7 +64,7 @@ const handleSubmit = async () => {
     console.log(res.data.user);
     localStorage.setItem('user', JSON.stringify(res.data.user));
     localStorage.setItem('token', res.data.token);
-    showProfessionalAlert('success', res.data.message);
+    Success('User successfully Register and Login');
     navigate('/home');  
 
   } catch (error) {

@@ -2,76 +2,10 @@ import React from 'react';
 import ProductCard from '../components/ProductCard';
 import './Sale.css';
 import { Flame, Truck, RotateCcw, Shield, Zap } from 'lucide-react';
+import { useProducts } from './Contexts/Product';
 
 const Sale = () => {
-  const saleProducts = [
-    {
-      id: 1,
-      name: "Mustard Smart Zalmi Chappal – 09274",
-      price: "69.99",
-      originalPrice: "174.30",
-      image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/4-300x300.jpg",
-      hoverImage: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/42-300x300.jpg",
-      badge: "60% OFF",
-      rating: 5,
-      discount: 60
-    },
-    {
-      id: 2,
-      name: "Black Smart Zalmi Chappal – 09275",
-      price: "69.99",
-      originalPrice: "174.30",
-      image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/37-300x300.jpg",
-      hoverImage: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/372-300x300.jpg",
-      badge: "60% OFF",
-      rating: 5,
-      discount: 60
-    },
-    {
-      id: 3,
-      name: "Brown Smart Zalmi Chappal – 09276",
-      price: "69.99",
-      originalPrice: "174.30",
-      image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/38-300x300.jpg",
-      hoverImage: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/382-300x300.jpg",
-      badge: "60% OFF",
-      rating: 5,
-      discount: 60
-    },
-    {
-      id: 4,
-      name: "Iconic Black Kaptaan Chappal – 092271",
-      price: "69.99",
-      originalPrice: "107.90",
-      image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/231-300x300.jpg",
-      hoverImage: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/23-300x300.jpg",
-      badge: "35% OFF",
-      rating: 5,
-      discount: 35
-    },
-    {
-      id: 5,
-      name: "Handmade Black Norozi Chappal With Leather Sole – 092306",
-      price: "116.18",
-      originalPrice: "157.70",
-      image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/02/Norozi-Chappal-final-6-JPG-300x300.webp",
-      hoverImage: "https://www.peshawarichappals.pk/wp-content/uploads/2024/02/Norozi-Chappal-final-119-JPG-300x300.webp",
-      badge: "26% OFF",
-      rating: 5,
-      discount: 26
-    },
-    {
-      id: 6,
-      name: "Suede Traditional Brown Chappal – 09288",
-      price: "69.99",
-      originalPrice: "174.30",
-      image: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal1-min-1-jpg-300x300.webp",
-      hoverImage: "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/Zalmi-chappal-min-jpg-300x300.webp",
-      badge: "60% OFF",
-      rating: 5,
-      discount: 60
-    }
-  ];
+ const {products}=useProducts()
 
   return (
 
@@ -171,9 +105,12 @@ const Sale = () => {
     <div className="container">
       <h2 className="section-title text-center mb-4">Sale Products</h2>
       <div className="products-grid">
-        {saleProducts.map(product => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+       {products
+  .filter(product => product.sales === true)
+  .map(product => (
+    <ProductCard key={product.id} product={product} />
+))}
+
       </div>
     </div>
   </section>

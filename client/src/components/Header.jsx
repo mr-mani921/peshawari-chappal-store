@@ -198,14 +198,14 @@ const Header = () => {
              <div className="logo">
                     <Link to="/" className="logo-link" >
                       <span className="logo-text-main">Kaltoor</span> 
-                      <span className="logo-text-accent">Chappal</span>
+                      <span className="logo-text-accent ">Chappal</span>
                     </Link>
                   </div>
 
             {/* Desktop Navigation */}
             {!isMobileSize && !isTabletSize && (
              <nav className="hidden lg:flex">
-  <ul className="flex items-center space-x-8">
+  <ul className="flex items-center space-x-8 mx-1">
     <li>
       <Link 
         style={{

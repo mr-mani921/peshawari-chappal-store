@@ -15,6 +15,7 @@ import { mockProducts } from './Data/mockData';
 import { Product } from './types/inventory';
 import { useProducts } from '../pages/Contexts/Product';
 import API from '../utils/api';
+import { Danger, Info, Success } from '../utils/Tostify';
 
 const Inventory: React.FC = () => {
   const {products,setProducts} = useProducts();
@@ -101,6 +102,8 @@ const Inventory: React.FC = () => {
       try {
         const res= await API.delete(`/products/delete/${productId}`);
         console.log(res.data);
+
+        Info(res.data.message|| "Product succussfully deleted")
         setProducts(products.filter(p => p.id !== productId));
       } catch (error) {
         console.log(error.message);
@@ -152,14 +155,14 @@ const Inventory: React.FC = () => {
 
       try {
         const res= await API.post(`/products/update/${editingProduct.id}`, formData)
-        if (res.status === 200) {
-          setProducts(prev => prev.map(p => p.id === editingProduct.id ? {...p, ...formData} : p));
+           setProducts(prev => prev.map(p => p.id === editingProduct.id ? {...p, ...formData} : p));
           onClose();
-          console.log(products)
-        } else {
-          throw new Error("Failed to update product");
-        }
+          Success(res.data.message|| "Product succussfully updated" )
+          console.log(res.data )
+        
       } catch (error) {
+        throw new Error("Failed to update product");
+        Danger("Failed to update product")
         
       }
     };
