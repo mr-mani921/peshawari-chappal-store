@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Star, Heart, Share2, MessageCircle, HelpCircle, ShoppingCart, Zap } from 'lucide-react';
-
+import { useProducts } from '../pages/Contexts/ProductContext';
+import { useParams } from 'react-router-dom';
+ 
 const ProductInfo: React.FC = () => {
+  
   const [selectedSize, setSelectedSize] = useState('M');
   const [quantity, setQuantity] = useState(1);
   const [isSaved, setIsSaved] = useState(false);

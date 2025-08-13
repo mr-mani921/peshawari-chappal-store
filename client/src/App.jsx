@@ -62,7 +62,7 @@ import { ToastContainer } from 'react-toastify';
         { path: 'contact', element: <Contact /> },
         { path: 'CheckoutPage', element: <CheckoutPage /> },
         { path: 'products', element: <Products /> },
-        { path: 'productInfo', element: <ProductInfo /> },
+        { path: 'productInfo/:id', element: <ProductInfo /> },
         { path: 'wishlist', element: <Wishlist /> },
         { path: 'services', element: <Services /> },
         { path: 'termsOfService', element: <TermsOfService /> },

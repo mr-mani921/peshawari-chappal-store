@@ -2,34 +2,34 @@ import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema(
   {
-    id:{
+    id: {
       type: Number,
       required: true,
     },
-    status:{
+    status: {
       type: String,
-      enum: ['active', 'inactive'],
-      default: 'active',
+      enum: ["active", "inactive"],
+      default: "active",
     },
-    sales:{
-      type:Boolean,
-      default: false
+    sales: {
+      type: Boolean,
+      default: false,
     },
-    percentage:{
-     type: String
+    percentage: {
+      type: String,
     },
-    category:{
+    category: {
       type: String,
       required: true,
     },
-    badge:{
+    badge: {
       type: String,
-     },
+    },
     image: {
       type: String,
       required: true,
     },
-    hoverImage:{
+    hoverImage: {
       type: String,
       required: true,
     },
@@ -47,16 +47,18 @@ const productSchema = new mongoose.Schema(
       required: true,
       min: 1,
     },
-       color: {
-        type: String,
-        required: true
-       },
-     size: {
-        type: String,
-        required: true,
+    color: {
+      type: [String],
+      required: true,
+      enum: ["black", "brown", "skin"],
     },
-    
-    stock:{
+    size: {
+      type: [String], // array of strings
+      required: true,
+      enum: ["S", "M", "L", "XL", "XXL"],
+    },
+
+    stock: {
       type: Number,
       required: true,
       min: 1,
@@ -66,13 +68,13 @@ const productSchema = new mongoose.Schema(
       required: true,
       min: 10,
     },
-    supplier:{
+    supplier: {
       type: String,
       required: true,
     },
     description: {
       type: String,
-      required: true
+      required: true,
     },
     createdAt: {
       type: Date,
@@ -82,7 +84,6 @@ const productSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
-    
   },
   {
     timestamps: true,

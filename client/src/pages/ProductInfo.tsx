@@ -3,10 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Star, Heart, Share2, MessageCircle, HelpCircle, ShoppingCart, Zap, Palette, Settings, Truck, ChartCandlestick } from 'lucide-react';
 import { addToCart, openCart } from '../store/slices/cartSlice';
 import { toggleWishlistItem } from '../store/slices/wishlistSlice';
-  import { Link } from 'react-router-dom';
+  import { Link, useParams } from 'react-router-dom';
 
 import { GitCompare ,Ruler,Phone} from 'lucide-react';
-const ProductInfo = () => {
+import { useProducts } from './Contexts/Product';
+  const ProductInfo = () => {
+   const { id } = useParams();
+     const { products }=useProducts()
+    const product = products.find((product) => product.id == id);
+     console.log("product",product)
+
   const dispatch = useDispatch();
   const { items: wishlistItems } = useSelector((state) => state.wishlist);
   const { items: cartItems } = useSelector((state) => state.cart);
@@ -23,12 +29,12 @@ const ProductInfo = () => {
   const [isCustomizing, setIsCustomizing] = useState(false);
 
   const productId = '09274';
-  const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+  // const sizes = product.size
   const rating = 4.8;
   const reviewCount = 2847;
 
   // Check if product is in wishlist
-  const isInWishlist = wishlistItems.some(item => item.id === productId);
+  // const isInWishlist = wishlistItems.some(item => item.id === productId);
 
   // Customization options
   const colorOptions = [
@@ -156,7 +162,7 @@ const ProductInfo = () => {
       quantity,
       cartId: `${productId}-${selectedSize}-${selectedColor}-${selectedStyle}-${selectedMaterial}-${selectedSole}` // Unique ID for cart item with variations
     }));
-
+ 
     // Show success message (you can replace this with a toast notification)
     alert(`Added ${quantity} item(s) to cart!`);
   };
@@ -268,8 +274,8 @@ const ProductInfo = () => {
             <Heart
               size={20}
               style={{
-                color: isInWishlist ? '#FF6B6B' : '#666',
-                fill: isInWishlist ? '#FF6B6B' : 'none'
+                color:  product ? '#FF6B6B' : '#666',
+                fill: product ? '#FF6B6B' : 'none'
               }}
             />
           </button>
@@ -587,7 +593,7 @@ const ProductInfo = () => {
             }}
           >
             <option value="">Choose an option</option>
-            {sizes.map((size) => (
+            {product?.size?.map((size) => (
               <option key={size} value={size}>{size}</option>
             ))}
           </select>
@@ -597,6 +603,7 @@ const ProductInfo = () => {
             </p>
           )}
         </div>
+         
 
         {/* Quantity Selector */}
         <div style={{ marginBottom: '25px' }}>

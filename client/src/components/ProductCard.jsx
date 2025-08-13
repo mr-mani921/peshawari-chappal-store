@@ -41,26 +41,35 @@
         {/* ={`./ProductPage/${product.id}`} */}
 
         <div   className="product-image-container">
-          <Link to="./ProductInfo">
+       <Link to={`./productInfo/${product.id}`}>
+  <img 
+    src={image} 
+    alt={name} 
+    className="product-image main-image"
+    style={{
+      width: "100%",
+      height: "238px",
+      borderRadius: "8px",
+      overflow: "hidden",
+      border: "1px solid #e5e7eb"
+    }}
+  />
+  {hoverImage && (
+    <img 
+      style={{
+        width: "100%",
+        height: "238px",
+        borderRadius: "8px",
+        overflow: "hidden",
+        border: "1px solid #e5e7eb"
+      }} 
+      src={hoverImage} 
+      alt={name} 
+      className="product-image hover-image" 
+    />
+  )}
+</Link>
 
-            <img src={image} alt={name} className="product-image main-image" style={{
-              width: "100%",
-              height: " 238px",
-              borderRadius: "8px",
-              overflow: "hidden",
-              border: " 1px solid #e5e7eb"
-            }} />
-            {hoverImage && (
-              <img style={{
-                width: "100%",
-                height: " 238px",
-                borderRadius: "8px",
-                overflow: "hidden",
-                border: " 1px solid #e5e7eb"
-              }} src={hoverImage} alt={name} className="product-image hover-image" />
-
-            )}
-          </Link>
 
           <div className="product-actions">
             <button className="action-btn" aria-label="Add to wishlist">
