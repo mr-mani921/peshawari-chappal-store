@@ -6,13 +6,16 @@ import { store } from "./store/store";
 import { Provider } from "react-redux";
 import { ProductsProvider } from "./pages/Contexts/Product";
 import { OrdersProvider } from "./pages/Contexts/Order";
+import { UserOrderDetailProvider } from "./pages/Contexts/UserOrderDetail";
 
 createRoot(document.getElementById("root")).render(
-  <OrdersProvider>
-    <ProductsProvider>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </ProductsProvider>
-  </OrdersProvider>
+  <UserOrderDetailProvider>
+    <OrdersProvider>
+      <ProductsProvider>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </ProductsProvider>
+    </OrdersProvider>
+  </UserOrderDetailProvider>
 );

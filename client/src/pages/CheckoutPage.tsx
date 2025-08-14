@@ -4,6 +4,7 @@ import { Edit, Tag } from 'lucide-react';
 import './CheckoutPage.css';
 import API from '../utils/api';
 import { Danger, Success } from '../utils/Tostify';
+import { useUserOrderDetail } from './Contexts/UserOrderDetail';
 
 const CheckoutPage = () => {
   const { items, totalAmount, totalQuantity } = useSelector(state => state.cart);
@@ -17,8 +18,10 @@ const CheckoutPage = () => {
     note: '',
     coupon: ''
   }
+  const [totalPrice,usetotalPrice]=useState(0)
   const [formData, setFormData] = useState(initialState);
     const localStorageUser = JSON.parse(localStorage.getItem('user'));
+    const {userOrder,addOrUpdateOrder}  = useUserOrderDetail()
 
 
   const [paymentMethod, setPaymentMethod] = useState('cash-on-delivery');
@@ -29,6 +32,8 @@ const CheckoutPage = () => {
       ...prev,
       [name]: value
     }));
+
+
   };
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -38,24 +43,27 @@ const CheckoutPage = () => {
       customerInfo: formData,
       paymentMethod,
       items,
-      totalAmount: totalAmount || 0,
-      totalQuantity: totalQuantity || 0,
       orderDate: new Date().toISOString(),
       orderNumber: 'ORD-' + Date.now()
     };
-    
-    console.log('Order submitted:', orderData);
-    try {
-     const res= await API.post('/orders/add', orderData);
-    //  console.log('Order response:', res.data);
-     Success("Order submit successfully!");
+if (userOrder) {
+    orderData.items = [...orderData.items, userOrder]; // append new order
+  }    console.log('Order submitted:', orderData);
+   for(let i=0;i<=orderData.items;i++){
+    console.log( items[i])
+   }
 
-     setFormData(initialState); 
-    } catch (error) {
-      console.log(error.response?.data || error.message);
-      Danger('Failed to place order. Please try again later.');
+    // try {
+    //  const res= await API.post('/orders/add', orderData);
+    //  console.log('Order response:', res.data);
+    //  Success("Order submit successfully!");
+
+    //  setFormData(initialState); 
+    // } catch (error) {
+    //   console.log(error.response?.data || error.message);
+    //   Danger('Failed to place order. Please try again later.');
  
-    }
+    // }
 
     alert('Order placed successfully!');
     // Handle form submission here

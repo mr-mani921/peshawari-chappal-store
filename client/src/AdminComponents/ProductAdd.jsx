@@ -3,6 +3,7 @@ import axios from "axios";
 import API from "../utils/api";
 import { useProducts } from "../pages/Contexts/Product";
 import { Danger, Success } from "../utils/Tostify";
+import { Loader } from "lucide-react";
 
 const AddProduct = () => {
   const { setProducts } = useProducts();
@@ -19,9 +20,8 @@ const AddProduct = () => {
     badge: "",
     name: "",
     quantity: "",
-    color: "",
-    size: "",
-    stock: "",
+    color: [],  
+    size: [], 
     minStock: "",
     supplier: "",
     description: "",
@@ -38,6 +38,18 @@ const AddProduct = () => {
       }));
     }
   }, [formData.quantity]);
+
+
+    const handleCheckboxChange = (e, field) => {
+    const { value, checked } = e.target;
+    setFormData((prev) => {
+      if (checked) {
+        return { ...prev, [field]: [...prev[field], value] };
+      } else {
+        return { ...prev, [field]: prev[field].filter((item) => item !== value) };
+      }
+    });
+  };
 
   const handleChange = (e) => {
   const { name, value, type, checked } = e.target;
@@ -115,8 +127,8 @@ const AddProduct = () => {
         name: "",
         quantity: "",
         color: "",
-        size: "",
-        stock: "",
+        size: [],
+        stock: [],
         minStock: "",
         supplier: "",
         description: "",
@@ -178,27 +190,40 @@ const AddProduct = () => {
           />
         </div>
 
-        {/* Color & Size */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input
-            type="text"
-            name="color"
-            placeholder="Color"
-            value={formData.color}
-            onChange={handleChange}
-            required
-            className="w-full border p-2 rounded"
-          />
-          <input
-            type="text"
-            name="size"
-            placeholder="Size"
-            value={formData.size}
-            onChange={handleChange}
-            required
-            className="w-full border p-2 rounded"
-          />
-        </div>
+         <div className=" grid grid-cols-1 md:grid-cols-2 gap-4">
+<div className="">
+  <p className="font-semibold">Colors:</p>
+  {["black", "brown", "skin"].map((color) => (
+    <label key={color} className="flex  space-x-1">
+      <input
+        type="checkbox"
+        value={color}
+        checked={formData.color.includes(color)}
+        onChange={(e) => handleCheckboxChange(e, "color")}
+      />
+      <span>{color}</span>
+    </label>
+  ))}
+</div>
+
+{/* Size Checkboxes */}
+<div className=" ">
+  <p className="font-semibold">Sizes:</p>
+  {["S", "M", "L", "XL", "XXL"].map((size) => (
+    <label key={size} className="flex items-center space-x-2">
+      <input
+        type="checkbox"
+        value={size}
+        checked={formData.size.includes(size)}
+        onChange={(e) => handleCheckboxChange(e, "size")}
+      />
+      <span>{size}</span>
+    </label>
+  ))}
+</div>
+
+</div>
+
 
         {/* Stock & Min Stock */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -297,7 +322,7 @@ const AddProduct = () => {
             onChange={(e) => handleImageUpload(e, "first")}
             required
           />
-          {loading && <p className="text-red-500">Uploading image...</p>}
+          {/* {loading && <p className="text-red-500">Uploading image...</p>} */}
           {formData.image && (
             <img
               src={formData.image}
@@ -315,7 +340,7 @@ const AddProduct = () => {
             onChange={(e) => handleImageUpload(e, "second")}
             required
           />
-          {loading && <p className="text-red-500">Uploading Hover Image...</p>}
+          {loading && <p className="text-red-500 flex justify-center"><Loader/></p>}
           {formData.hoverImage && (
             <img
               src={formData.hoverImage}
