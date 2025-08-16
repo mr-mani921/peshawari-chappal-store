@@ -13,16 +13,28 @@ interface CustomerInfo {
 }
 
 interface OrderItem {
-  id: number;
+  id: string;
   image: string;
   price: number;
-  name?: string;
+  name: string;
   quantity: number;
-  selectedOptions: {
-    color: string;
-    size: string;
+  size: string;
+  color: string;
+  style: string;
+  material: string;
+  sole: string;
+  customizations?: {
+    color?: { name: string; label: string; hex: string; price: number };
+    style?: { name: string; label: string; price: number };
+    material?: { name: string; label: string; price: number };
+    sole?: { name: string; label: string; price: number };
   };
-  totalPrice: number;
+  customizationPrice: number;
+  basePrice: number;
+  originalPrice: number;
+  rating: number;
+  reviewCount: number;
+  cartId?: string;
 }
 
 interface Order {
@@ -42,11 +54,11 @@ interface UserHistoryProps {
 }
 
 const UserHistory: React.FC<UserHistoryProps> = () => {
-  const {orderHistory}=useOrders()
+  const { orderHistory } = useOrders();
 
-  if ( orderHistory.length === 0) {
+  if (orderHistory.length === 0) {
     return <p>No past orders found.</p>;
-  } 
+  }
 
   return (
     <div className="overflow-x-auto">
@@ -64,14 +76,24 @@ const UserHistory: React.FC<UserHistoryProps> = () => {
         <tbody>
           {orderHistory.map((order) => (
             <tr key={order._id} className="hover:bg-gray-50">
-              <td className="border border-gray-300 px-4 py-2">{order.orderNumber}</td>
+              <td className="border border-gray-300 px-4 py-2">
+                {order.orderNumber}
+              </td>
               <td className="border border-gray-300 px-4 py-2">
                 {new Date(order.orderDate).toLocaleDateString()}
               </td>
-              <td className="border border-gray-300 px-4 py-2">{order.totalQuantity}</td>
-              <td className="border border-gray-300 px-4 py-2">${order.totalAmount.toFixed(2)}</td>
-              <td className="border border-gray-300 px-4 py-2 capitalize">{order.orderStatus}</td>
-              <td className="border border-gray-300 px-4 py-2">{order.paymentMethod}</td>
+              <td className="border border-gray-300 px-4 py-2">
+                {order.totalQuantity}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                ${order.totalAmount.toFixed(2)}
+              </td>
+              <td className="border border-gray-300 px-4 py-2 capitalize">
+                {order.orderStatus}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {order.paymentMethod}
+              </td>
             </tr>
           ))}
         </tbody>

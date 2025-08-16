@@ -1,12 +1,13 @@
-  import mongoose from "mongoose";
+import mongoose from "mongoose";
 
-  const orderSchema = new mongoose.Schema({
-    uid:{
+const orderSchema = new mongoose.Schema(
+  {
+    uid: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
       required: true,
     },
-    customerInfo:{
+    customerInfo: {
       country: {
         type: String,
         required: true,
@@ -26,25 +27,25 @@
         type: String,
         required: true,
       },
-      email: {  
+      email: {
         type: String,
       },
-      note:{
+      note: {
         type: String,
-        default: null, 
+        default: null,
       },
-      fullName:{
+      fullName: {
         type: String,
         required: true,
-      }
+      },
     },
     items: [
       {
         id: {
-          type:Number ,
+          type: String,
           required: true,
         },
-        image:{
+        image: {
           type: String,
           required: true,
         },
@@ -55,28 +56,80 @@
         },
         name: {
           type: String,
-          default: null, // can be null if not applicable
+          required: true,
         },
         quantity: {
           type: Number,
           required: true,
           min: 1,
         },
-        selectedOptions:{
-          color: {
-            type: String,
-            default: "", 
-          },
-          size:{
-            type: String,
-            required: true
-          }
+        size: {
+          type: String,
+          required: true,
         },
-        totalPrice: {
+        color: {
+          type: String,
+          default: "mustard",
+        },
+        style: {
+          type: String,
+          default: "classic",
+        },
+        material: {
+          type: String,
+          default: "leather",
+        },
+        sole: {
+          type: String,
+          default: "rubber",
+        },
+        customizations: {
+          color: {
+            name: String,
+            label: String,
+            hex: String,
+            price: Number,
+          },
+          style: {
+            name: String,
+            label: String,
+            price: Number,
+          },
+          material: {
+            name: String,
+            label: String,
+            price: Number,
+          },
+          sole: {
+            name: String,
+            label: String,
+            price: Number,
+          },
+        },
+        customizationPrice: {
+          type: Number,
+          default: 0,
+        },
+        basePrice: {
           type: Number,
           required: true,
-        }
-      }
+        },
+        originalPrice: {
+          type: Number,
+          default: 0,
+        },
+        rating: {
+          type: Number,
+          default: 0,
+        },
+        reviewCount: {
+          type: Number,
+          default: 0,
+        },
+        cartId: {
+          type: String,
+        },
+      },
     ],
     totalAmount: {
       type: Number,
@@ -84,30 +137,32 @@
     },
     orderStatus: {
       type: String,
-      enum: ["pending","delivered"],
+      enum: ["pending", "delivered"],
       default: "pending",
     },
     orderDate: {
       type: Date,
-      default: Date.now
+      default: Date.now,
     },
-    orderNumber:{
+    orderNumber: {
       type: String,
       required: true,
       unique: true,
     },
-    paymentMethod:{
+    paymentMethod: {
       type: String,
       required: true,
     },
-    
-    totalQuantity:{
+
+    totalQuantity: {
       type: Number,
       required: true,
-    }
-  }, {
+    },
+  },
+  {
     timestamps: true,
-  });
+  }
+);
 
-  const Order = mongoose.model("Order", orderSchema);
-  export default Order;
+const Order = mongoose.model("Order", orderSchema);
+export default Order;
