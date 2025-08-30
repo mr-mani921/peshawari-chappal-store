@@ -33,7 +33,7 @@ const Dashboard: React.FC = () => {
     },
     {
       title: 'Total Value',
-      value: `$${mockDashboardStats.totalValue.toLocaleString()}`,
+      value: `PKR${mockDashboardStats.totalValue.toLocaleString()}`,
       icon: DollarSign,
       color: 'from-green-500 to-green-600',
       change: '+8%',

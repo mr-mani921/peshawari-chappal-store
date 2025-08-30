@@ -141,7 +141,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-10">
+    <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-10 text-black">
       <h2 className="text-2xl font-bold mb-6">Add Product</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* First Row - ID & Category */}
@@ -355,7 +355,7 @@ const AddProduct = () => {
           disabled={!formData.image || loading}
           className={`w-full py-2 rounded transition ${
             !formData.image || loading
-              ? "bg-gray-400 cursor-not-allowed"
+              ? "bg-gray-700 cursor-not-allowed"
               : "bg-red-600 hover:bg-red-700"
           }`}
         >

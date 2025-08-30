@@ -161,7 +161,7 @@ const Shop = () => {
                     className="price-slider"
                   />
                   <div className="price-display">
-                    ${priceRange[0]} - ${priceRange[1]}
+                    PKR{priceRange[0]} - PKR{priceRange[1]}
                   </div>
                 </div>
               </div>

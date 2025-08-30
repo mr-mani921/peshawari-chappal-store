@@ -124,7 +124,7 @@ const Sale = () => {
           <li>Sale prices are valid for a limited time only</li>
           <li>Discounts cannot be combined with other offers</li>
           <li>All sale items are final sale unless defective</li>
-          <li>Free shipping applies to orders over $50</li>
+          <li>Free shipping applies to orders over PKR5000</li>
           <li>Sale prices are subject to change without notice</li>
           <li>Limited quantities available</li>
         </ul>

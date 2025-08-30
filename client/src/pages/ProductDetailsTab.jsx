@@ -149,7 +149,7 @@ const ProductInfo = () => {
       try {
         await navigator.share({
           title: `${selectedColor.charAt(0).toUpperCase() + selectedColor.slice(1)} Smart Zalmi Chappal`,
-          text: `Check out this amazing chappal for ₹${unitPrice.toLocaleString()}!`,
+          text: `Check out this amazing chappal for PKR${unitPrice.toLocaleString()}!`,
           url: window.location.href,
         });
       } catch (error) {
@@ -207,7 +207,7 @@ const ProductInfo = () => {
               fontSize: '12px',
               fontWeight: 'bold'
             }}>
-              +₹{customizationPrice}
+              +PKR{customizationPrice}
             </div>
           )}
           
@@ -317,25 +317,25 @@ const ProductInfo = () => {
               color: '#999',
               fontSize: '18px'
             }}>
-              ₹{(10500 * quantity).toLocaleString()}.00
+              PKR{(10500 * quantity).toLocaleString()}.00
             </span>
             <span style={{ 
               fontSize: '24px', 
               fontWeight: 'bold', 
               color: '#FF6B6B'
             }}>
-              ₹{totalPrice.toLocaleString()}.00
+              PKR{totalPrice.toLocaleString()}.00
             </span>
           </div>
           
           {/* Unit price display */}
           <div style={{ fontSize: '14px', color: '#666', marginBottom: '5px' }}>
-            Unit price: ₹{unitPrice.toLocaleString()}.00 each
+            Unit price: PKR{unitPrice.toLocaleString()}.00 each
           </div>
           
           {customizationPrice > 0 && (
             <p style={{ color: '#666', fontSize: '14px', margin: '0' }}>
-              Includes ₹{customizationPrice} customization fee per item
+              Includes PKR{customizationPrice} customization fee per item
             </p>
           )}
           
@@ -350,7 +350,7 @@ const ProductInfo = () => {
               marginTop: '8px',
               border: '1px solid #c3d9c3'
             }}>
-              Total for {quantity} items: ₹{totalPrice.toLocaleString()}.00
+              Total for {quantity} items: PKR{totalPrice.toLocaleString()}.00
             </div>
           )}
         </div>
@@ -431,7 +431,7 @@ const ProductInfo = () => {
                       border: '1px solid #ccc'
                     }}></div>
                     <span>{color.label}</span>
-                    {color.price > 0 && <span style={{ color: '#FF6B6B', fontWeight: 'bold' }}>+₹{color.price}</span>}
+                    {color.price > 0 && <span style={{ color: '#FF6B6B', fontWeight: 'bold' }}>+PKR{color.price}</span>}
                   </div>
                 ))}
               </div>
@@ -459,7 +459,7 @@ const ProductInfo = () => {
                   >
                     <div style={{ fontWeight: '600', marginBottom: '4px' }}>{style.label}</div>
                     {style.price > 0 && (
-                      <div style={{ color: '#FF6B6B', fontWeight: 'bold' }}>+₹{style.price}</div>
+                      <div style={{ color: '#FF6B6B', fontWeight: 'bold' }}>+PKR{style.price}</div>
                     )}
                   </div>
                 ))}
@@ -485,7 +485,7 @@ const ProductInfo = () => {
               >
                 {materialOptions.map((material) => (
                   <option key={material.name} value={material.name}>
-                    {material.label} {material.price !== 0 && `(${material.price > 0 ? '+' : ''}₹${material.price})`}
+                    {material.label} {material.price !== 0 && `(${material.price > 0 ? '+' : ''}PKR${material.price})`}
                   </option>
                 ))}
               </select>
@@ -510,7 +510,7 @@ const ProductInfo = () => {
               >
                 {soleOptions.map((sole) => (
                   <option key={sole.name} value={sole.name}>
-                    {sole.label} {sole.price > 0 && `(+₹${sole.price})`}
+                    {sole.label} {sole.price > 0 && `(+PKR${sole.price})`}
                   </option>
                 ))}
               </select>
@@ -1105,14 +1105,14 @@ const ProductDetailsSection = () => {
                     color: '#999',
                     fontSize: '12px'
                   }}>
-                    ₹{product.originalPrice.toLocaleString()}
+                    PKR{product.originalPrice.toLocaleString()}
                   </span>
                   <span style={{ 
                     fontSize: '16px', 
                     fontWeight: 'bold', 
                     color: '#FF6B6B'
                   }}>
-                    ₹{product.price.toLocaleString()}
+                    PKR{product.price.toLocaleString()}
                   </span>
                 </div>
                 

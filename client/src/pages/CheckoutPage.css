@@ -4,7 +4,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-color: #f9fafb;
   min-height: 100vh;
 }
@@ -367,53 +367,53 @@
   .checkout-container {
     padding: 20px 10px;
   }
-  
+
   .checkout-form {
     grid-template-columns: 1fr;
     gap: 40px;
     padding: 20px;
   }
-  
+
   .order-summary {
     border-left: none;
     padding-left: 0;
     border-top: 1px solid #e5e7eb;
     padding-top: 30px;
   }
-  
+
   .form-row {
     grid-template-columns: 1fr;
     gap: 15px;
   }
-  
+
   .section-title {
     font-size: 20px;
   }
-  
+
   .order-options {
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
   }
-  
+
   .product-item {
     flex-wrap: wrap;
     gap: 12px;
   }
-  
+
   .product-image {
     width: 60px;
     height: 60px;
   }
-  
+
   .product-name {
     font-size: 15px;
   }
-  
+
   .product-price {
     font-size: 16px;
   }
-  
+
   .payment-description {
     margin-left: 35px;
   }
@@ -423,28 +423,28 @@
   .checkout-container {
     padding: 15px 5px;
   }
-  
+
   .checkout-form {
     padding: 15px;
     gap: 30px;
   }
-  
+
   .product-name {
     font-size: 14px;
   }
-  
+
   .section-title {
     font-size: 18px;
   }
-  
+
   .price-breakdown {
     padding: 15px;
   }
-  
+
   .privacy-notice {
     padding: 15px;
   }
-  
+
   .confirm-button {
     padding: 15px;
     font-size: 15px;

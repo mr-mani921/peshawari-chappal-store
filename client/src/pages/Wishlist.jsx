@@ -57,7 +57,7 @@ const Wishlist = () => {
   };
 
   const formatPrice = (price) => {
-    return `₹${price.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    return `PKR${price.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   };
 
   const handleSelectOptions = (item) => {

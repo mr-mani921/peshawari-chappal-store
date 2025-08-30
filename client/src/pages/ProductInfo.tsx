@@ -23,6 +23,7 @@ import {
   createProductObject,
   calculateCustomizationPrice,
 } from "../utils/orderUtils";
+import ProductCard from "../components/ProductCard";
 const ProductInfo = () => {
   const { id } = useParams();
   const { products } = useProducts();
@@ -237,7 +238,7 @@ const ProductInfo = () => {
           }}
         >
           <img
-            src={product.image}
+            src={selectedImage !== 0 ? images[selectedImage] : product.image}
             alt="Product Main"
             style={{
               width: "100%",
@@ -267,6 +268,7 @@ const ProductInfo = () => {
                 borderRadius: "15px",
                 fontSize: "12px",
                 fontWeight: "bold",
+                zIndex: 10,
               }}
             >
               +PKR {customizationPrice}
@@ -290,6 +292,7 @@ const ProductInfo = () => {
               alignItems: "center",
               justifyContent: "center",
               transition: "all 0.3s ease",
+              zIndex: 10,
             }}
           >
             <Heart
@@ -304,7 +307,7 @@ const ProductInfo = () => {
 
         {/* Thumbnail Images */}
         <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
-          {images.map((image, index) => (
+          {images.map((image: string, index: number) => (
             <img
               key={index}
               src={image}
@@ -490,7 +493,7 @@ const ProductInfo = () => {
           />
         )}
 
-        {/* Size Chart Link */}
+        {/* Size Chart Link
         <div style={{ marginBottom: "20px" }}>
           <button
             style={{
@@ -507,7 +510,7 @@ const ProductInfo = () => {
               <Ruler style={{ marginRight: "1rem" }} /> Size Chart
             </span>
           </button>
-        </div>
+        </div> */}
 
         {/* Size Selector */}
         <div style={{ marginBottom: "20px" }}>
@@ -531,6 +534,7 @@ const ProductInfo = () => {
               borderRadius: "6px",
               fontSize: "16px",
               background: "white",
+              color: "#000000",
             }}
           >
             <option value="">Choose an option</option>
@@ -565,7 +569,14 @@ const ProductInfo = () => {
           >
             Quantity
           </h3>
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              color: "#000000",
+            }}
+          >
             <button
               onClick={decrementQuantity}
               style={{
@@ -796,148 +807,155 @@ const ProductDetailsSection = () => {
     },
   ];
 
-  const relatedProducts = [
+  const products = [
     {
-      id: "1",
-      name: "Black Charsadda Gol T Chappal – 092242",
-      price: 5999,
-      originalPrice: 7999,
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/48-300x300.jpg",
-      badge: null,
-      rating: 5,
+        _id: "689bf0328a4195b09de72b91",
+        badge: "SIGNATURE",
+        sales: true,
+        percentage: "20",
+        id: 1,
+        status: "active",
+        category: "Chappal",
+        image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/4-300x300.jpg",
+        hoverImage: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/42-300x300.jpg",
+        price: 69.99,
+        name: "Mustard Smart Zalmi Chappal – 09274",
+        quantity: 50,
+        color: ["brown", "skin"],
+        size: ["M", "L", "XL"],
+        stock: 50,
+        minStock: 10,
+        supplier: "Peshawari Chappals Co.",
+        description: "Premium mustard smart Zalmi chappal, crafted with high-quality leather and traditional design.",
+        createdAt: "2025-08-13T01:53:54.902Z",
+        updatedAt: "2025-08-13T01:53:54.902Z",
+        __v: 0
     },
     {
-      id: "2",
-      name: "Mustard Smart Zalmi Chappal – 09274",
-      price: 6999,
-      originalPrice: 17430,
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/4-300x300.jpg",
-      badge: "SALE",
-      rating: 5,
+        _id: "689bf0498a4195b09de72b93",
+        id: 2,
+        sales: true,
+        percentage: "20",
+        status: "active",
+        category: "Chappal",
+        image: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/37-300x300.jpg",
+        hoverImage: "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/372-300x300.jpg",
+        price: 69.99,
+        name: "Black Smart Zalmi Chappal – 09275",
+        quantity: 50,
+        color: ["black", "brown"],
+        size: ["L", "XL"],
+        stock: 50,
+        minStock: 10,
+        supplier: "Peshawari Chappals Co.",
+        description: "Elegant black smart Zalmi chappal with premium leather craftsmanship.",
+        createdAt: "2025-08-13T01:54:17.709Z",
+        updatedAt: "2025-08-13T01:54:17.709Z",
+        __v: 0
     },
     {
-      id: "3",
-      name: "Black Smart Zalmi Chappal – 09275",
-      price: 6999,
-      originalPrice: 17430,
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/37-300x300.jpg",
-      badge: "SALE",
-      rating: 5,
+        _id: "689bf07b8a4195b09de72b97",
+        id: 4,
+        status: "active",
+        sales: false,
+        percentage: "0",
+        category: "Chappal",
+        image: "https://www.peshawarichappals.pk/wp-content/uploads/2022/09/12.1-300x300.jpg",
+        hoverImage: "https://www.peshawarichappals.pk/wp-content/uploads/2022/09/12.2-300x300.jpg",
+        price: 64.99,
+        name: "Black Round Shape Zalmi Chappal – 09294",
+        quantity: 60,
+        color: ["black"],
+        size: ["L", "XL"],
+        stock: 60,
+        minStock: 10,
+        supplier: "Peshawari Chappals Co.",
+        description: "Classic black round shape Zalmi chappal with durable stitching and traditional look.",
+        createdAt: "2025-08-13T01:55:07.730Z",
+        updatedAt: "2025-08-13T01:55:07.730Z",
+        __v: 0
     },
     {
-      id: "4",
-      name: "Brown Smart Zalmi Chappal – 09276",
-      price: 6999,
-      originalPrice: 17430,
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/38-300x300.jpg",
-      badge: "SALE",
-      rating: 5,
+        _id: "689c19af9a1826a8192abfc8",
+        id: 19,
+        name: "Completely Hand Stitched Iconic Black Kaptaan Chappal – 092170",
+        price: 69.99,
+        image: "https://www.peshawarichappals.pk/wp-content/uploads/2022/09/Kaptaan-Chappal-092170-300x300.jpeg",
+        hoverImage: "https://www.peshawarichappals.pk/wp-content/uploads/2022/09/Kaptaan-Chappal-0921700-300x296.jpeg",
+        status: "active",
+        sales: false,
+        category: "Chappal",
+        quantity: 50,
+        color: ["black"],
+        size: ["M"],
+        stock: 50,
+        minStock: 10,
+        supplier: "Peshawari Chappals Co.",
+        description: "Completely hand stitched iconic black Kaptaan chappal, made with premium leather.",
+        createdAt: "2025-08-13T05:12:15.000Z",
+        updatedAt: "2025-08-13T05:12:15.000Z"
     },
     {
-      id: "5",
-      name: "Iconic Black Kaptaan Chappal – 092271",
-      price: 6999,
-      originalPrice: 10790,
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2024/08/231-300x300.jpg",
-      badge: "SALE",
-      rating: 5,
+        _id: "689c1a339a1826a8192abfc9",
+        id: 7,
+        name: "Handmade Black Kaptaan Chappal – 092171",
+        price: 69.99,
+        image: "https://www.peshawarichappals.pk/wp-content/uploads/2021/12/kaptaan-chappal-min-1-jpg-300x300.webp",
+        hoverImage: "https://www.peshawarichappals.pk/wp-content/uploads/2021/12/8-2-300x300.jpg",
+        status: "active",
+        sales: false,
+        category: "Chappal",
+        quantity: 50,
+        color: ["black"],
+        size: ["M"],
+        stock: 50,
+        minStock: 10,
+        supplier: "Peshawari Chappals Co.",
+        description: "Handmade black Kaptaan chappal, crafted with care and tradition.",
+        createdAt: "2025-08-13T05:14:27.000Z",
+        updatedAt: "2025-08-13T05:14:27.000Z"
     },
     {
-      id: "6",
-      name: "Handmade Black Norozi Chappal With Leather Sole – 092306",
-      price: 11618,
-      originalPrice: 15770,
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2024/02/Norozi-Chappal-final-6-JPG-300x300.webp",
-      badge: "SALE",
-      rating: 5,
+        _id: "689c1ad59a1826a8192abfcb",
+        id: 9,
+        name: "Handmade Black Brock Quetta Norozi Leather Chappal – 092235",
+        price: 74.99,
+        image: "https://www.peshawarichappals.pk/wp-content/uploads/2022/09/norozi-chappal103-min-jpg-300x300.webp",
+        hoverImage: "https://www.peshawarichappals.pk/wp-content/uploads/2022/11/norozi-chappal110-min-jpg-300x300.webp",
+        status: "active",
+        sales: false,
+        category: "Chappal",
+        quantity: 50,
+        color: ["black"],
+        size: ["M"],
+        stock: 50,
+        minStock: 10,
+        supplier: "Peshawari Chappals Co.",
+        description: "Handmade black Brock Quetta Norozi leather chappal, durable and stylish.",
+        createdAt: "2025-08-13T05:17:09.000Z",
+        updatedAt: "2025-08-13T05:17:09.000Z"
     },
     {
-      id: "7",
-      name: "Suede Traditional Brown Chappal – 09288",
-      price: 6999,
-      originalPrice: 17430,
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal1-min-1-jpg-300x300.webp",
-      badge: "SALE",
-      rating: 5,
-    },
-    {
-      id: "8",
-      name: "Suede Traditional Camel Chappal – 09290",
-      price: 6999,
-      originalPrice: 17430,
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-      badge: "SALE",
-      rating: 5,
-    },
-    {
-      id: "9",
-      name: "Suede Traditional Camel Chappal – 09290",
-      price: 7999,
-      originalPrice: 17430,
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-      badge: "SALE",
-      rating: 4,
-    },
-    {
-      id: "10",
-      name: "Suede Traditional Camel Chappal – 09290",
-      price: 5999,
-      originalPrice: 17430,
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-      badge: "SALE",
-      rating: 5,
-    },
-    {
-      id: "11",
-      name: "Suede Traditional Camel Chappal – 09290",
-      price: 6999,
-      originalPrice: 17430,
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-      badge: "SALE",
-      rating: 5,
-    },
-    {
-      id: "12",
-      name: "Suede Traditional Camel Chappal – 09290",
-      price: 6999,
-      originalPrice: 17430,
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-      badge: "SALE",
-      rating: 5,
-    },
-    {
-      id: "13",
-      name: "Suede Traditional Camel Chappal – 09290",
-      price: 6999,
-      originalPrice: 17430,
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-      badge: "SALE",
-      rating: 5,
-    },
-    {
-      id: "14",
-      name: "Suede Traditional Camel Chappal – 09290",
-      price: 6999,
-      originalPrice: 17430,
-      image:
-        "https://www.peshawarichappals.pk/wp-content/uploads/2023/11/zalmi-chappal4-min-1-jpg-300x300.webp",
-      badge: "SALE",
-      rating: 5,
-    },
-  ];
+        _id: "689c1aeb9a1826a8192abfcc",
+        id: 17,
+        name: "Hand Crafted Camel Suede Quetta Norozi Chappal With Single Sole – 092367",
+        price: 64.99,
+        image: "https://www.peshawarichappals.pk/wp-content/uploads/2022/10/norozi-chappal157-300x300.jpeg",
+        hoverImage: "https://www.peshawarichappals.pk/wp-content/uploads/2022/10/norozi-chappal156-jpeg-300x300.webp",
+        status: "active",
+        sales: false,
+        category: "Chappal",
+        quantity: 50,
+        color: ["brown"],
+        size: ["M"],
+        stock: 50,
+        minStock: 10,
+        supplier: "Peshawari Chappals Co.",
+        description: "Hand crafted camel suede Quetta Norozi chappal with single sole, comfortable and light.",
+        createdAt: "2025-08-13T05:17:31.000Z",
+        updatedAt: "2025-08-13T05:17:31.000Z"
+    }
+];
 
   return (
     <div
@@ -1293,145 +1311,15 @@ const ProductDetailsSection = () => {
           Related Products
         </h2>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-            gap: "20px",
-          }}
-        >
-          {relatedProducts.map((product) => (
-            <div
-              key={product.id}
-              style={{
-                border: "1px solid #e0e0e0",
-                borderRadius: "12px",
-                overflow: "hidden",
-                background: "white",
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                cursor: "pointer",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-5px)";
-                e.currentTarget.style.boxShadow = "0 10px 25px rgba(0,0,0,0.1)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "none";
-              }}
-            >
-              <div style={{ position: "relative" }}>
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  style={{ width: "100%", height: "200px", objectFit: "cover" }}
-                />
-                <button
-                  style={{
-                    position: "absolute",
-                    top: "10px",
-                    right: "10px",
-                    background: "rgba(255, 255, 255, 0.9)",
-                    border: "none",
-                    borderRadius: "50%",
-                    width: "35px",
-                    height: "35px",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Heart size={16} style={{ color: "#666" }} />
-                </button>
-              </div>
-
-              <div style={{ padding: "15px" }}>
-                <h3
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: "600",
-                    margin: "0 0 8px 0",
-                    color: "#333",
-                  }}
-                >
-                  {product.name}
-                </h3>
-
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "5px",
-                    marginBottom: "8px",
-                  }}
-                >
-                  <div style={{ display: "flex" }}>
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        size={12}
-                        style={{
-                          color:
-                            i < Math.floor(product.rating) ? "#FFD700" : "#ddd",
-                          fill:
-                            i < Math.floor(product.rating) ? "#FFD700" : "none",
-                        }}
-                      />
-                    ))}
-                  </div>
-                  <span style={{ fontSize: "12px", color: "#666" }}>
-                    ({product.rating})
-                  </span>
-                </div>
-
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    marginBottom: "12px",
-                  }}
-                >
-                  <span
-                    style={{
-                      textDecoration: "line-through",
-                      color: "#999",
-                      fontSize: "12px",
-                    }}
-                  >
-                    PKR{product.originalPrice.toLocaleString()}
-                  </span>
-                  <span
-                    style={{
-                      fontSize: "16px",
-                      fontWeight: "bold",
-                      color: "#FF6B6B",
-                    }}
-                  >
-                    PKR{product.price.toLocaleString()}
-                  </span>
-                </div>
-
-                <button
-                  style={{
-                    width: "100%",
-                    padding: "8px",
-                    background: "#333",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "6px",
-                    fontSize: "12px",
-                    fontWeight: "600",
-                    cursor: "pointer",
-                  }}
-                >
-                  Quick View
-                </button>
-              </div>
+        <section className="bg-gray-50 py-[60px] lg:py-[50px] xl:py-[50px] 2xl:py-[50px] md:py-10 sm:py-[30px] xs:py-[25px]">
+          <div className="max-w-[1200px] mx-auto px-5 lg:px-5 xl:px-5 2xl:px-5 md:px-[15px] sm:px-[10px] xs:px-[10px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-[30px] lg:gap-[30px] xl:gap-[30px] 2xl:gap-[30px] mb-[50px] md:gap-5 sm:gap-[15px] xs:gap-[15px]">
+              {products.map((product) => (
+                <ProductCard product={product} />
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        </section>
       </div>
     </div>
   );

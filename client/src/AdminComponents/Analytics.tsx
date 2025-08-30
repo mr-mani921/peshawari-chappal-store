@@ -54,7 +54,7 @@ const Analytics: React.FC = () => {
   const kpiCards = [
     {
       title: 'Total Revenue',
-      value: '$45,847',
+      value: 'PKR45,847',
       change: '+12.5%',
       isPositive: true,
       icon: DollarSign,
@@ -70,7 +70,7 @@ const Analytics: React.FC = () => {
     },
     {
       title: 'Avg Order Value',
-      value: '$36.78',
+      value: 'PKR36.78',
       change: '-2.1%',
       isPositive: false,
       icon: TrendingUp,
@@ -169,7 +169,7 @@ const Analytics: React.FC = () => {
                   </div>
                 </div>
                 <span className="text-sm font-medium text-gray-900">
-                  ${data.value.toLocaleString()}
+                  PKR{data.value.toLocaleString()}
                 </span>
               </div>
             ))}
@@ -221,7 +221,7 @@ const Analytics: React.FC = () => {
                 </div>
                 <div className="text-right">
                   <p className="font-medium text-gray-900">
-                    ${(product.price * product.stock).toLocaleString()}
+                    PKR{(product.price * product.stock).toLocaleString()}
                   </p>
                   <p className="text-sm text-gray-600">{product.stock} units</p>
                 </div>
@@ -287,7 +287,7 @@ const Analytics: React.FC = () => {
             <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-3">
               <DollarSign size={24} className="text-white" />
             </div>
-            <p className="text-2xl font-bold text-gray-900">$2.1M</p>
+            <p className="text-2xl font-bold text-gray-900">PKR2.1M</p>
             <p className="text-sm text-gray-600">Inventory Value</p>
           </div>
           <div className="text-center">

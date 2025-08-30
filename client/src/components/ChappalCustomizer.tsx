@@ -102,7 +102,8 @@ const ChappalCustomizer: React.FC<ChappalCustomizerProps> = ({
             border: '1px solid #ddd',
             borderRadius: '6px',
             fontSize: '14px',
-            background: 'white'
+            background: 'white',
+            color: '#000000'
           }}
         >
           <option value="">Select Color</option>
@@ -130,7 +131,8 @@ const ChappalCustomizer: React.FC<ChappalCustomizerProps> = ({
                 background: selectedStyle === style.name ? '#fff5f5' : 'white',
                 textAlign: 'center',
                 fontSize: '12px',
-                transition: 'all 0.3s ease'
+                transition: 'all 0.3s ease',
+                color: '#000000'
               }}
             >
               <div style={{ fontWeight: '600', marginBottom: '4px' }}>{style.label}</div>
@@ -154,7 +156,8 @@ const ChappalCustomizer: React.FC<ChappalCustomizerProps> = ({
             border: '1px solid #ddd',
             borderRadius: '6px',
             fontSize: '14px',
-            background: 'white'
+            background: 'white',
+            color: '#000000'
           }}
         >
           {materialOptions.map((material) => (
@@ -177,7 +180,8 @@ const ChappalCustomizer: React.FC<ChappalCustomizerProps> = ({
             border: '1px solid #ddd',
             borderRadius: '6px',
             fontSize: '14px',
-            background: 'white'
+            background: 'white',
+            color: '#000000'
           }}
         >
           {soleOptions.map((sole) => (

@@ -23,10 +23,10 @@ const Products = () => {
 
   const priceRanges = [
     { id: 'all', name: 'All Prices' },
-    { id: '0-70', name: 'Under $70' },
-    { id: '70-100', name: '$70 - $100' },
-    { id: '100-150', name: '$100 - $150' },
-    { id: '150+', name: 'Above $150' }
+    { id: '0-70', name: 'Under PKR70' },
+    { id: '70-100', name: 'PKR70 - PKR100' },
+    { id: '100-150', name: 'PKR100 - PKR150' },
+    { id: '150+', name: 'Above PKR150' }
   ];
 
   const filteredProducts = products.filter(product => {
@@ -142,7 +142,7 @@ const Products = () => {
                     alt={product.name}
                     src="https://images.unsplash.com/photo-1635865165118-917ed9e20936" />
                   <div className="absolute top-4 right-4 bg-white rounded-full px-2 py-1 text-sm font-semibold text-gray-800">
-                    ${product.price}
+                    PKR{product.price}
                   </div>
                 </div>
                 

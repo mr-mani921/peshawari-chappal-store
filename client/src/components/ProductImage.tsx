@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import React, { useState } from "react";
+import { ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 
 const ProductImage: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
 
   const images = [
-    'https://images.pexels.com/photos/1464625/pexels-photo-1464625.jpeg?auto=compress&cs=tinysrgb&w=800',
-    'https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=800',
-    'https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg?auto=compress&cs=tinysrgb&w=800',
-    'https://images.pexels.com/photos/1464624/pexels-photo-1464624.jpeg?auto=compress&cs=tinysrgb&w=800'
+    "https://images.pexels.com/photos/1464625/pexels-photo-1464625.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/1464624/pexels-photo-1464624.jpeg?auto=compress&cs=tinysrgb&w=800",
   ];
 
   const nextImage = () => {
@@ -29,10 +29,10 @@ const ProductImage: React.FC = () => {
             src={images[selectedImage]}
             alt="Product"
             className={`w-full h-full object-cover transition-transform duration-300 ${
-              isZoomed ? 'scale-150' : 'scale-100'
+              isZoomed ? "scale-150" : "scale-100"
             }`}
           />
-          
+
           {/* Navigation Arrows */}
           <button
             onClick={prevImage}
@@ -40,7 +40,7 @@ const ProductImage: React.FC = () => {
           >
             <ChevronLeft size={20} className="text-gray-700" />
           </button>
-          
+
           <button
             onClick={nextImage}
             className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-lg"
@@ -66,8 +66,8 @@ const ProductImage: React.FC = () => {
             onClick={() => setSelectedImage(index)}
             className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
               selectedImage === index
-                ? 'border-blue-500 ring-2 ring-blue-200'
-                : 'border-gray-200 hover:border-gray-300'
+                ? "border-blue-500 ring-2 ring-blue-200"
+                : "border-gray-200 hover:border-gray-300"
             }`}
           >
             <img

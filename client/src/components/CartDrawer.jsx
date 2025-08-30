@@ -128,7 +128,7 @@ const CartDrawer = () => {
               <div className="cart-footer">
                 <div className="cart-summary">
                   <div className="cart-total">
-                    <span>Total: <strong>${totalAmount.toFixed(2)}</strong></span>
+                    <span>Total: <strong>PKR{totalAmount.toFixed(2)}</strong></span>
                   </div>
                   
                   <div className="cart-actions">
